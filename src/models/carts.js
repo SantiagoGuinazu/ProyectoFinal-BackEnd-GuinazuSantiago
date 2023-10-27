@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import ProductManager from "./productos.js";
+import ProductManager from "../models/productos.js";
 
 export default class Cart {
 
@@ -9,7 +9,7 @@ export default class Cart {
     #products;
 
     constructor() {
-        this.#path = "../data/carts.json";
+        this.#path = "./src/data/carts.json";
         this.#carts = this.#leerArchivo();
         Cart.#id = this.#carts.length > 0 ? this.#carts[this.#carts.length - 1].id : 0;
         this.#products = new ProductManager();
