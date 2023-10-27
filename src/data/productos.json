@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "title": "Monitor",
+        "description": "DELL 50",
+        "price": 5000,
+        "img": "img1",
+        "code": "abc123",
+        "stock": 5
+    },
+    {
+        "id": 2,
+        "title": "Mouse",
+        "description": "Inalambrico",
+        "price": 4000,
+        "img": "img1",
+        "code": "abc124",
+        "stock": 10
+    },
+    {
+        "id": 4,
+        "title": "Monitor HD",
+        "description": "Samsung 27",
+        "price": 5000,
+        "img": "./documents/imagenes/monitor.jpg",
+        "code": "abc12457",
+        "stock": 500
+    },
+    {
+        "id": 5,
+        "title": "Memoria Ram",
+        "description": "16gb",
+        "price": 6000,
+        "img": "img1",
+        "code": "abc12457s",
+        "stock": 34
+    },
+    {
+        "id": 6,
+        "title": "Lapto",
+        "description": "DELL",
+        "price": 1000,
+        "img": "img1",
+        "code": "abc1245",
+        "stock": 34
+    },
+    {
+        "id": 7,
+        "title": "Pasta",
+        "description": "Marca cualquiera",
+        "price": 450,
+        "img": "Prueba Post",
+        "code": "123456787",
+        "stock": 45
+    },
+    {
+        "id": 8,
+        "title": "Prueba Post",
+        "description": "Prueba Post",
+        "price": 5000,
+        "img": "Prueba Post",
+        "code": "Prueba Post",
+        "stock": 45
+    }
+]
