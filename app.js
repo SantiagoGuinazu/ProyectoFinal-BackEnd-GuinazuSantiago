@@ -11,7 +11,7 @@ app.use("/api/products", products);
 app.use("/api/carts", carts);
 
 app.get("/", function (req, res) {
-    return res.send("Solución laboratorio 3")
+    return res.send("Proyecto Final - Guiñazu Santiago")
 });
 
 app.listen(port, () => {

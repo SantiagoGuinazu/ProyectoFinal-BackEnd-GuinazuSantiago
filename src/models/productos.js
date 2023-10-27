@@ -7,7 +7,7 @@ export default class ProductManager {
     #path
 
     constructor() {
-        this.#path = "./data/productos.json";
+        this.#path = "../data/productos.json";
         this.#products = this.#leerArchivo();
         ProductManager.#id = this.#products.length > 0 ? this.#products[this.#products.length - 1].id : 0;
     }
@@ -71,7 +71,7 @@ export default class ProductManager {
         return productoId ? productoId : false;
     }
 
-    updtaeProduct(id, propiedades) {
+    updateProduct(id, propiedades) {
 
         try {
             let mensaje;

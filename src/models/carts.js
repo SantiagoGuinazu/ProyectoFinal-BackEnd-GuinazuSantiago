@@ -9,7 +9,7 @@ export default class Cart {
     #products;
 
     constructor() {
-        this.#path = "./data/carts.json";
+        this.#path = "../data/carts.json";
         this.#carts = this.#leerArchivo();
         Cart.#id = this.#carts.length > 0 ? this.#carts[this.#carts.length - 1].id : 0;
         this.#products = new ProductManager();

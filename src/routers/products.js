@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const { id } = req.params;
-    const result = productos.updtaeProduct(parseInt(id), req.body);
+    const result = productos.updateProduct(parseInt(id), req.body);
     return res.json({ result });
 });
 
