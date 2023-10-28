@@ -23,7 +23,7 @@ const httpServer = app.listen(port, () => {
     console.log(`Corriendo en el puerto ${port}`);
 });
 
-const io = new Server(httpServer)
+const io = new Server(httpServer);
 
 io.on("connection", socket => {
     console.log("Nuevo cliente conectado")

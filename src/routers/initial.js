@@ -11,7 +11,7 @@ router.get("/real-time-products", (req,res) => {
 })
 
 router.get("*", (req,res) => {
-    return res.render("Pagina 404")
+    return res.render("404")
 });
 
 export default router;
