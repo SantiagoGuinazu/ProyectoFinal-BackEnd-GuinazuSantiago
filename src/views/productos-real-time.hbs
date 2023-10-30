@@ -1,15 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos socket</title>
+    <link rel="stylesheet" href="/css/productos-real-time.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Productos</title>
 </head>
+
 <body>
-    <h1>Productos socket</h1>
-    <hr>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>Productos Real Time</h2>
+            </div>
+            <nav>
+                <ul class="right-links">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/products">Productos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/socket-client.js"></script>
 </body>
+
 </html>
