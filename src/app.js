@@ -13,7 +13,7 @@ const port = 8080;
 
 const p = new Productos();
 
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
