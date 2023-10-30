@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/productos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Productos</title>
 </head>
+
 <body>
-    <h1>Productos</h1>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h2>Productos</h2>
+            </div>
+            <nav>
+                <ul class="right-links">
+                    <li><a href="/">Inicio</a></li>
+                    <li><a href="/real-time-products">Productos en Vivo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="product-container">
+        {{#each productos}}
+        <div class="product-card">
+            <img src="{{thumbnails}}" alt="{{title}}">
+            <h3>{{title}}</h3>
+            <p>{{description}}</p>
+            <p>Price: ${{price}}</p>
+            <p>Stock: {{stock}}</p>
+            <button id="{{id}}"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+        </div>
+        {{/each}}
+    </div>
 </body>
+
 </html>

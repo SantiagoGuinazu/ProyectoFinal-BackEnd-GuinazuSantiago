@@ -1,0 +1,86 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    margin-bottom: 15px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    flex-grow: 1;
+}
+
+.right-links {
+    display: flex;
+}
+
+.right-links li {
+    margin-left: 10px;
+}
+
+.right-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h2 {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* Tabla de productos */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-table th {
+    background-color: #f0f0f0;
+}
+
+.product-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.product-table td.actions {
+    white-space: nowrap;
+}
+
+.product-table td.actions a {
+    display: inline-block;
+    margin-right: 5px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.product-table td.actions a:hover {
+    color: #333;
+}
