@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import ProductManager from "../models/productos.js";
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import ProductManager from '../models/productos.js';
 
 export default class Cart {
 
@@ -9,7 +9,7 @@ export default class Cart {
     #products;
 
     constructor() {
-        this.#path = "./src/data/carts.json";
+        this.#path = './src/data/carts.json';
         this.#carts = this.#leerArchivo();
         Cart.#id = this.#carts.length > 0 ? this.#carts[this.#carts.length - 1].id : 0;
         this.#products = new ProductManager();
@@ -19,7 +19,7 @@ export default class Cart {
         try {
             let data;
             if (existsSync(this.#path))
-                data = JSON.parse(readFileSync(this.#path, "utf-8"));
+                data = JSON.parse(readFileSync(this.#path, 'utf-8'));
             else
                 data = [];
 
@@ -37,7 +37,7 @@ export default class Cart {
             };
             this.#carts.push(newCart);
             writeFileSync(this.#path, JSON.stringify(this.#carts));
-            return "Carrito creado exitosamente";
+            return 'Carrito creado exitosamente';
         } catch (error) {
             console.log(error);
         }
@@ -77,10 +77,10 @@ export default class Cart {
 
                 writeFileSync(this.#path, JSON.stringify(this.#carts));
 
-                mensaje = "El producto se agrego correctamente al carrito";
+                mensaje = 'El producto se agrego correctamente al carrito';
 
             } else {
-                mensaje = "El id del carrito o el id del producto no existen";
+                mensaje = 'El id del carrito o el id del producto no existen';
             }
 
 

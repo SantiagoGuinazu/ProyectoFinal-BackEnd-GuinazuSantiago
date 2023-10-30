@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 export default class ProductManager {
 
@@ -12,7 +12,7 @@ export default class ProductManager {
         if(ProductManager.#instance)
             return ProductManager.#instance;
 
-        this.#path = "./src/data/productos.json";
+        this.#path = './src/data/productos.json';
         this.#products = this.#leerArchivo();
         ProductManager.#id = this.#products.length > 0 ? this.#products[this.#products.length - 1].id : 0;
 
@@ -23,7 +23,7 @@ export default class ProductManager {
         try {
             let data;
             if (existsSync(this.#path))
-                data = JSON.parse(readFileSync(this.#path, "utf-8"));
+                data = JSON.parse(readFileSync(this.#path, 'utf-8'));
             else
                 data = [];
 
@@ -56,9 +56,9 @@ export default class ProductManager {
                 if (!Object.values(newProduct).includes(undefined)) {
                     this.#products.push(newProduct);
                     writeFileSync(this.#path, JSON.stringify(this.#products));
-                    mensaje = "Producto agregado exitosamente!";
+                    mensaje = 'Producto agregado exitosamente!';
                 } else
-                    mensaje = "Se requiere completar todos los campos";
+                    mensaje = 'Se requiere completar todos los campos';
 
             }
 
@@ -88,7 +88,7 @@ export default class ProductManager {
                 const { id, ...rest } = propiedades;
                 this.#products[indice] = { ...this.#products[indice], ...rest };
                 writeFileSync(this.#path, JSON.stringify(this.#products));
-                mensaje = "El producto fue actualizado correctamente!"
+                mensaje = 'El producto fue actualizado correctamente!'
             } else
                 mensaje = `El producto con ID ${id} no existe`;
 
@@ -106,7 +106,7 @@ export default class ProductManager {
             if (indice >= 0) {
                 this.#products.splice(indice, 1);
                 writeFileSync(this.#path, JSON.stringify(this.#products));
-                mensaje = "Producto eliminado correctamente";
+                mensaje = 'Producto eliminado correctamente';
             } else
                 mensaje = `El producto con ID ${id} no existe`;
 
