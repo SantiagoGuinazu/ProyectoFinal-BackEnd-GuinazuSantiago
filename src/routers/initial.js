@@ -1,9 +1,13 @@
 import { Router } from "express";
+import ProductManager from "../models/productos.js";
 
 const router = Router();
 
+const productos = new ProductManager();
+
 router.get("/products", (req,res) => {
-    return res.render("productos")
+    const p = productos.getProduct();
+    return res.render("productos",{productos: p})
 })
 
 router.get("/real-time-products", (req,res) => {
