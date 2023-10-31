@@ -5,13 +5,11 @@ const router = Router();
 
 const cart = new Cart();
 
-// todos los carritos
 router.get('/', (req, res) => {
     const result = cart.getCarts();
     return res.json({ result });
 });
 
-// un carrito en particular
 router.get('/:id', (req, res) => {
     const result = cart.getCartById(parseInt(req.params.id));
     return res.json({ result });
