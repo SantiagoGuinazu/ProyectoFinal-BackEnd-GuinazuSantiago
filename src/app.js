@@ -5,7 +5,6 @@ import carts from './routers/carts.js';
 import initial from './routers/initial.js';
 import __dirname from './utils.js';
 import Productos from './models/productos.js';
-
 import { Server } from 'socket.io';
 
 const app = express();

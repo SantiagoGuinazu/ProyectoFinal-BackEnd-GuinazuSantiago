@@ -15,18 +15,18 @@ socket.on("productos", productos => {
     tbody.innerHTML = "";
 
     productos.forEach(producto => {
-        const fila = document.createElement("tr");
-        fila.innerHTML= `
-        <td><img src="${producto.img}"></td>
-            <td>${producto.title}/td>
-            <td>${producto.description}/td>
-            <td>${producto.price}/td>
-            <td>${producto.stock}/td>
-        <td>
-            <button class="borrarProducto" data-id="${producto.id}">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        </td>
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td><img src="${producto.img}"></td>
+            <td>${producto.title}</td>
+            <td>${producto.description}</td>
+            <td>${producto.price}</td>
+            <td>${producto.stock}</td>
+            <td>
+                <button class="borrarProducto" data-id="${producto.id}">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
         `;
         tbody.appendChild(fila);
 
