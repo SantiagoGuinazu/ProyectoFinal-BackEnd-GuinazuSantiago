@@ -21,7 +21,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.json());
 
-app.get('/api/users', async (req, res) => { 
+app.get('/api/users', async (req, res) => { // Moongose
     const users = await UserModel.find()
 
     res.json({ status: 'success', payload: users })
