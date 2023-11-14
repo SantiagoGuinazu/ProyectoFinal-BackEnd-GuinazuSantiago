@@ -21,15 +21,25 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.json());
 
-app.get('/api/users', async (req, res) => { // Moongose
+app.get('/api/users', async (req, res) => { // Moongose GET
     const users = await UserModel.find()
 
     res.json({ status: 'success', payload: users })
 })
 
-app.use('/api/products', products);
-app.use('/api/carts', carts);
-app.use('/', initial);
+app.post('api/users', async (req,res) => { // Moongose POST
+    try{
+        const data = req.body
+        const result = await UserModel.create(data)
+    
+        res.json({status: 'success', payload: result})
+    } catch(e) {
+        res.status(400).json({status: 'error', error: e})
+    }
+
+})
+
+
 
 
 const url = 'mongodb+srv://santigui2003:arquitectura10@santiagocluster.vw1wy4u.mongodb.net/' // Moongose
@@ -41,7 +51,9 @@ mongoose.connect(url, { dbName: 'clase14_555' })
         console.error('Error connecting to DB')
     })
 
-
+    app.use('/api/products', products);
+    app.use('/api/carts', carts);
+    app.use('/', initial);
 
 
 const httpServer = app.listen(port, () => {
