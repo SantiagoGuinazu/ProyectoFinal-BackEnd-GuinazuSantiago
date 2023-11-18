@@ -20,6 +20,7 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/api/users', async (req, res) => { // Moongose GET
     const users = await UserModel.find()
@@ -40,10 +41,8 @@ app.post('api/users', async (req,res) => { // Moongose POST
 })
 
 
-
-
 const url = 'mongodb+srv://santigui2003:arquitectura10@santiagocluster.vw1wy4u.mongodb.net/' // Moongose
-mongoose.connect(url, { dbName: 'clase14_555' })
+mongoose.connect(url, { dbName: 'ecommerce' })
     .then(() => {
         console.log("DB connected")
     })
