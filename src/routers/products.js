@@ -1,42 +1,71 @@
 import { Router } from 'express';
-import ProductManager from '../models/productos.js';
+import productModel from '../DAO/models/products.models.js';
 
 const router = Router();
 
-const productos = new ProductManager();
+router.get("/", async (req, res) => {
+    try {
+        const productos = await productModel.find().lean().exec()
+        res.send(productos)
+    }
+    catch (e) {
+        res.status(500).send("Error en el servidor")
+    }
+})
 
-router.get('/', (req, res) => {
-    const { limit } = req.query;
-    const p = productos.getProduct();
-    let cantProductos;
-    if (limit)
-        cantProductos = p.slice(0, limit)
-    else
-        cantProductos = p;
-    return res.json({ cantTotal: p.length, productos: cantProductos });
+router.get('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const producto = await productModel.findById(id).lean().exec()
+        res.status(!producto ? 404 : 200).send(producto)
+    }
+    catch (e) {
+        console.error("Error:", e)
+        res.status(e.name == "CastError" ? 400 : 500).send(e.name == "CastError" ? "Not found" : "Error en el servidor")
+    }
 });
 
-router.get('/:id', (req, res) => {
-    const { id } = req.params
-    return res.json(productos.getProductById(parseInt(id)))
+router.post('/', async (req, res) => {
+    try {
+        const productos = await productModel.find().lean().exec()
+        if (!productos.some(p => p.code === req.body.code)) {
+            if (!req.body.title || !req.body.description || !req.body.price || !req.body.code || !req.body.stock || !req.body.category) return res.status(400).json({ message: "Missed properties" })
+            const newProducto = await productModel.create(req.body)
+            res.status(!newProducto ? 500 : 200).send(newProducto)
+        } else {
+            res.status(400).json({ message: "Invalid code" })
+        }
+    }
+    catch (e) {
+        console.error("Error:", e)
+        res.status(500).send("Error en el servidor")
+    }
 });
 
-router.post('/', (req, res) => {
-    const { title, description, price, img, code, stock } = req.body;
-    const result = productos.addProduct(title, description, price, img, code, stock);
-    return res.json({ result });
+router.put('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        let producto = await productModel.findById(id).lean().exec()
+        if (req.body._id || req.body.code) return res.status(400).json({ message: "Invalid property" })
+        const updatedProducto = await productModel.updateOne({ _id: id }, { ...producto, ...req.body })
+        res.status(!updatedProducto ? 500 : 200).send(updatedProducto)
+    }
+    catch (e) {
+        console.error("Error:", e)
+        res.status(e.name == "CastError" ? 400 : 500).send(e.name == "CastError" ? "Not found" : "Error en el servidor")
+    }
 });
 
-router.put('/:id', (req, res) => {
-    const { id } = req.params;
-    const result = productos.updtaeProduct(parseInt(id), req.body);
-    return res.json({ result });
-});
-
-router.delete('/:id', (req, res) => {
-    const { id } = req.params;
-    const result = productos.deleteProduct(parseInt(id));
-    return res.json({ result });
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const deletedProducto = await productModel.deleteOne({ _id: id })
+        res.status(!deletedProducto ? 404 : 200).send(deletedProducto)
+    }
+    catch (e) {
+        console.error("Error:", e)
+        res.status(e.name == "CastError" ? 400 : 500).send(e.name == "CastError" ? "Not found" : "Error en el servidor")
+    }
 });
 
 export default router;

@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import ProductManager from '../models/productos.js';
+import ProductManager from '../managers/productos.js';
 
 export default class Cart {
 

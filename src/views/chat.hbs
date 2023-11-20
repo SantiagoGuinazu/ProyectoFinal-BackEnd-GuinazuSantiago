@@ -1,37 +1,12 @@
-<!DOCTYPE html>
-<html lang='en'>
+<main>
+    <h1>Chat - Messages</h1>
+    <form action="">
+        <h2>Ingresar Email</h2>
+        <input type="email" placeholder="Ingresa tu email: " id="email-input">
+        <input type="submit">
+    </form>
+</main>
 
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' href='/css/productos.css'>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-    <title>Productos</title>
-</head>
 
-<body>
-    <header>
-        <div class='container'>
-            <div class='logo'>
-                <h2>Messages</h2>
-            </div>
-            <nav>
-                <ul class='right-links'>
-                    <li><a href='/'>Inicio</a></li>
-                    <li><a href='/real-time-products'>Productos en Vivo</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class='chat-container'>
-        {{#each Messages}}
-        <div class='message-card'>
-            <h3>{{user}}</h3>
-            <p>{{message}}</p>
-        </div>
-        {{/each}}
-    </div>
-</body>
-
-</html>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/static/js/script.js"></script>
