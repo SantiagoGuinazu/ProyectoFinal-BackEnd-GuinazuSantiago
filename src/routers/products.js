@@ -4,9 +4,9 @@ import { addProduct, deleteProduct, getProduct, getProductById, updateProduct } 
 const router = Router();
 
 router.get('/', getProduct);
-router.get('/:id', getProductById);
+router.get('/:pid', getProductById);
 router.post('/', addProduct);
-router.put('/:id', updateProduct);
-router.delete('/:id', deleteProduct);
+router.put('/:pid', updateProduct);
+router.delete('/:pid', deleteProduct);
 
 export default router;
