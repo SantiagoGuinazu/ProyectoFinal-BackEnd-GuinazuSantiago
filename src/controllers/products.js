@@ -4,10 +4,10 @@ import { productModel } from '../models/productos.js';
 
 export const getProduct = async (req= request, res= response) => {
         try {
-            //Terminar el metodo
-            //const {limit} = req.query;
-            const productos = await productModel.find();
-            return res.json({productos})
+            const {limit} = req.query;
+            const productos = await productModel.find().limit(Number(limit));
+            const total = await productModel.countDocuments();
+            return res.json({total, productos})
         } catch (error) {
             console.log('getProduct ->', error)
             return res.status(500).json({msg:"Hablar con admin"})
