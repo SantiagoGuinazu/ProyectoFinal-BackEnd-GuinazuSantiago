@@ -4,14 +4,12 @@ import products from './routers/products.js';
 import carts from './routers/carts.js';
 import initial from './routers/initial.js';
 import __dirname from './utils.js';
-import Productos from './Noesnecesario/productos.js';
 import { Server } from 'socket.io';
 import { dbConnection } from './database/config.js';
+import { productModel } from './models/productos.js';
 
 const app = express();
 const port = 8080;
-
-const p = new Productos();
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views')
@@ -31,17 +29,16 @@ const httpServer = app.listen(port, () => {
 
 const io = new Server(httpServer);
 
-io.on('connection', socket => {
-    console.log('Nuevo cliente conectado');
+io.on('connection', async (socket) => {
 
-    socket.on('disconnect', ()=> {
-        console.log('El cliente se ha desconectado')
-    })
+    const productos = await productModel.find()
+    socket.emit('productos', productos);
 
-    socket.emit('productos', p.getProduct());
-
-    socket.on('productos', idProducto => {
-        p.deleteProduct(parseInt(idProducto));
-        socket.emit('productos', p.getProduct());
+    socket.on('agregarProducto', producto=>{
+        const newProduct = productModel.create({...producto})
+        if(newProduct){
+            productos.push(newProduct)
+            socket.emit('productos', productos)
+        }
     });
 });
