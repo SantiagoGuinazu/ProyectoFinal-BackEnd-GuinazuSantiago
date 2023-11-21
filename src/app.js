@@ -4,8 +4,9 @@ import products from './routers/products.js';
 import carts from './routers/carts.js';
 import initial from './routers/initial.js';
 import __dirname from './utils.js';
-import Productos from './models/productos.js';
+import Productos from './Noesnecesario/productos.js';
 import { Server } from 'socket.io';
+import { dbConnection } from './database/config.js';
 
 const app = express();
 const port = 8080;
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use('/api/products', products);
 app.use('/api/carts', carts);
 app.use('/', initial);
+
+await dbConnection();
 
 const httpServer = app.listen(port, () => {
     console.log(`Corriendo en el puerto ${port}`);
