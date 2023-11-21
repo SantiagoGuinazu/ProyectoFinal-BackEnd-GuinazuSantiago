@@ -46,3 +46,21 @@ Swal.fire({
         renderizar(data)
     }
 });
+
+chatBox.addEventListener('keyup', evt => {
+    if(evt.key === 'Enter') {
+        if(chatBox.value.trim().length > 0) {
+            const message = chatBox.value;
+            socket.emit('message', {user, message});
+            chatBox.value = '';
+        }
+    }
+});
+
+socket.on('nuevo_user', () => {
+    Swal.fire({
+        text: 'Nuevo usuario conectado',
+        toast: true,
+        position: 'top-right'
+    });
+});

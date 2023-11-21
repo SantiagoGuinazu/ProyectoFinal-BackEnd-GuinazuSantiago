@@ -7,6 +7,7 @@ import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import { dbConnection } from './database/config.js';
 import { productModel } from './models/productos.js';
+import { messageModel } from './models/messages.js';
 
 const app = express();
 const port = 8080;
@@ -33,7 +34,6 @@ io.on('connection', async (socket) => {
 
     const productos = await productModel.find()
     socket.emit('productos', productos);
-
     socket.on('agregarProducto', async (producto) => {
         const newProduct = await productModel.create({...producto})
         if(newProduct){
@@ -41,4 +41,18 @@ io.on('connection', async (socket) => {
             socket.emit('productos', productos)
         }
     });
+
+    const messages = await messageModel.find();
+    socket.emit('message', messages);
+
+    socket.on('message', async (data) => {
+        const newMessage = await messageModel.create({...data});
+        if(newMessage) {
+            const messages = await messageModel.find();
+            io.emit('messageLogs', messages)
+        }
+    })
+
+    socket.broadcast.emit('nuevo_user');
+    
 });
