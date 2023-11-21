@@ -34,8 +34,8 @@ io.on('connection', async (socket) => {
     const productos = await productModel.find()
     socket.emit('productos', productos);
 
-    socket.on('agregarProducto', producto=>{
-        const newProduct = productModel.create({...producto})
+    socket.on('agregarProducto', async (producto) => {
+        const newProduct = await productModel.create({...producto})
         if(newProduct){
             productos.push(newProduct)
             socket.emit('productos', productos)

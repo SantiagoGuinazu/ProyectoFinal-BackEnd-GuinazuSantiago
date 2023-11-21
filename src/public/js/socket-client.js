@@ -17,7 +17,7 @@ socket.on("productos", productos => {
     productos.forEach(producto => {
         const fila = document.createElement('tr');
         fila.innerHTML = `
-            <td><img src="${producto.img}"></td>
+            <td><img src="${producto.thumbnails}"></td>
             <td>${producto.title}</td>
             <td>${producto.description}</td>
             <td>${producto.price}</td>
