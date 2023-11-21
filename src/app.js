@@ -8,9 +8,10 @@ import { Server } from 'socket.io';
 import { dbConnection } from './database/config.js';
 import { productModel } from './models/productos.js';
 import { messageModel } from './models/messages.js';
+import 'dotenv/config';
 
 const app = express();
-const port = 8080;
+const port = process.env.port;
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views')
@@ -54,5 +55,5 @@ io.on('connection', async (socket) => {
     })
 
     socket.broadcast.emit('nuevo_user');
-    
+
 });
