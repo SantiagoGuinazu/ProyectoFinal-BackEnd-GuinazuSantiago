@@ -5,18 +5,18 @@ let chatBox = document.getElementById('chatBox');
 let log = document.getElementById('messageLogs');
 let data;
 
-socket.on('message', msg=>{
-    data= msg;
+socket.on('message', msg =>{
+    data = msg;
 });
 
-socket.on('messageLogs', msgs=>{
+socket.on('messageLogs', msgs =>{
     renderizar(msgs);
 });
 
 const renderizar = (msgs) =>{
     let messages = '';
     msgs.forEach(message => {
-        const isCurrent = message.user === user;
+        const isCurrentUser = message.user === user;
         const messageClass = isCurrentUser ? 'my-message' : 'other-message';
         messages = messages + `<div class="${messageClass}">${message.user}: ${message.message}</div>`
     });
