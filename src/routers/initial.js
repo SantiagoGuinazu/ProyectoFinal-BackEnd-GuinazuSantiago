@@ -12,6 +12,10 @@ router.get('/real-time-products', (req,res) => {
     return res.render('productos-real-time')
 })
 
+router.get('/chat', (req,res) => {
+    return res.render('chat')
+})
+
 router.get('*', (req, res) => {
     return res.render('404');
 });
