@@ -13,7 +13,7 @@ router.get('/real-time-products', (req,res) => {
 })
 
 router.get('/chat', (req,res) => {
-    return res.render('chat')
+    return res.render('chat', {styles: 'chat.css'})
 })
 
 router.get('*', (req, res) => {
