@@ -3,9 +3,9 @@ import {Schema , model} from 'mongoose';
 const nameCollection = 'Cart';
 
 const CartSchema = new Schema({
-    _id: false,
     products:[
         {
+            _id: false,
             id:{
                 type:Schema.Types.ObjectId,
                 ref:'Producto'
