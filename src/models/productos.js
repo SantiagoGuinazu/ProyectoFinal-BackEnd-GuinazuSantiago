@@ -7,8 +7,10 @@ const ProductoSchema = new Schema({
     description: { type: String, required: [true, 'La description del producto es obligatorio'] },
     code: { type: String, required: [true, 'El code del producto es obligatorio'],unique: true },
     price: { type: Number, required: [true, 'El price del producto es obligatorio'] },
+    status: { type: Boolean, default: true },
     stock: { type: Number, required: [true, 'El stock del producto es obligatorio'] },
-    img: [{ type: String }],
+    category: { type: String, required: [true, 'El category del producto es obligatorio'] },
+    thumbnails: [{ type: String }],
 });
 
 export const productModel = model(nameCollection, ProductoSchema)

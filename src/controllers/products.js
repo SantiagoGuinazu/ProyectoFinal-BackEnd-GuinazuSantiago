@@ -29,10 +29,10 @@ export const getProductById = async (req= request, res= response) => {
 
 export const addProduct = async (req= request, res= response) => {
     try {
-        const { title, description, price, img, code, stock } = req.body;
-        if(!title, !description, !price, !img, !code, !stock )
+        const { title, description, price, thumbnails, code, stock, status, category } = req.body;
+        if(!title, !description, !price, !thumbnails, !code, !stock, !status, !category )
             return res.status(404).json({msg:'Los campos: title, description, price, img, code, stock son obligatorios'})
-        const producto = await productModel.create({title, description, price, img, code, stock})
+        const producto = await productModel.create({title, description, price, thumbnails, code, stock, status, category})
 
         return res.json({producto})
     } catch (error) {
