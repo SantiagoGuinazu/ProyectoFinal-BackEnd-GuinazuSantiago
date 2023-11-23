@@ -24,7 +24,7 @@ socket.on("productos", productos => {
         const botonBorrar = fila.querySelector('.borrarProducto');
         botonBorrar.addEventListener('click', () => {
             const productoId = botonBorrar.dataset.id;
-            console.log({productoId})
+            console.log({ productoId })
 
             socket.emit("productos", productoId);
         });
@@ -35,4 +35,24 @@ const formulario = document.getElementById('producto-form')
 
 formulario.addEventListener('submit', function (event) {
     event.preventDefault();
-}) 
+
+
+    const titulo = document.getElementById('titulo').value;
+    const descripcion = document.getElementById('descripcion').value;
+    const precio = document.getElementById('precio').value;
+    const codigo = document.getElementById('codigo').value;
+    const stock = document.getElementById('stock').value;
+    const categoria = document.getElementById('categoria').value;
+
+    const producto = {
+        title: titulo,
+        description: descripcion,
+        price: precio,
+        code: codigo,
+        stock: stock,
+        category: categoria
+    }
+    socket.emit('agregarProducto', producto);
+
+    formulario.reset();
+});
