@@ -1,14 +1,5 @@
 const socket = io();
 
-socket.on("connect", () => {
-    console.log("cliente conectado del lado del front")
-});
-
-socket.on("disconnect", () => {
-    console.log("se desconecto del lado del backend")
-});
-
-
 socket.on("productos", productos => {
     const tbody = document.querySelector(".product-table tbody");
 
@@ -39,3 +30,9 @@ socket.on("productos", productos => {
         });
     });
 });
+
+const formulario = document.getElementById('producto-form')
+
+formulario.addEventListener('submit', function (event) {
+    event.preventDefault();
+}) 
