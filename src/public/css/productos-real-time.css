@@ -84,3 +84,12 @@ ul {
 .product-table td.actions a:hover {
     color: #333;
 }
+
+#producto-form {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
