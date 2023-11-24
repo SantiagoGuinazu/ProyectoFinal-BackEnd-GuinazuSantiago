@@ -4,7 +4,7 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' type='text/css' href='./css/styles.css'>
+    <link rel='stylesheet' type='text/css' href='./css/chat.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
     <title>Chat</title>
 </head>
@@ -13,7 +13,7 @@
     <header>
         <div class='container'>
             <div class='logo'>
-                <h2>Productos Real Time</h2>
+                <h2>Chat en vivo</h2>
             </div>
             <nav>
                 <ul class='right-links'>
@@ -24,14 +24,13 @@
             </nav>
         </div>
     </header>
-
-    <div>
-        <h1>Bienvenidos al Chat</h1>
-    </div>
-    <div>
+<div class="chat-container">
+    <h1>Bienvenidos al Chat</h1>
+    <div class="chat">
         <p id="messageLogs"></p>
-        <input id="chatBox">
+        <input id="chatBox" placeholder="Presionar Enter">
     </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src='/socket.io/socket.io.js'></script>
