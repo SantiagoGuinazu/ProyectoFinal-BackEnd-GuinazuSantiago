@@ -58,13 +58,7 @@
                     Desactivado
                     {{/if}}
                 </td>
-                <td>
-                    {{#if this.thumbnails.lenght}}
-                    <a href="{{this.thumbnails.[0]}}" target="_blank">{{this.thumbnails.[0]}}</a>
-                    {{else}}
-                    No hay imagen
-                    {{/if}}
-                </td>
+                <td><img src="{{this.thumbnails}}"></td>
             </tr>
             {{/each}}
         </tbody>
