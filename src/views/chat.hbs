@@ -1,11 +1,41 @@
-<div>
-    <h1>Bienvenidos al Chat</h1>
-</div>
-<div>
-    <p id="messageLogs"></p>
-    <input id="chatBox">
-</div>
+<!DOCTYPE html>
+<html lang='en'>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src='/socket.io/socket.io.js'></script>
-<script src='/js/chat.js'></script>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' type='text/css' href='./css/styles.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+    <title>Chat</title>
+</head>
+
+<body>
+    <header>
+        <div class='container'>
+            <div class='logo'>
+                <h2>Productos Real Time</h2>
+            </div>
+            <nav>
+                <ul class='right-links'>
+                    <li><a href='/'>Inicio</a></li>
+                    <li><a href='/products'>Productos</a></li>
+                    <li><a href='/real-time-products'>Productos en Vivo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div>
+        <h1>Bienvenidos al Chat</h1>
+    </div>
+    <div>
+        <p id="messageLogs"></p>
+        <input id="chatBox">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='/js/chat.js'></script>
+</body>
+
+</html>
