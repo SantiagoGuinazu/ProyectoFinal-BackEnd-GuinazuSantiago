@@ -6,9 +6,9 @@ import initial from './routers/initial.js';
 import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import { dbConnection } from './database/config.js';
-import { productModel } from './models/productos.js';
 import { messageModel } from './models/messages.js';
 import 'dotenv/config';
+import { addProductService, getProductsService } from './services/products.js';
 
 const app = express();
 const port = process.env.port;
@@ -33,10 +33,12 @@ const io = new Server(httpServer);
 
 io.on('connection', async (socket) => {
 
-    const productos = await productModel.find()
-    socket.emit('productos', productos);
+    const {payload} = await getProductsService({});
+    const productos = payload;
+
+    socket.emit('productos', payload);
     socket.on('agregarProducto', async (producto) => {
-        const newProduct = await productModel.create({...producto})
+        const newProduct = await addProductService({...producto})
         if(newProduct){
             productos.push(newProduct)
             socket.emit('productos', productos)

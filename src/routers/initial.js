@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import { productModel } from '../models/productos.js';
+import { getProductsService } from '../services/products.js';
 
 const router = Router();
 
-
 router.get('/products', async (req,res) => {
-    const productos = await productModel.find().lean();
-    return res.render('productos', {productos})
+    const {payload} = await getProductsService({});
+    return res.render('productos', {productos: payload})
 })
 
 router.get('/real-time-products', (req,res) => {

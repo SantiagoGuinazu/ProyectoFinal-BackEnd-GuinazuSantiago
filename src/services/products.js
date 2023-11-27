@@ -17,7 +17,7 @@ export const getProductsService = async ({limit = 10, page= 1, sort, query}) => 
             query = {}
         }
 
-        const queryProducts = productModel.find(query).limit(limit).skip(skip);
+        const queryProducts = productModel.find(query).limit(limit).skip(skip).lean();
 
         if(sort !== null)
             queryProducts.sort({price:sort});
