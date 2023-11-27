@@ -4,10 +4,35 @@ import { productModel } from '../models/productos.js';
 
 export const getProduct = async (req= request, res= response) => {
         try {
-            const {limit} = req.query;
-            const productos = await productModel.find().limit(Number(limit));
-            const total = await productModel.countDocuments();
-            return res.json({total, productos})
+            let {limit = 10, page=1 } = req.query;
+            page = page ==0 ? 1 : page;
+            page = Number(page);
+            const skip = (page-1) * Number(limit)
+            const queryProducts = productModel.find().limit(Number(limit)).skip(skip);
+
+            const [productos, totalDocs] = await Promise.all([queryProducts, productModel.countDocuments()]);
+
+            const totalPages = Math.ceil(totalDocs/Number(limit));
+            const hasNextPage = page < totalPages;
+            const hasPrevPage = page > 1;
+            const prevPage = hasPrevPage ? page -1 : null;
+            const nextPage = hasNextPage ? page +1 : null;
+
+
+            const result= {
+                totalPages,
+                hasNextPage,
+                hasPrevPage,
+                prevPage,
+                nextPage,
+                payload: productos,
+
+                prevLink:'',
+                nextLink:'',
+            }
+
+            return res.json({result});
+
         } catch (error) {
             console.log('getProduct ->', error)
             return res.status(500).json({msg:"Hablar con admin"})
