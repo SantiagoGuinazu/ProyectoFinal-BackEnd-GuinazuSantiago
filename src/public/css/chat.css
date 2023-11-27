@@ -52,22 +52,33 @@ ul {
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
 }
 
 #chatBox {
-    display: flex;
-    padding: 20px 200px;
-}
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  #messageLogs {
+    max-width: 600px;
+    margin: 20px auto; /* Ajusta el margen según tus preferencias */
+  }
 
 .isCurrentUser, 
 .my-message {
-    background-color: lightgrey;
-    margin-top: 5px;
+    text-align: right;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
     margin-bottom: 5px;
-}
+    border-radius: 8px;
+  }
 
 .other-message {
-    background-color: black;
-    color: white;
-}
+    text-align: left;
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+  }

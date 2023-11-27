@@ -1,4 +1,5 @@
 import {Schema , model} from 'mongoose';
+//import mongoosePaginate from 'mongoose';
 
 const nameCollection = 'Producto';
 
@@ -12,5 +13,7 @@ const ProductoSchema = new Schema({
     category: { type: String, required: [true, 'El category del producto es obligatorio'] },
     thumbnails: [{ type: String }],
 });
+
+//ProductoSchema.plugin(mongoosePaginate)
 
 export const productModel = model(nameCollection, ProductoSchema)
