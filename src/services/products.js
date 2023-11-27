@@ -2,7 +2,6 @@ import { productModel } from "../models/productos.js";
 
 export const getProductsService = async ({limit = 10, page= 1, sort, query}) => {
     try {
-        let {limit = 10, page=1, sort, query } = req.query;
         page = page ==0 ? 1 : page;
         page = Number(page);
         limit = Number(limit)
@@ -45,6 +44,44 @@ export const getProductsService = async ({limit = 10, page= 1, sort, query}) => 
 
     } catch (error) {
         console.log('getProductService ->', error)
+        throw error;
+    }
+}
+
+
+export const getProductByIdService = async (pid) => {
+    try {
+        return await productModel.findById(pid);
+    } catch (error) {
+        console.log('getProductByIdService ->', error)
+        throw error;
+    }
+}
+
+export const addProductService= async ({ title,description,price,thumbnails,code,stock,category,status}) => {
+    try {
+        return await productModel.create({title, description, price, thumbnails, code, stock, status, category})
+    } catch (error) {
+        console.log('addProductService ->', error)
+        throw error;
+    }
+}
+
+export const updateProductService = async (pid,rest) => {
+    try {
+        return await productModel.findByIdAndUpdate(pid,{...rest},{new:true})
+    } catch (error) {
+        console.log('updateProductService ->', error)
+        throw error;
+    }
+}
+
+export const deleteProductService = async (pid) => {
+    try {
+        return await productModel.findByIdAndDelete(pid);
+
+    } catch (error) {
+        console.log('deleteProductService ->', error)
         throw error;
     }
 }
