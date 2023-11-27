@@ -43,3 +43,36 @@ export const addProductCartService = async (cid, pid) => {
     }
 }
 
+export const deleteProductsInCartService = async (cid, pid) => {
+    try {
+        return await cartModel.findByIdAndUpdate(cid,{$pull:{'products':{id:pid}}}, {new: true})
+    } catch (error) {
+        console.log('deleteProductsInCartService ->', error)
+        throw error;
+    }
+}
+
+export const updateProductsInCartService = async (cid, pid, quantity) => {
+    try {
+        return await cartModel.findOneAndUpdate(
+            {_cid:cid, 'products.id':pid},
+            {$set: {'products.$.quantity':quantity}},
+            {new: true}
+
+        )
+    } catch (error) {
+        console.log('deleteProductsInCartService ->', error)
+        throw error;
+    }
+}
+
+
+export const deleteCartService = async (cid) => {
+    try {
+        return await cartModel.findByIdAndUpdate(cid,{$set:{'products':[]}}, {new: true})
+        //return await cartModel.findByIdAndDelete(cid)
+    } catch (error) {
+        console.log('deleteProductsInCartService ->', error)
+        throw error;
+    }
+}
