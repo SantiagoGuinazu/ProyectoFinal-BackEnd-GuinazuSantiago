@@ -11,7 +11,7 @@
 <header>
     <div class='container'>
         <div class='logo'>
-            <h2>Productos</h2>
+            <h1>Productos</h1>
         </div>
         <nav>
             <ul class='right-links'>
@@ -23,24 +23,23 @@
     </div>
 </header>
 
-
 <div>
-    <table class='product-table'>
+    <h3>Lista de productos:</h3>
+
+    <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Titulo</th>
-                <th>Descripcion</th>
+                <th>Título</th>
+                <th>Descripción</th>
                 <th>Precio</th>
-                <th>Codigo</th>
+                <th>Código</th>
                 <th>Stock</th>
-                <th>Category</th>
-                <th>Status</th>
+                <th>category</th>
+                <th>status</th>
                 <th>Imagen</th>
             </tr>
         </thead>
-    </table>
-    <table class='product-table'>
         <tbody>
             {{#each productos}}
             <tr>
@@ -64,12 +63,11 @@
                 {{else}}
                 No hay imagen
                 {{/if}}
-                <td>
             </tr>
             {{/each}}
         </tbody>
     </table>
-
 </div>
+
 
 </html>
