@@ -35,6 +35,8 @@ export const getProductsService = async ({limit = 10, page= 1, sort, query}) => 
             totalDocs,
             totalPages,
             limit,
+            query,
+            page,
             hasNextPage,
             hasPrevPage,
             prevPage,

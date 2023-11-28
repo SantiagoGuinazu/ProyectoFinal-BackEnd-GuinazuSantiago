@@ -4,8 +4,8 @@ import { getProductsService } from '../services/products.js';
 const router = Router();
 
 router.get('/products', async (req,res) => {
-    const {payload} = await getProductsService({});
-    return res.render('productos', {productos: payload})
+    const result = await getProductsService({...req.query});
+    return res.render('productos', result)
 })
 
 router.get('/real-time-products', (req,res) => {
@@ -19,5 +19,7 @@ router.get('/chat', (req,res) => {
 router.get('*', (req, res) => {
     return res.render('404');
 });
+
+
 
 export default router;
