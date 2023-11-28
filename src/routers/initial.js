@@ -21,7 +21,7 @@ router.get('/cart/:cid', async(req,res)=>{
     const {cid} = req.params;
     console.log('id del carrito:', cid)
     const carrito = await getCartByIdService(cid);
-    return res.render('cart', carrito);
+    return res.render('cart', {carrito});
 });
 
 router.get('*', (req, res) => {
