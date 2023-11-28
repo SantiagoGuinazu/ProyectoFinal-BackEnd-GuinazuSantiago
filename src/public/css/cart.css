@@ -1,0 +1,71 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Encabezado */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo {
+    flex-grow: 1;
+}
+
+.right-links {
+    display: flex;
+}
+
+.right-links li {
+    margin-left: 10px;
+}
+
+.right-links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+h2 {
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+h3 {
+    color:#333;
+}
+
+p {
+    margin: 0;
+    color: #666;
+}
+
+.carrito  {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carrito > div {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}

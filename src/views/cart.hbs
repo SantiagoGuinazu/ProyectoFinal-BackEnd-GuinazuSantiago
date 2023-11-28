@@ -4,39 +4,41 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <link rel='stylesheet' type='text/css' href='./css/chat.css'>
+    <link rel='stylesheet' href='/css/cart.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
-    <title>Chat</title>
+    <title>Cart</title>
 </head>
 
 <body>
     <header>
         <div class='container'>
             <div class='logo'>
-                <h1>Chat en vivo</h1>
+                <h1>Carrito</h1>
             </div>
             <nav>
                 <ul class='right-links'>
                     <li><a href='/'>Inicio</a></li>
                     <li><a href='/products'>Productos</a></li>
                     <li><a href='/real-time-products'>Productos en Vivo</a></li>
-                    <li><a href='/cart'>Carrito</a></li>
+                    <li><a href='/chat'>Chat</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-<div class="chat-container">
-    <h1>Bienvenidos al Chat</h1>
-    <div class="chat">
-        <p id="messageLogs"></p>
-        <input id="chatBox" placeholder="Presionar Enter">
-    </div>
-</div>
+    <div class="carrito">
+        <h2>Lista de compras:</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src='/socket.io/socket.io.js'></script>
-    <script src='/js/chat.js'></script>
+        {{#each carrito.products}}
+        <div>
+            <h4>Nombre del Producto: {{this.id.title}}</h4>
+            <p>Descripcion:{{this.id.description}}</p>
+            <p>Precio: ${{this.id.price}}</p>
+            <p>Cantidad: {{this.quantity}}</p>
+        </div>
+        {{/each}}
+    </div>
+
 </body>
 
 </html>
