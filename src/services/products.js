@@ -1,6 +1,6 @@
 import { productModel } from "../models/productos.js";
 
-export const getProductsService = async ({limit = 100, page= 1, sort, query}) => {
+export const getProductsService = async ({limit = 10, page= 1, sort, query}) => {
     try {
         page = page ==0 ? 1 : page;
         page = Number(page);

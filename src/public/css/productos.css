@@ -56,7 +56,7 @@ table {
 th, td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 th {
@@ -70,4 +70,31 @@ ul {
 
 li {
     margin-bottom: 10px;
+}
+
+
+/*pagination*/
+
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    background-color: darkslategrey;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination a:hover {
+    background-color: #555;
+}
+
+.cart-icon {
+    color: #3498db;
+    font-size: 24px;
+    margin-right: 8px;
 }

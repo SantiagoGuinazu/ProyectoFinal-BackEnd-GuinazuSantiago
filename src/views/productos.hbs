@@ -37,10 +37,11 @@
                 <th>category</th>
                 <th>status</th>
                 <th>Imagen</th>
+                <th>Comprar</th>
             </tr>
         </thead>
         <tbody>
-            {{#each productos}}
+            {{#each result.payload}}
             <tr>
                 <td>{{this._id}}</td>
                 <td>{{this.title}}</td>
@@ -58,17 +59,40 @@
                 </td>
                 <td>{{#if this.thumbnails}}
                     <img src="{{this.thumbnails}}">
-                </td>
                 {{else}}
                 No hay imagen
                 {{/if}}
+                </td>
+                <td>
+                    <button class="cart-button" onclick="addToCart('{{this._id}}')">
+                        <i class="fas fa-shopping-cart cart-icon"></i>
+                    </button>
+                </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
+    <div class="pagination">
+        <span>Limite por pagina: {{result.limit}}</span><br>
+
+        {{#if result.query}}
+            <span>Filtrado por: {{result.query}}</span><br>
+        {{/if}}
+
+        {{#if result.hasPrevPage}}
+            <a href="?page={{result.prevPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Anterior</a>
+        {{/if}}
+
+        <span>Pagina {{result.page}} de {{result.totalPages}}</span>
+
+        {{#if result.hasNextPage}}
+            <a href="?page={{result.nextPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Siguiente</a>
+        {{/if}}
+    </div>
+    <div>
+        <i class="fas fa-shopping-cart cart-icon"></i>
+        <span id="cart-count">Tu carrito: 0 productos</span>
+    </div>
 </div>
-
-
-
 
 </html>
