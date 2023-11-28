@@ -72,11 +72,17 @@ li {
     margin-bottom: 10px;
 }
 
+td img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
 
 /*pagination*/
 
 .pagination {
     margin-top: 10px;
+    text-align: center;
 }
 
 .pagination a {
