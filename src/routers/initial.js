@@ -4,8 +4,8 @@ import { getProductsService } from '../services/products.js';
 const router = Router();
 
 router.get('/products', async (req,res) => {
-    const result = await getProductsService({...req.query});
-    return res.render('productos', result)
+    const {payload} = await getProductsService({});
+    return res.render('productos', {productos:payload})
 })
 
 router.get('/real-time-products', (req,res) => {
