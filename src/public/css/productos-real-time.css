@@ -40,6 +40,8 @@ header {
 
 h2 {
     margin: 0;
+    text-align: center;
+    margin: 20px;
 }
 
 ul {

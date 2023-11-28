@@ -25,7 +25,6 @@ socket.on("productos", productos => {
         botonBorrar.addEventListener('click', () => {
             const productoId = botonBorrar.dataset.id;
             console.log({ productoId })
-
             socket.emit("productos", productoId);
         });
     });
