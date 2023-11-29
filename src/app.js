@@ -33,7 +33,7 @@ const io = new Server(httpServer);
 
 io.on('connection', async (socket) => {
 
-    const {payload} = await getProductsService({});
+    const {payload} = await getProductsService({limit : 100});
     const productos = payload;
 
     socket.emit('productos', payload);
