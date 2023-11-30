@@ -17,6 +17,10 @@ router.get('/chat', (req,res) => {
     return res.render('chat', {styles: 'chat.css'})
 });
 
+//router.get('/sessions', (req,res) => {
+//    return res.render('sessions', {styles: 'chat.css'})
+//});
+
 router.get('/cart/:cid', async(req,res)=>{
     const {cid} = req.params;
     console.log('id del carrito:', cid)
