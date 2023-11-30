@@ -11,6 +11,7 @@ import 'dotenv/config';
 import { addProductService, getProductsService } from './services/products.js';
 //import sessions from './routers/session.js'
 //import session from 'express-session';
+//import MongoStore from 'connect-mongo';
 
 const app = express();
 const port = process.env.port;
@@ -20,6 +21,18 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.json());
+//app.use(express.urlencoded({extended: true}))
+
+
+//app.use(session({
+//    store: MongoStore.create({
+//        mongoUrl: mongoURL,
+//        dbName: mongoDB
+//    }),
+//   secret: 'secret',
+//    resave: true,
+//    saveUninitialized: true
+//}))
 
 app.use('/api/products', products);
 app.use('/api/carts', carts);
