@@ -9,6 +9,7 @@ import { dbConnection } from './database/config.js';
 import { messageModel } from './models/messages.js';
 import 'dotenv/config';
 import { addProductService, getProductsService } from './services/products.js';
+//import session from './routers/session.js'
 
 const app = express();
 const port = process.env.port;
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use('/api/products', products);
 app.use('/api/carts', carts);
+//app.use('/api/session', session);
 app.use('/', initial);
 
 await dbConnection();
