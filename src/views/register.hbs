@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class='container'>
+            <div class='logo'>
+                <h1>Register</h1>
+            </div>
+            <nav>
+                <ul class='right-links'>
+                    <li><a href='/products'>Productos</a></li>
+                    <li><a href='/real-time-products'>Productos en Vivo</a></li>
+                    <li><a href='/chat'>Chat</a></li>
+                    <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <form action="/api/session/register" method="post">
+        First Name: <input type="text" name="first_name" id=""> <br>
+        Last Name: <input type="text" name="last_name" id=""> <br>
+        Age: <input type="number" name="age" id=""> <br>
+        Email: <input type="text" name="email" id=""> <br>
+        Password: <input type="text" name="password" id=""> <br>
+
+        <button type="submit">Register</button>
+    </form>
+</body>
+
+</html>
