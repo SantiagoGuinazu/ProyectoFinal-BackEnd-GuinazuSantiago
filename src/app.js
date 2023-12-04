@@ -1,16 +1,18 @@
 import express from 'express';
 import hbs from 'hbs';
+import 'dotenv/config';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import { Server } from 'socket.io';
+
 import products from './routers/products.js';
 import carts from './routers/carts.js';
 import initial from './routers/initial.js';
+
 import __dirname from './utils.js';
-import { Server } from 'socket.io';
 import { dbConnection } from './database/config.js';
 import { messageModel } from './models/messages.js';
-import 'dotenv/config';
 import { addProductService, getProductsService } from './services/products.js';
-import session from 'express-session';
-import MongoStore from 'connect-mongo';
 
 const app = express();
 const port = process.env.port;
@@ -67,7 +69,5 @@ io.on('connection', async (socket) => {
             io.emit('messageLogs', messages)
         }
     })
-
     socket.broadcast.emit('nuevo_user');
-
 });
