@@ -29,7 +29,7 @@ export const loginGet = async (req = request, res = response) => {
 export const loginPost = async (req = request, res = response) => {
     const {email, password} = req.body;
 
-    const user = await getUserEmail({email})
+    const user = await getUserEmail(email)
 
     if(user && user.password === password){
         const userName = `${user.name} ${user.lastName}`;
@@ -56,6 +56,7 @@ export const registerPost = async (req = request, res = response) => {
         const userName = `${user.name} ${user.lastName}`;
         req.session.user = userName;
         req.session.rol = user.rol;
+        return res.redirect('/')
     }
 
     return res.redirect('/register')
