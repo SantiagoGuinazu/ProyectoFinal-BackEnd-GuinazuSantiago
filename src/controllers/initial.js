@@ -40,6 +40,16 @@ export const loginPost = async (req = request, res = response) => {
     return res.redirect('/login')
 }
 
+export const logOut = (req = request, res = response) => {
+    req.session.destroy(err => {
+        if(err)
+            return res.send({status: false, body: err})
+        else
+            return res.redirect('/login')
+        
+    })
+}
+
 export const registerGet = async (req = request, res = response) => {
     return res.render('register', {styles:'login.css'})
 }

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {cartIdView, 
         chatView, 
+        logOut, 
         loginGet, 
         loginPost, 
         productsView, 
@@ -21,6 +22,8 @@ router.post('/login', loginPost);
 
 router.get('/register', registerGet);
 router.post('/register', registerPost);
+
+router.get('/logout', logOut)
 
 router.get('*', (req, res) => {
     return res.render('404');
