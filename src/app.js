@@ -9,7 +9,6 @@ import { dbConnection } from './database/config.js';
 import { messageModel } from './models/messages.js';
 import 'dotenv/config';
 import { addProductService, getProductsService } from './services/products.js';
-import sessions from './routers/sessions.js'
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 
@@ -35,7 +34,6 @@ app.use(session({
 
 app.use('/api/products', products);
 app.use('/api/carts', carts);
-app.use('/api/session', sessions);
 app.use('/', initial);
 
 await dbConnection();
@@ -47,7 +45,6 @@ const httpServer = app.listen(port, () => {
 const io = new Server(httpServer);
 
 io.on('connection', async (socket) => {
-
     const { payload } = await getProductsService({ limit: 100 });
     const productos = payload;
 

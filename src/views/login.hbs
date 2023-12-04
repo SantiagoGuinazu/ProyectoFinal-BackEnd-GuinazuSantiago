@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/css/login.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
     <title>Document</title>
 </head>
 
@@ -21,20 +23,22 @@
                     <li><a href='/chat'>Chat</a></li>
                     <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
                     <li><a href="/register">Register</a></li>
-                    <li><a href="/profile">Profile</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <h1>Login</h1>
+    <form class="login-container" action="/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" autocomplete="off" required>
 
-    <form action="/api/session/login" method="POST">
-        Email: <input type="text" name="email"> <br>
-        Password: <input type="text" name="password"> <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
         <button type="submit">Login</button>
+        <p>¿No tienes una cuenta? <a href="/register">Registrate</a></p>
     </form>
+
 </body>
 
 </html>
