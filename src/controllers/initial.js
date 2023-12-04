@@ -3,6 +3,11 @@ import { getProductsService } from "../services/products.js";
 import { getCartByIdService } from "../services/carts.js";
 import { getUserEmail, registerUser } from "../services/user.js";
 
+
+export const homeView = async (req = request, res = response) => {
+    return res.render('home')
+}
+
 export const realTimeProductsView = async (req = request, res = response) => {
     return res.render('productos-real-time')
 }

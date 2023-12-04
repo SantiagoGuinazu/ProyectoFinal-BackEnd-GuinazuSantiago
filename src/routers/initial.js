@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {cartIdView, 
         chatView, 
+        homeView, 
         logOut, 
         loginGet, 
         loginPost, 
@@ -12,6 +13,7 @@ import {cartIdView,
 
 const router = Router();
 
+router.get('/', homeView)
 router.get('/products', productsView);
 router.get('/real-time-products', realTimeProductsView);
 router.get('/chat', chatView);
