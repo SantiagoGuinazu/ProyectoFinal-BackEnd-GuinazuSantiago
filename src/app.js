@@ -26,10 +26,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: process.env.URI_Mongo_DB,
-        dbName: process.env.NAME_DB
+        mongoUrl: `${process.env.URI_Mongo_DB}/${process.env.NAME_DB}`,
     }),
-    secret: 'secret',
+    secret: process.env.secret_session,
     resave: true,
     saveUninitialized: true
 }))
