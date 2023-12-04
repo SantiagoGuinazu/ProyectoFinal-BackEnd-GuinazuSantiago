@@ -39,7 +39,6 @@ router.get('/register', justPublicWitoutSession, (req, res) => {
 
 router.get('/profile', auth, (req, res) => {
     const user = req.session.user
-
     res.render('profile', user)
 })
 
