@@ -5,26 +5,31 @@ import { getUserEmail, registerUser } from "../services/user.js";
 
 
 export const homeView = async (req = request, res = response) => {
-    return res.render('home')
+    const user = req.session.user;
+    return res.render('home', {user})
 }
 
 export const realTimeProductsView = async (req = request, res = response) => {
-    return res.render('productos-real-time')
+    const user = req.session.user;
+    return res.render('productos-real-time', {user})
 }
 
 export const chatView = async (req = request, res = response) => {
-    return res.render('chat', {styles: 'chat.css'})
+    const user = req.session.user;
+    return res.render('chat', {styles: 'chat.css', user})
 }
 
 export const productsView = async (req = request, res = response) => {
     const result = await getProductsService({...req.query});
-    return res.render('productos', {result})
+    const user = req.session.user;
+    return res.render('productos', {result, user})
 }
 
 export const cartIdView = async (req = request, res = response) => {
     const {cid} = req.params;
     const carrito = await getCartByIdService(cid);
-    return res.render('cart', {carrito});
+    const user = req.session.user;
+    return res.render('cart', {carrito, user});
 }
 
 export const loginGet = async (req = request, res = response) => {

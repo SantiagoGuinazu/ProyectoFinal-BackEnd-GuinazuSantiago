@@ -130,3 +130,8 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+p {
+    margin: 0;
+    color: #666;
+}

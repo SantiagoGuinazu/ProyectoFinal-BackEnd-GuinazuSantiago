@@ -15,12 +15,18 @@
         </div>
             <nav>
                 <ul class='right-links'>
+                    {{#if user}}
+                    <li><p>Bienvenido, {{user}}</p></li>
                     <li><a href='/'>Inicio</a></li>
+                    <li><a href='/products'>Productos</a></li>
                     <li><a href='/real-time-products'>Productos en Vivo</a></li>
                     <li><a href='/chat'>Chat</a></li>
                     <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
+                    <li><a href="/logout">Cerrar Sesion</a></li>
+                    {{else}}
                     <li><a href="/login">Login</a></li>
                     <li><a href="/register">Register</a></li>
+                    {{/if}}
                 </ul>
             </nav>
     </div>
