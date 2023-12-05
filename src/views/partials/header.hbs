@@ -1,13 +1,23 @@
 <header>
-    <div class="header-container">
+    <div class='container'>
+        <div class='logo'>
+            <h1>Santiago Guiñazu</h1>
+        </div>
         <nav>
-            {{#if isAuthenticated}}
-            <p>Bienvenido, {{user}}</p>
-            <a href="/logout">Cerrar Sesion</a>
-            {{else}}
-            <a href="/login">Iniciar Sesion</a>
-            <a href="/register">Registrarse</a>
-            {{/if}}
+            <ul class='right-links'>
+                {{#if isAuthenticated}}
+                <li><p>Bienvenido, {{user}}</p></li>
+                <li><a href='/'>Inicio</a></li>
+                <li><a href='/products'>Productos</a></li>
+                <li><a href='/real-time-products'>Productos en Vivo</a></li>
+                <li><a href='/chat'>Chat</a></li>
+                <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
+                <li><a href="/logout">Cerrar Sesion</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                {{/if}}
+            </ul>
         </nav>
     </div>
 </header>
