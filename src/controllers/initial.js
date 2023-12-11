@@ -33,6 +33,8 @@ export const cartIdView = async (req = request, res = response) => {
 }
 
 export const loginGet = async (req = request, res = response) => {
+    if(req.session.user)
+        return res.redirect('/')
     return res.render('login', {styles:'login.css'})
 }
 
@@ -61,6 +63,8 @@ export const logOut = (req = request, res = response) => {
 }
 
 export const registerGet = async (req = request, res = response) => {
+    if(req.session.user)
+        return res.redirect('/')
     return res.render('register', {styles:'login.css'})
 }
 
