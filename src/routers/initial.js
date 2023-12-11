@@ -11,6 +11,7 @@ import {cartIdView,
         registerPost,
     } from '../controllers/initial.js';
 import { admin, auth } from '../middleware/auth.js';
+import passport from 'passport';
 
 const router = Router();
 
@@ -21,10 +22,11 @@ router.get('/chat', [auth, admin], chatView);
 router.get('/cart/:cid', [auth, admin], cartIdView);
 
 router.get('/login', loginGet);
-router.post('/login', loginPost);
 router.get('/register', registerGet);
-router.post('/register', registerPost);
 router.get('/logout', logOut)
+
+router.post('/login', passport.authenticate('login',{failureRedirect:'/login'}), loginPost);
+router.post('/register', passport.authenticate('register',{failureRedirect:'/register'}), registerPost);
 
 router.get('*', (req, res) => {
     return res.render('404');

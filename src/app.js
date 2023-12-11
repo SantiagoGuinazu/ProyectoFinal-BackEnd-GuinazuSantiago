@@ -3,6 +3,7 @@ import hbs from 'hbs';
 import 'dotenv/config';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import passport from 'passport';
 import { Server } from 'socket.io';
 
 import products from './routers/products.js';
@@ -13,6 +14,7 @@ import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
 import { messageModel } from './models/messages.js';
 import { addProductService, getProductsService } from './services/products.js';
+import { initializaPassport } from './config/passport.js';
 
 const app = express();
 const port = process.env.port;
@@ -33,6 +35,10 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+
+initializaPassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/api/products', products);
 app.use('/api/carts', carts);

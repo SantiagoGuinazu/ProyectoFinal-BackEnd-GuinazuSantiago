@@ -40,19 +40,16 @@ export const loginGet = async (req = request, res = response) => {
 }
 
 export const loginPost = async (req = request, res = response) => {
-    const {email, password} = req.body;
 
-    const user = await getUserEmail(email)
-
-    if(user){
-        if (isValidPassword(password,user.password)) {
-            const userName = `${user.name} ${user.lastName}`;
-            req.session.user = userName;
-            req.session.rol = user.rol;
-            return res.redirect('/')
-        }
+    if(!req.user)
+        return res.redirect('/login')
+    req.session.user ={
+        name: req.user.name,
+        lastName: req.user.lastName,
+        email: req.user.email,
+        rol: req.user.rol,
     }
-    return res.redirect('/login')
+    return res.redirect('/')
 }
 
 export const logOut = (req = request, res = response) => {
@@ -72,21 +69,7 @@ export const registerGet = async (req = request, res = response) => {
 }
 
 export const registerPost = async (req = request, res = response) => {
-    const {password, confirmPassword} = req.body;
-
-    if(password !== confirmPassword)
+    if(!req.user)
         return res.redirect('/register')
-
-    req.body.password = createHash(password)
-
-    const user = await registerUser({...req.body})
-
-    if(user){
-        const userName = `${user.name} ${user.lastName}`;
-        req.session.user = userName;
-        req.session.rol = user.rol;
-        return res.redirect('/')
-    }
-
-    return res.redirect('/register')
+    return res.redirect('/login')
 }
