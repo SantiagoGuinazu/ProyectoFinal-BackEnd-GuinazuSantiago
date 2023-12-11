@@ -3,8 +3,8 @@ import {cartIdView,
         chatView, 
         homeView, 
         logOut, 
+        login, 
         loginGet, 
-        loginPost, 
         productsView, 
         realTimeProductsView,
         registerGet,
@@ -25,8 +25,11 @@ router.get('/login', loginGet);
 router.get('/register', registerGet);
 router.get('/logout', logOut)
 
-router.post('/login', passport.authenticate('login',{failureRedirect:'/login'}), loginPost);
+router.post('/login', passport.authenticate('login',{failureRedirect:'/login'}), login);
 router.post('/register', passport.authenticate('register',{failureRedirect:'/register'}), registerPost);
+
+router.get('/github', passport.authenticate('github', {scope:['user:email']}), async(req,res) => {})
+router.get('/githubcallback', passport.authenticate('github', {failureRedirect:'/register'}), login)
 
 router.get('*', (req, res) => {
     return res.render('404');

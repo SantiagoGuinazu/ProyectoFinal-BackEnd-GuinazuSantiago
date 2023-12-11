@@ -18,7 +18,7 @@
             <nav>
                 <ul class='right-links'>
                     {{#if user}}
-                    <li><p>Bienvenido, {{user}}</p></li>
+                    <li><p>Bienvenido, {{user.email}}</p></li>
                     <li><a href='/'>Inicio</a></li>
                     <li><a href='/products'>Productos</a></li>
                     <li><a href='/real-time-products'>Productos en Vivo</a></li>
@@ -45,6 +45,14 @@
         <button type="submit">Login</button>
         <p>¿No tienes una cuenta? <a href="/register">Registrate</a></p>
     </form>
+
+    <div class="github-container">
+        <a href="/github">
+            <button type="button" class="github-login">
+                <i class="fab fa-github"></i> Login with Github
+            </button>
+        </a>
+    </div>
 
 </body>
 

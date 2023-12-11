@@ -1,9 +1,6 @@
 import { request, response } from "express";
 import { getProductsService } from "../services/products.js";
 import { getCartByIdService } from "../services/carts.js";
-import { getUserEmail, registerUser } from "../services/user.js";
-import { createHash, isValidPassword } from "../utils/bcryptPassword.js";
-
 
 export const homeView = async (req = request, res = response) => {
     const user = req.session.user;
@@ -39,16 +36,17 @@ export const loginGet = async (req = request, res = response) => {
     return res.render('login', {styles:'login.css'})
 }
 
-export const loginPost = async (req = request, res = response) => {
-
+export const login = async (req = request, res = response) => {
     if(!req.user)
         return res.redirect('/login')
-    req.session.user ={
+    
+    req.session.user = {
         name: req.user.name,
         lastName: req.user.lastName,
         email: req.user.email,
         rol: req.user.rol,
     }
+
     return res.redirect('/')
 }
 
@@ -70,6 +68,7 @@ export const registerGet = async (req = request, res = response) => {
 
 export const registerPost = async (req = request, res = response) => {
     if(!req.user)
-        return res.redirect('/register')
-    return res.redirect('/login')
+        return res.redirect('/register');
+
+    return res.redirect('/login');
 }
