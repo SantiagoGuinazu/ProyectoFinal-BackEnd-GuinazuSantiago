@@ -38,7 +38,7 @@ export const loginGet = async (req = request, res = response) => {
 
 export const login = async (req = request, res = response) => {
     if(!req.user)
-        return res.redirect('/login')
+        return res.redirect('/login');
     
     req.session.user = {
         name: req.user.name,

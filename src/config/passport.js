@@ -9,16 +9,18 @@ const LocalStrategy = local.Strategy;
 export const initializaPassport = () => {
 
     passport.use('register', new LocalStrategy(
-        {passReqToCallback:true, usernameField:'email'}, 
-        async (req,username,password,done) => {
+        { passReqToCallback: true, usernameField: 'email' }, 
+        async (req, username, password, done) => {
             try {
                 const { confirmPassword } = req.body;
+
                 if(password !== confirmPassword){
                     console.log('No coinciden las contraseñas')
                     return done(null, false)
                 }
 
                 const user = await getUserEmail(username);
+
                 if (user) {
                     console.log('El usuario ya existe')
                     return done(null,false)
@@ -38,7 +40,7 @@ export const initializaPassport = () => {
         }));
     
     passport.use('login', new LocalStrategy(
-        {usernameField:'email'},
+        { usernameField:'email' },
         async (username, password, done) => {
             try {
                 const user = await getUserEmail(username);
@@ -65,7 +67,7 @@ export const initializaPassport = () => {
             done(null, user._id);
         });
 
-        passport.deserializeUser(async (id,done) => {
+        passport.deserializeUser(async (id, done) => {
             const user = await getUserById(id);
             done(null, user)
         });
