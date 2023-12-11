@@ -2,6 +2,7 @@ import { request, response } from "express";
 import { getProductsService } from "../services/products.js";
 import { getCartByIdService } from "../services/carts.js";
 import { getUserEmail, registerUser } from "../services/user.js";
+import { createHash, isValidPassword } from "../utils/bcryptPassword.js";
 
 
 export const homeView = async (req = request, res = response) => {
@@ -43,11 +44,13 @@ export const loginPost = async (req = request, res = response) => {
 
     const user = await getUserEmail(email)
 
-    if(user && user.password === password){
-        const userName = `${user.name} ${user.lastName}`;
-        req.session.user = userName;
-        req.session.rol = user.rol;
-        return res.redirect('/')
+    if(user){
+        if (isValidPassword(password,user.password)) {
+            const userName = `${user.name} ${user.lastName}`;
+            req.session.user = userName;
+            req.session.rol = user.rol;
+            return res.redirect('/')
+        }
     }
     return res.redirect('/login')
 }
@@ -73,6 +76,8 @@ export const registerPost = async (req = request, res = response) => {
 
     if(password !== confirmPassword)
         return res.redirect('/register')
+
+    req.body.password = createHash(password)
 
     const user = await registerUser({...req.body})
 
