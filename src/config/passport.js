@@ -87,7 +87,7 @@ export const initializaPassport = () => {
                         name: profile._json.name,
                         email,
                         password: '.$',
-                        image: profile._json.image,
+                        image: profile._json.avatar_url,
                         github: true,
                     };
 
