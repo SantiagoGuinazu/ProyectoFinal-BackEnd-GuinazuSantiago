@@ -63,7 +63,7 @@ export const updateProduct = async (req= request, res= response) => {
 
         if(req.file){
             if(product.thumbnails){
-                const url = product.thumbnails.split('');
+                const url = product.thumbnails.split('/');
                 const nombre = url[url.length -1];
                 const [id] = nombre.split('.');
                 cloudinary.uploader.destroy(id);

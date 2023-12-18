@@ -23,6 +23,11 @@ export const productsView = async (req = request, res = response) => {
     return res.render('productos', {result, user})
 }
 
+export const addProductView = async (req = request, res = response) => {
+    const user = req.session.user;
+    return res.render('addProduct', {user})
+}
+
 export const cartIdView = async (req = request, res = response) => {
     const {cid} = req.params;
     const carrito = await getCartByIdService(cid);

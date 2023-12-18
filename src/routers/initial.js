@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {cartIdView, 
+import {addProductView, cartIdView, 
         chatView, 
         homeView, 
         logOut, 
@@ -19,6 +19,7 @@ router.get('/', homeView)
 router.get('/products', [auth], productsView);
 router.get('/real-time-products', [auth, admin], realTimeProductsView);
 router.get('/chat', [auth], chatView);
+router.get('/add-product', [auth, admin], addProductView)
 router.get('/cart/:cid', [auth, admin], cartIdView);
 
 router.get('/login', loginGet);
