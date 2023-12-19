@@ -10,7 +10,7 @@ body {
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 25px 0;
 }
 
 .container {
@@ -28,10 +28,15 @@ header {
 
 .right-links {
     display: flex;
+    align-items: center;
 }
 
 .right-links li {
     margin-left: 10px;
+}
+
+.right-links p {
+    margin-bottom: 0;
 }
 
 .right-links a {

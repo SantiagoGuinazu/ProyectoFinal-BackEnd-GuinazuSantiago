@@ -35,6 +35,11 @@ h1, h2, h3 {
 
 .right-links {
   display: flex;
+  align-items: center;
+}
+
+.right-links p{
+  margin-bottom: 0;
 }
 
 .right-links li {
@@ -59,6 +64,10 @@ footer {
   color: #fff;
   padding: 2px 0;
   text-align: center;
+}
+
+footer p{
+  margin-bottom: 0;
 }
 
 .content {
