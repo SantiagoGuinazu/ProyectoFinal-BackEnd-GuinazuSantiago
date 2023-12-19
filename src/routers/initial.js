@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {addProductView, cartIdView, 
+import {addProductView, addProductViewPost, cartIdView, 
         chatView, 
         homeView, 
         logOut, 
@@ -12,6 +12,7 @@ import {addProductView, cartIdView,
     } from '../controllers/initial.js';
 import { admin, auth } from '../middleware/auth.js';
 import passport from 'passport';
+import { uploader } from '../config/multer.js';
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.get('/', homeView)
 router.get('/products', [auth], productsView);
 router.get('/real-time-products', [auth, admin], realTimeProductsView);
 router.get('/chat', [auth], chatView);
-router.get('/add-product', [auth, admin], addProductView)
+router.get('/add-product', [auth, admin, uploader.single('file')], addProductViewPost)
 router.post('/add-product', [auth, admin], addProductView)
 router.get('/cart/:cid', [auth, admin], cartIdView);
 
