@@ -18,7 +18,9 @@
             <nav>
                 <ul class='right-links'>
                     {{#if user}}
-                    <li><p>Bienvenido, {{user.email}}</p></li>
+                    <li>
+                        <p>Bienvenido, {{user.email}}</p>
+                    </li>
                     <li><a href='/'>Inicio</a></li>
                     <li><a href='/products'>Productos</a></li>
                     <li><a href='/real-time-products'>Productos en Vivo</a></li>
@@ -50,7 +52,7 @@
     </table>
 
     <div>
-            <h2>Agregar Producto</h2>
+        <h2>Agregar Producto</h2>
         <form id="producto-form">
             <label for="titulo">Titulo:</label>
             <input type="text" id="titulo" name="titulo" required>
