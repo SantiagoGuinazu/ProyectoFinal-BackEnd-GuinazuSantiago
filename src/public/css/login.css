@@ -55,11 +55,13 @@ ul {
 .login-container,
 .register-container {
     background-color: #fff;
-    padding: 20px;
+    padding: 20px 200px 20px 200px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgb(0,0,0,0.1);
     text-align: center;
-
+}
+form button{
+    margin-top: 15px;
 }
 
 h2 {
@@ -131,4 +133,8 @@ a:hover {
 
 .github-login:hover{
     background-color: #444;
+}
+
+#producto-form {
+    margin: 10px 150px 10px 150px;
 }
