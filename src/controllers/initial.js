@@ -2,6 +2,7 @@ import { request, response } from "express";
 import { addProductService, getProductByCodeService, getProductsService } from "../services/products.js";
 import { getCartByIdService } from "../services/carts.js";
 import { cloudinary } from "../config/cloduinary.js";
+import { validFileExtension } from "../utils/validFileExtension.js";
 
 export const homeView = async (req = request, res = response) => {
     const user = req.session.user;
@@ -42,6 +43,12 @@ export const addProductViewPost = async (req = request, res = response) => {
         return res.status(400).json({ msg: 'El codigo ingresado ya existe en un producto' });
 
     if (req.file) {
+
+        const isValidExtension = validFileExtension(req.file.originalname);
+
+        if (!isValidExtension)
+            return res.status(400).json({ msg: 'La extension no es valida' });
+
         const { secure_url } = await cloudinary.uploader.upload(req.file.path);
         req.body.thumbnails = secure_url;
     }

@@ -1,70 +1,83 @@
 import { request, response } from 'express';
 import { addProductService, deleteProductService, getProductByCodeService, getProductByIdService, getProductsService, updateProductService } from '../services/products.js';
 import { cloudinary } from '../config/cloduinary.js';
+import { validFileExtension } from '../utils/validFileExtension.js';
 
-export const getProduct = async (req= request, res= response) => {
-        try {
-            const result = await getProductsService({...req.query});
-            return res.json({result});
-
-        } catch (error) {
-            return res.status(500).json({msg:"Hablar con admin"})
-        }
-}
-
-export const getProductById = async (req= request, res= response) => {
+export const getProduct = async (req = request, res = response) => {
     try {
-        const {pid} = req.params;
-        const producto = await getProductByIdService(pid)
-        if(!producto)
-            return res.status(404).json({msg:`El producto con id ${pid} no existe`})
-        return res.json({producto})
+        const result = await getProductsService({ ...req.query });
+        return res.json({ result });
+
     } catch (error) {
-        console.log('getProductById ->', error)
-        return res.status(500).json({msg:"Hablar con admin"})
+        return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
 
-export const addProduct = async (req= request, res= response) => {
+export const getProductById = async (req = request, res = response) => {
+    try {
+        const { pid } = req.params;
+        const producto = await getProductByIdService(pid)
+        if (!producto)
+            return res.status(404).json({ msg: `El producto con id ${pid} no existe` })
+        return res.json({ producto })
+    } catch (error) {
+        console.log('getProductById ->', error)
+        return res.status(500).json({ msg: "Hablar con admin" })
+    }
+}
+
+export const addProduct = async (req = request, res = response) => {
     try {
         const { title, description, price, code, stock, category } = req.body;
-        
-        if(!title, !description, !price, !code, !stock, !category )
-        return res.status(404).json({msg:'Los campos: title, description, price, img, code, stock son obligatorios'})
-        
+
+        if (!title, !description, !price, !code, !stock, !category)
+            return res.status(404).json({ msg: 'Los campos: title, description, price, img, code, stock son obligatorios' })
+
 
         const existeCode = await getProductByCodeService(code);
 
-        if(existeCode)
-            return res.status(400).json({msg: 'El codigo ingresado ya existe en un producto'});
+        if (existeCode)
+            return res.status(400).json({ msg: 'El codigo ingresado ya existe en un producto' });
 
-        if(req.file){
+        if (req.file) {
+
+            const isValidExtension = validFileExtension(req.file.originalname);
+
+            if (!isValidExtension)
+                return res.status(400).json({ msg: 'La extension no es valida' });
+
             const { secure_url } = await cloudinary.uploader.upload(req.file.path);
             req.body.thumbnails = secure_url;
         }
 
-        const producto = await addProductService({...req.body});
-        return res.json({producto})
+        const producto = await addProductService({ ...req.body });
+        return res.json({ producto })
 
     } catch (error) {
-        return res.status(500).json({msg:"Hablar con admin"})
+        return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
 
-export const updateProduct = async (req= request, res= response) => {
+export const updateProduct = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
-        const {_id, ...rest} = req.body;
+        const { _id, ...rest } = req.body;
 
         const product = await getProductByIdService(pid);
-        
-        if(!product)
-            return res.status(404).json({msg:`El producto con Id ${pid} no existe!`})
 
-        if(req.file){
-            if(product.thumbnails){
+        if (!product)
+            return res.status(404).json({ msg: `El producto con Id ${pid} no existe!` })
+
+        if (req.file) {
+
+            const isValidExtension = validFileExtension(req.file.originalname);
+
+            if (!isValidExtension)
+                return res.status(400).json({ msg: 'La extension no es valida' });
+
+            if (product.thumbnails) {
                 const url = product.thumbnails.split('/');
-                const nombre = url[url.length -1];
+                const nombre = url[url.length - 1];
                 const [id] = nombre.split('.');
                 cloudinary.uploader.destroy(id);
             }
@@ -73,25 +86,25 @@ export const updateProduct = async (req= request, res= response) => {
             rest.thumbnails = secure_url;
         };
 
-        const producto = await updateProductService(pid,rest);
-        
-        if(producto)
-            return res.json({msg: 'Producto actualizado', producto})
-        return res.status(404).json({msg:`No se pudo actualizar el producto con ${pid}` })
+        const producto = await updateProductService(pid, rest);
+
+        if (producto)
+            return res.json({ msg: 'Producto actualizado', producto })
+        return res.status(404).json({ msg: `No se pudo actualizar el producto con ${pid}` })
     } catch (error) {
-        return res.status(500).json({msg:"Hablar con admin"})
+        return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
 
-export const deleteProduct = async (req= request, res= response) => {
+export const deleteProduct = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
         const producto = await deleteProductService(pid)
-        if(producto)
-            return res.json({msg: 'Producto Eliminado', producto})
-        return res.status(404).json({msg:`No se pudo eliminar el producto con ${pid}` })
+        if (producto)
+            return res.json({ msg: 'Producto Eliminado', producto })
+        return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` })
     } catch (error) {
         console.log('deleteProduct ->', error)
-        return res.status(500).json({msg:"Hablar con admin"})
+        return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
