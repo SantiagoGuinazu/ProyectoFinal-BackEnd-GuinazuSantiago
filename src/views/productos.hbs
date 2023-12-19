@@ -14,26 +14,28 @@
         <div class='logo'>
             <h1>Productos</h1>
         </div>
-            <nav>
-                <ul class='right-links'>
-                    {{#if user}}
-                    <li><p>Bienvenido, {{user.email}}</p></li>
-                    <li><a href='/'>Inicio</a></li>
-                    <li><a href='/products'>Productos</a></li>
-                    <li><a href='/real-time-products'>Productos en Vivo</a></li>
-                    <li><a href='/chat'>Chat</a></li>
-                    <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
-                    <li><a href="/logout">Cerrar Sesion</a></li>
-                    {{else}}
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                    {{/if}}
-                </ul>
-            </nav>
+        <nav>
+            <ul class='right-links'>
+                {{#if user}}
+                <li>
+                    <p>Bienvenido, {{user.email}}</p>
+                </li>
+                <li><a href='/'>Inicio</a></li>
+                <li><a href='/products'>Productos</a></li>
+                <li><a href='/real-time-products'>Productos en Vivo</a></li>
+                <li><a href='/chat'>Chat</a></li>
+                <li><a href='/cart/6564dd610d0a746ad94c8baa'>Carrito</a></li>
+                <li><a href="/logout">Cerrar Sesion</a></li>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
     </div>
 </header>
 
-<div>
+<div class="container-products">
     <h3>Lista de productos:</h3>
     <table>
         <thead>
@@ -69,9 +71,9 @@
                 </td>
                 <td>{{#if this.thumbnails}}
                     <img src="{{this.thumbnails}}">
-                {{else}}
-                No hay imagen
-                {{/if}}
+                    {{else}}
+                    No hay imagen
+                    {{/if}}
                 </td>
                 <td>
                     <button class="cart-button" onclick="addToCart('{{this._id}}')">
@@ -84,39 +86,43 @@
     </table>
     <a href="/add-product" class="btn btn-primary">Agregar Producto</a>
     <div class="pagination">
-        <span>Limite por pagina: {{result.limit}}</span><br>
+        <div class="pagination-inter">
+            <span>Limite por pagina: {{result.limit}}</span> <br>
 
-        {{#if result.query}}
-            <span>Filtrado por: {{result.query}}</span><br>
-        {{/if}}
+            {{#if result.query}}
+            <span>Filtrado por: {{result.query}}</span> <br>
+            {{/if}}
 
-        {{#if result.hasPrevPage}}
-            <a href="?page={{result.prevPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Anterior</a>
-        {{/if}}
+            {{#if result.hasPrevPage}}
+            <a
+                href="?page={{result.prevPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Anterior</a>
+            {{/if}}
 
-        <span>Pagina {{result.page}} de {{result.totalPages}}</span>
+            <span>Pagina {{result.page}} de {{result.totalPages}}</span>
 
-        {{#if result.hasNextPage}}
-            <a href="?page={{result.nextPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Siguiente</a>
-        {{/if}}
+            {{#if result.hasNextPage}}
+            <a
+                href="?page={{result.nextPage}}&limit={{result.limit}}{{#if result.query}}&query={{result.query}}{{/if}}">Siguiente</a>
+            {{/if}}
+        </div>
     </div>
 
     <script>
-        function addToCart(productId){
+        function addToCart(productId) {
             console.log('Producto agregado al carrito:', productId);
             const idCart = '6564dd610d0a746ad94c8baa'
-            fetch(`/api/carts/${idCart}/product/${productId}`,{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
+            fetch(`/api/carts/${idCart}/product/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-            }).then(resp=>resp.json())
-            .then(data=>{
-                console.log(data);
-            })
-            .catch(error=>{
-                console.log('Error:', error)
-            })
+            }).then(resp => resp.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.log('Error:', error)
+                })
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

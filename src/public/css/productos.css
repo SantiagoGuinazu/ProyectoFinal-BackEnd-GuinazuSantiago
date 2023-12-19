@@ -51,11 +51,27 @@ ul {
     list-style-type: none;
 }
 
+.container-products h3{
+    margin-top: 15px;
+}
+
+.container-products a{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
 /*tabla de productos*/
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+table th {
+    text-align: center;
 }
 
 th, td {
@@ -88,6 +104,8 @@ td img {
 .pagination {
     margin-top: 10px;
     text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .pagination a {
