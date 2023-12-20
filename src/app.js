@@ -17,7 +17,7 @@ import { addProductService, getProductsService } from './services/products.js';
 import { initializaPassport } from './config/passport.js';
 
 const app = express();
-const port = process.env.port;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views')
@@ -46,8 +46,8 @@ app.use('/', initial);
 
 await dbConnection();
 
-const httpServer = app.listen(port, () => {
-    console.log(`Corriendo en el puerto ${port}`);
+const httpServer = app.listen(PORT, () => {
+    console.log(`Corriendo en el puerto ${PORT}`);
 });
 
 const io = new Server(httpServer);
