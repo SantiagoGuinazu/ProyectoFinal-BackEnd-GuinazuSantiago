@@ -66,7 +66,6 @@ export const updateProductsInCartService = async (cid, pid, quantity) => {
     }
 }
 
-
 export const deleteCartService = async (cid) => {
     try {
         return await cartModel.findByIdAndUpdate(cid,{$set:{'products':[]}}, {new: true})

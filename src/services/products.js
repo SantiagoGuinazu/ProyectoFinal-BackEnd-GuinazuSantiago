@@ -50,7 +50,6 @@ export const getProductsService = async ({limit = 10, page= 1, sort, query}) => 
     }
 }
 
-
 export const getProductByIdService = async (pid) => {
     try {
         return await productModel.findById(pid);
@@ -68,7 +67,6 @@ export const getProductByCodeService = async (code) => {
         throw error;
     }
 }
-
 
 export const addProductService= async (body) => {
     try {
