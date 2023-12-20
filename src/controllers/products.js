@@ -99,7 +99,10 @@ export const updateProduct = async (req = request, res = response) => {
 export const deleteProduct = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
+        
         const producto = await deleteProductService(pid)
+        cloudinary.uploader.destroy(pid);
+
         if (producto)
             return res.json({ msg: 'Producto Eliminado', producto })
         return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` })
