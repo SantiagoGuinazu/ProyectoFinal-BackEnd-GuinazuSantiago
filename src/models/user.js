@@ -7,7 +7,6 @@ const UserSchema = new Schema({
     lastName:{type: String},
     email:{type: String, required: [true,'El correo es obligatorio'], unique: true},
     age:{type: Number},
-    cart:{type: String},
     password:{type: String, required: [true,'La contraseña es obligatoria']},
     rol:{type: String, default: 'user', enum: ['user', 'admin']},
     status:{type: Boolean, default: true},
@@ -15,6 +14,10 @@ const UserSchema = new Schema({
     image:{type: String},
     github: {type: Boolean, default: false},
     google: {type: Boolean, default: false},
+    cart_id:{
+        type:Schema.Types.ObjectId,
+        ref:'Cart'
+    }
 });
 
 UserSchema.set('toJSON', {
