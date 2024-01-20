@@ -1,7 +1,7 @@
 import {Schema , model} from 'mongoose';
 //import mongoosePaginate from 'mongoose';
 
-const nameCollection = 'Producto';
+const nameCollection = 'Product';
 
 const ProductoSchema = new Schema({
     title: { type: String, required: [true, 'El title del producto es obligatorio'] },

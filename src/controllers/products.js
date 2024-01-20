@@ -1,9 +1,7 @@
 import { request, response } from 'express';
-import { addProductService, deleteProductService, getProductByCodeService, getProductByIdService, getProductsService, updateProductService } from '../services/products.js';
 import { cloudinary } from '../config/cloduinary.js';
 import { validFileExtension } from '../utils/validFileExtension.js';
 import { ProductsRepository } from "../repositories/index.js";
-
 
 export const getProduct = async (req = request, res = response) => {
     try {
@@ -36,7 +34,7 @@ export const addProduct = async (req = request, res = response) => {
             return res.status(404).json({ msg: 'Los campos: title, description, price, img, code, stock son obligatorios' })
 
 
-        const existeCode = await ProductsRepository.getProductByCodeService(code);
+        const existeCode = await ProductsRepository.getProductByCode(code);
 
         if (existeCode)
             return res.status(400).json({ msg: 'El codigo ingresado ya existe en un producto' });
@@ -52,7 +50,7 @@ export const addProduct = async (req = request, res = response) => {
             req.body.thumbnails = secure_url;
         }
 
-        const producto = await addProductService({ ...req.body });
+        const producto = await ProductsRepository.addProduct({ ...req.body });
         return res.json({ producto })
 
     } catch (error) {
@@ -65,7 +63,7 @@ export const updateProduct = async (req = request, res = response) => {
         const { pid } = req.params;
         const { _id, ...rest } = req.body;
 
-        const product = await getProductByIdService(pid);
+        const product = await ProductsRepository.getProductById(pid);
 
         if (!product)
             return res.status(404).json({ msg: `El producto con Id ${pid} no existe!` })
@@ -88,7 +86,7 @@ export const updateProduct = async (req = request, res = response) => {
             rest.thumbnails = secure_url;
         };
 
-        const producto = await updateProductService(pid, rest);
+        const producto = await ProductsRepository.updateProduct(pid, rest);
 
         if (producto)
             return res.json({ msg: 'Producto actualizado', producto })
@@ -102,7 +100,7 @@ export const deleteProduct = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
         
-        const producto = await deleteProductService(pid)
+        const producto = await ProductsRepository.deleteProduct(pid)
         cloudinary.uploader.destroy(pid);
 
         if (producto)

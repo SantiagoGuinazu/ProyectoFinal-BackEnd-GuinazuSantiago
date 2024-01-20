@@ -1,8 +1,7 @@
 import { request, response } from "express";
-import { addProductService, getProductByCodeService, getProductsService } from "../services/products.js";
-import { getCartByIdService } from "../services/carts.js";
 import { cloudinary } from "../config/cloduinary.js";
 import { validFileExtension } from "../utils/validFileExtension.js";
+import { ProductsRepository, CartsRepository } from "../repositories/index.js"
 
 export const homeView = async (req = request, res = response) => {
     const user = req.session.user;
@@ -20,7 +19,7 @@ export const chatView = async (req = request, res = response) => {
 }
 
 export const productsView = async (req = request, res = response) => {
-    const result = await getProductsService({ ...req.query });
+    const result = await ProductsRepository.getProducts({ ...req.query });
     const user = req.session.user;
     return res.render('productos', { result, user })
 }
@@ -37,7 +36,7 @@ export const addProductViewPost = async (req = request, res = response) => {
     if (!title, !description, !price, !code, !stock, !category)
         return res.status(404).json({ msg: 'Los campos: title, description, price, img, code, stock son obligatorios' })
 
-    const existeCode = await getProductByCodeService(code);
+    const existeCode = await ProductsRepository.getProductByCode(code);
 
     if (existeCode)
         return res.status(400).json({ msg: 'El codigo ingresado ya existe en un producto' });
@@ -53,14 +52,14 @@ export const addProductViewPost = async (req = request, res = response) => {
         req.body.thumbnails = secure_url;
     }
 
-    await addProductService({ ...req.body });
+    await ProductsRepository.addProduct({ ...req.body });
 
     return res.redirect('/products')
 }
 
 export const cartIdView = async (req = request, res = response) => {
     const { cid } = req.params;
-    const carrito = await getCartByIdService(cid);
+    const carrito = await CartsRepository.getCartById(cid);
     const user = req.session.user;
     return res.render('cart', { carrito, user });
 }
