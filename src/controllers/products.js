@@ -5,9 +5,8 @@ import { ProductsRepository } from "../repositories/index.js";
 
 export const getProduct = async (req = request, res = response) => {
     try {
-        const result = await ProductsRepository.getProduct({ ...req.query });
+        const result = await ProductsRepository.getProducts({ ...req.query });
         return res.json({ result });
-
     } catch (error) {
         return res.status(500).json({ msg: "Hablar con admin" })
     }
