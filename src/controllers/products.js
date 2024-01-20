@@ -2,10 +2,12 @@ import { request, response } from 'express';
 import { addProductService, deleteProductService, getProductByCodeService, getProductByIdService, getProductsService, updateProductService } from '../services/products.js';
 import { cloudinary } from '../config/cloduinary.js';
 import { validFileExtension } from '../utils/validFileExtension.js';
+import { ProductsRepository } from "../repositories/index.js";
+
 
 export const getProduct = async (req = request, res = response) => {
     try {
-        const result = await getProductsService({ ...req.query });
+        const result = await ProductsRepository.getProduct({ ...req.query });
         return res.json({ result });
 
     } catch (error) {
@@ -16,7 +18,7 @@ export const getProduct = async (req = request, res = response) => {
 export const getProductById = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
-        const producto = await getProductByIdService(pid)
+        const producto = await ProductsRepository.getProductById(pid)
         if (!producto)
             return res.status(404).json({ msg: `El producto con id ${pid} no existe` })
         return res.json({ producto })
@@ -34,7 +36,7 @@ export const addProduct = async (req = request, res = response) => {
             return res.status(404).json({ msg: 'Los campos: title, description, price, img, code, stock son obligatorios' })
 
 
-        const existeCode = await getProductByCodeService(code);
+        const existeCode = await ProductsRepository.getProductByCodeService(code);
 
         if (existeCode)
             return res.status(400).json({ msg: 'El codigo ingresado ya existe en un producto' });
