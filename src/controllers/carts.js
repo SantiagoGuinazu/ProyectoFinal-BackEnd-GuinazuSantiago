@@ -1,5 +1,5 @@
 import { request, response } from 'express';
-import { CartsRepository } from "../repositories/index.js";
+import { CartsRepository, ProductsRepository, UsersRepository } from "../repositories/index.js";
 
 export const getCartById = async (req= request, res= response) => {
     try {
@@ -24,7 +24,15 @@ export const getCartById = async (req= request, res= response) => {
 
 export const addProductCart = async (req= request, res= response) => {
     try {
+        const {_id} = req;
         const { cid, pid } = req.params;
+
+        const usuario = await UsersRepository.getUserById(_id);
+        if(!usuario) return res.status(400).json({ok: false, msg:'Usuario no existe'});
+        if(!(usuario.cart_id.toString() === cid)) return res.status(400).json({ok:false, msg: 'Carrito no valido'});
+        
+        const existeProducto = await ProductsRepository.getProductById(pid);
+        if(!existeProducto) return res.status(400).json({ok:false, msg: 'Producto no existe'});
 
         const carrito = await CartsRepository.addProductCart(cid, pid);
 
