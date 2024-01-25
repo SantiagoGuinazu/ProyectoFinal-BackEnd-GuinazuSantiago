@@ -1,9 +1,24 @@
-import Router from 'express';
+import { Router } from 'express';
+import { check } from 'express-validator';
 import { crearUsuario, loginUsuario } from '../controllers/auth.js';
+import { validarCampos } from '../middleware/auth.js';
 
 const router = Router();
 
-router.post('/login', loginUsuario);
-router.post('/register', crearUsuario);
+router.post('/login',[
+    check('email','El email es obligatorio').not().isEmpty(),
+    check('email','El email debe ser valido').isEmail(),
+    check('password','La password es obligatoria y debe contener al menos 6 caracteres').isLength({min: 6}),
+    validarCampos,
+], loginUsuario);
+
+router.post('/register',[
+    check('name','El campo name es obligatorio').not().isEmpty(),
+    check('lastName','El campo LastName es obligatorio').not().isEmpty(),
+    check('email','El email es obligatorio').not().isEmpty(),
+    check('email','El email debe ser valido').isEmail(),
+    check('password','La password es obligatoria y debe contener al menos 6 caracteres').isLength({min: 6}),
+    validarCampos,
+], crearUsuario);
 
 export { router as authRouter}
