@@ -11,3 +11,9 @@ export const existeCode = async (code) => {
     if(codeExiste)
         throw new Error(`El code ${code} ya esta registrado en otro producto`);
 }
+
+export const existeProduct = async (idProduct) => {
+    const productExiste = await ProductsRepository.getProductById(idProduct);
+    if(!productExiste)
+        throw new Error(`El id ${idProduct} del producto no existe`);
+}
