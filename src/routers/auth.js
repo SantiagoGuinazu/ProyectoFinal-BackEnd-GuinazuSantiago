@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import { crearUsuario, loginUsuario } from '../controllers/auth.js';
 import { validarCampos } from '../middleware/auth.js';
+import { existeEmail } from '../helpers/db-validaciones.js';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.post('/register',[
     check('lastName','El campo LastName es obligatorio').not().isEmpty(),
     check('email','El email es obligatorio').not().isEmpty(),
     check('email','El email debe ser valido').isEmail(),
+    check('email').custom(existeEmail),
     check('password','La password es obligatoria y debe contener al menos 6 caracteres').isLength({min: 6}),
     validarCampos,
 ], crearUsuario);
