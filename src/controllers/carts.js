@@ -68,8 +68,17 @@ export const deleteProductsInCart = async (req= request, res= response) => {
 
 export const updateProductsInCart = async (req= request, res= response) => {
     try {
+        const {_id} = req;
         const {cid,pid} = req.params;
         const {quantity} = req.body;
+
+        const usuario = await UsersRepository.getUserById(_id);
+        if(!usuario) return res.status(400).json({ok: false, msg:'Usuario no existe'});
+
+        if(!(usuario.cart_id.toString() === cid)) return res.status(400).json({ok:false, msg: 'Carrito no valido'});
+        
+        const existeProducto = await ProductsRepository.getProductById(pid);
+        if(!existeProducto) return res.status(400).json({ok:false, msg: 'Producto no existe'});
 
         if(!quantity || !Number.isInteger(quantity))
             return res.status(404).json({msg:'La propuedad quantity es obligatoria y debe ser un numero entero'})
