@@ -1,4 +1,4 @@
-import { ProductsRepository, UsersRepository } from "../repositories/index.js";
+import { CartsRepository, ProductsRepository, UsersRepository } from "../repositories/index.js";
 
 export const existeEmail = async (email) => {
     const emailExiste = await UsersRepository.getUserByEmail(email);
@@ -16,4 +16,23 @@ export const existeProduct = async (idProduct) => {
     const productExiste = await ProductsRepository.getProductById(idProduct);
     if(!productExiste)
         throw new Error(`El id ${idProduct} del producto no existe`);
+}
+
+export const existeCart = async (idCart) => {
+    const cartExiste = await CartsRepository.getCartById(idCart);
+    if(!cartExiste)
+        throw new Error(`El id ${idCart} del producto no existe`);
+}
+
+export const validarStockProducts = async (productos = []) => {
+    try {
+        const newProduct = [];
+        const llamados = productos.map(p=> ProductsRepository.getProductById(p.id));
+        const resultados = await Promise.all(llamados);
+        console.log(resultados)
+
+        return newProduct;
+    } catch (error) {
+        console.log(error)
+    }
 }

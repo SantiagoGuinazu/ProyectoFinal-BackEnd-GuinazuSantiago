@@ -1,7 +1,8 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { addProductCart, deleteProductsInCart, getCartById, updateProductsInCart } from '../controllers/carts.js';
+import { addProductCart, deleteProductsInCart, finalizarCompra, getCartById, updateProductsInCart } from '../controllers/carts.js';
 import { validarCampos, validarJWT } from '../middleware/auth.js';
+import { existeCart } from '../helpers/db-validaciones.js';
 
 const router = Router();
 
@@ -35,5 +36,12 @@ router.put('/:cid/products/:pid', [
 ], updateProductsInCart);
 
 //router.delete('/:cid', validarJWT, deleteCart);
+
+router.post('/:cid/purchase', [
+    validarJWT,
+    check('cid', 'No es valido el ID del carrito').isMongoId(),
+    check('cid').custom(existeCart),
+    validarCampos,
+], finalizarCompra);
 
 export { router as cartsRouter }

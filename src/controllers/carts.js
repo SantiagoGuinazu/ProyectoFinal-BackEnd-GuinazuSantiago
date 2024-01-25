@@ -1,5 +1,6 @@
 import { request, response } from 'express';
 import { CartsRepository, ProductsRepository, UsersRepository } from "../repositories/index.js";
+import { validarStockProducts } from '../helpers/db-validaciones.js';
 
 export const getCartById = async (req= request, res= response) => {
     try {
@@ -114,3 +115,23 @@ export const updateProductsInCart = async (req= request, res= response) => {
 //        return res.status(500).json({msg:"Hablar con admin"})
 //    }
 //}
+
+export const finalizarCompra = async (req= request, res= response) => {
+    try {
+        
+        const {_id} = req;
+        const {cid} = req.params;
+
+        const usuario = await UsersRepository.getUserById(_id);
+
+        if(!(usuario.cart_id.toString() === cid)) return res.status(400).json({ok:false, msg: 'Carrito no es valido'});
+
+        const carrito = await CartsRepository.getCartById(cid);
+
+        validarStockProducts(carrito.products);
+
+        return res.json({ok:true, carrito});
+    } catch (error) {
+        return res.status(500).json({msg:"Hablar con admin"})
+    }
+}
