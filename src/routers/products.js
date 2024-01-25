@@ -1,20 +1,37 @@
 import { Router } from 'express';
 import { addProduct, deleteProduct, getProduct, getProductById, updateProduct } from '../controllers/products.js';
 import { uploader } from '../config/multer.js';
-import { validarJWT } from '../middleware/auth.js';
+import { validarCampos, validarJWT, isAdmin } from '../middleware/auth.js';
+import { check } from 'express-validator';
+import { existeCode } from '../helpers/db-validaciones.js'
+
 
 const router = Router();
 
 router.get('/', validarJWT, getProduct);
+
 router.get('/:pid',validarJWT, getProductById);
+
 router.post('/', [
-    validarJWT,
-    uploader.single('file')
-], addProduct);
+    validarJWT, 
+    isAdmin,
+    check('title', 'El campo es obligatorio').not().isEmpty(),
+    check('description', 'El campo es obligatorio').not().isEmpty(),
+    check('code', 'El campo es obligatorio').not().isEmpty(),
+    check('code').custom(existeCode),
+    check('price', 'El campo es obligatorio y numerico').not().isEmpty().isNumeric(),
+    check('stock', 'El campo es obligatorio y numerico').not().isEmpty(),
+    check('category', 'El campo es obligatorio').not().isEmpty().isNumeric(),
+    validarCampos,
+    uploader.single('file')], addProduct);
+
 router.put('/:pid', [
-    validarJWT,
+    validarJWT, 
+    check('pid', 'No es valido el ID del producto').isMongoId(),
+    validarCampos,
     uploader.single('file')
 ], updateProduct);
+
 router.delete('/:pid',validarJWT, deleteProduct);
 
 export { router as productsRouter }
