@@ -13,14 +13,14 @@ export const getCartById = async (req= request, res= response) => {
     }
 }
 
-export const createCart = async (req= request, res= response) => {
-    try {
-        const carrito = await CartsRepository.createCart();
-        return res.json({msg:'Carrito creado', carrito})
-    } catch (error) {
-        return res.status(500).json({msg:"Hablar con admin"})
-    }
-}
+//export const createCart = async (req= request, res= response) => {
+//    try {
+//        const carrito = await CartsRepository.createCart();
+//        return res.json({msg:'Carrito creado', carrito})
+//    } catch (error) {
+//        return res.status(500).json({msg:"Hablar con admin"})
+//    }
+//}
 
 export const addProductCart = async (req= request, res= response) => {
     try {

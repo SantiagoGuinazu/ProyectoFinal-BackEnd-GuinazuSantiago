@@ -17,7 +17,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 
-
 await dbConnection();
 
 app.listen(PORT, () => {console.log(`Corriendo en el puerto ${PORT}`);});
