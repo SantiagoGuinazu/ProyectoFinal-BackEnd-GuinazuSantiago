@@ -29,7 +29,11 @@ export const validarStockProducts = async (productos = []) => {
         const newProduct = [];
         const llamados = productos.map(p=> ProductsRepository.getProductById(p.id));
         const resultados = await Promise.all(llamados);
-        console.log(resultados)
+
+        const productsQuatity = resultados.map((p,index)=>({
+            ...p.toObject(),
+            quantity:productos[index].quantity
+        }))
 
         return newProduct;
     } catch (error) {
