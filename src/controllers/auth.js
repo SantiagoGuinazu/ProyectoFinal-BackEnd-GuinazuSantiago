@@ -13,7 +13,10 @@ export const loginUsuario = async(req=request, res=response) => {
         const validPassword = isValidPassword(password, usuario.password);
         if(!validPassword) return res.status(400).json({ok:false, msg: 'Datos incorrectos'})
 
-        return res.json({ok:true, msg:'loginUsuario'})
+        const {_id, name, lastName, rol} = usuario;
+        const token = generateToken({_id, name, lastName, email, rol});
+
+        return res.json({ok:true, usuario, token})
 
     } catch (error) {
         console.log(error);
@@ -24,11 +27,11 @@ export const crearUsuario = async(req=request, res=response) => {
     try {
         req.body.password = createHash(req.body.password);
         
-        const result = await UsersRepository.registerUser(req.body);
-        const {_id, name, lastName, email, rol} = result;
+        const usuario = await UsersRepository.registerUser(req.body);
+        const {_id, name, lastName, email, rol} = usuario;
         const token = generateToken({_id, name, lastName, email, rol});
 
-        return res.json({ok:true, result, token});
+        return res.json({ok:true, usuario, token});
     } catch (error) {
         console.log(error);
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
