@@ -10,4 +10,4 @@ router.post('/', uploader.single('file'), addProduct);
 router.put('/:pid', uploader.single('file'), updateProduct);
 router.delete('/:pid', deleteProduct);
 
-export default router;
+export { router as productsRouter }
