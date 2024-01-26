@@ -1,6 +1,6 @@
 import { cartModel } from "./models/cartsModels.js"
 
-export const getCartById = async (cid) => await cartModel.findById(cid);
+export const getCartById = async (cid) => await cartModel.findById(cid).populate('products.id',['title','price','stock']);
 
 export const createCart = async () => await cartModel.create({});
 
