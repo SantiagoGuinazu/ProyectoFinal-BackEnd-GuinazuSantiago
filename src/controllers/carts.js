@@ -1,6 +1,7 @@
 import { request, response } from 'express';
 import { CartsRepository, ProductsRepository, TicketsRepository, UsersRepository } from "../repositories/index.js";
-import { validarStockProducts } from '../helpers/db-validaciones.js';
+import { v4 as uuidv4 } from 'uuid';
+uuidv4();
 
 export const getCartById = async (req= request, res= response) => {
     try {
@@ -134,11 +135,24 @@ export const finalizarCompra = async (req= request, res= response) => {
 
         const actualizacionesQuantity = productosStockValid.map(p=> 
             ProductsRepository.updateProduct(p.id._id,{stock: p.id.stock-p.quantity}));
-            const resultados = await Promise.all(actualizacionesQuantity);
+        await Promise.all(actualizacionesQuantity);
 
-        TicketsRepository.
+        const items = productosStockValid.map(i=>({
+            title:i.id.title, 
+            price:i.id.price, 
+            quantity:i.quantity,
+            total:i.id.price*i.quantity
+        }));
 
-        return res.json({ok:true, carrito, productosStockValid});
+        let amount = 0;
+        items.forEach(element => {amount+=element.total});
+        
+        const purchase = usuario.email;
+
+        const code = uuidv4();
+        await TicketsRepository.createTicket({items,amount,purchase,code})
+
+        return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
         return res.status(500).json({msg:"Hablar con admin"})
     }

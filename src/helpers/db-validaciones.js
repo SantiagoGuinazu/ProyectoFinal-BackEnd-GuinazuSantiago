@@ -23,20 +23,3 @@ export const existeCart = async (idCart) => {
     if(!cartExiste)
         throw new Error(`El id ${idCart} del producto no existe`);
 }
-
-export const validarStockProducts = async (productos = []) => {
-    try {
-        const newProduct = [];
-        const llamados = productos.map(p=> ProductsRepository.getProductById(p.id));
-        const resultados = await Promise.all(llamados);
-
-        const productsQuatity = resultados.map((p,index)=>({
-            ...p.toObject(),
-            quantity:productos[index].quantity
-        }))
-
-        return newProduct;
-    } catch (error) {
-        console.log(error)
-    }
-}
