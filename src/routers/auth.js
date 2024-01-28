@@ -23,4 +23,6 @@ router.post('/register',[
     validarCampos,
 ], crearUsuario);
 
+
+
 export { router as authRouter}

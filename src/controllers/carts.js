@@ -152,6 +152,8 @@ export const finalizarCompra = async (req= request, res= response) => {
         const code = uuidv4();
         await TicketsRepository.createTicket({items,amount,purchase,code})
 
+        await CartsRepository.deleteAllProductsInCart(usuario.idCart)
+
         return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
         return res.status(500).json({msg:"Hablar con admin"})

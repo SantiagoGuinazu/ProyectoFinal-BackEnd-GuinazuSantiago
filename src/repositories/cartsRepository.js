@@ -6,3 +6,4 @@ export const addProductCart = async (cid, pid) => await CartDao.addProductCart(c
 export const deleteProductsInCart = async (cid, pid) => await CartDao.deleteProductsInCart(cid, pid);
 export const updateProductsInCart = async (cid, pid, quantity) => await CartDao.updateProductsInCart(cid, pid, quantity);
 export const deleteCart = async (cid) => await CartDao.deleteCart(cid);
+export const deleteAllProductsInCart = async (cid) => await CartDao.deleteAllProductsInCart(cid);
