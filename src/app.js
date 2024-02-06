@@ -6,8 +6,22 @@ import { productsRouter, cartsRouter, authRouter  } from './routers/index.js';
 import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
 
+//Loggers
+import { addLogger } from './utils/logger.js';
+
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+//Loggers
+app.use(addLogger)
+app.get('/test', (req, res) => {
+    req.logger.debug('debug')
+    req.logger.info('R2 rocks !! (Info)')
+    req.logger.warning('WARNING')
+    req.logger.error('Erros ')
+    req.logger.fatal('Fatal ')
+    res.send('Todo ok')
+})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
