@@ -16,10 +16,11 @@ const PORT = process.env.PORT || 8080;
 app.use(addLogger)
 app.get('/test', (req, res) => {
     req.logger.debug('debug')
-    req.logger.info('R2 rocks !! (Info)')
+    req.logger.http('http')
+    req.logger.info('Info (Info)')
     req.logger.warning('WARNING')
-    req.logger.error('Erros ')
-    req.logger.fatal('Fatal ')
+    req.logger.error('Erros')
+    req.logger.fatal('Fatal')
     res.send('Todo ok')
 })
 
