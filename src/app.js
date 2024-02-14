@@ -1,5 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
+import cors from 'cors';
 
 import { productsRouter, cartsRouter, authRouter  } from './routers/index.js';
 
@@ -24,6 +25,7 @@ app.get('/test', (req, res) => {
     res.send('Todo ok')
 })
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'));
