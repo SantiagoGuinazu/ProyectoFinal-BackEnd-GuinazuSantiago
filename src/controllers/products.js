@@ -30,6 +30,8 @@ export const addProduct = async (req = request, res = response) => {
     try {
         const { title, description, price, code, stock, category } = req.body;
 
+        if(!title || !description || !price || !code || !stock || !category) return res.status(400).json({ msj: 'Datos incompletos title, description, price, code, stock, category' })
+
         if (req.file) {
 
             const isValidExtension = validFileExtension(req.file.originalname);
