@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addProduct, deleteProduct, getProduct, getProductById, updateProduct } from '../controllers/products.js';
+import { addProduct, deleteProduct, getProduct, getProductById, mockingProducts, updateProduct } from '../controllers/products.js';
 import { uploader } from '../config/multer.js';
 import { validarCampos, validarJWT, isAdmin } from '../middleware/auth.js';
 import { check } from 'express-validator';
@@ -47,5 +47,7 @@ router.delete('/:pid',[
     check('pid').custom(existeProduct),
     validarCampos,
 ], deleteProduct);
+
+router.get('/mocking/products', validarJWT, mockingProducts);
 
 export { router as productsRouter }

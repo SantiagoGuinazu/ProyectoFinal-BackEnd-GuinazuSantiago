@@ -2,6 +2,7 @@ import { request, response } from 'express';
 import { cloudinary } from '../config/cloduinary.js';
 import { validFileExtension } from '../utils/validFileExtension.js';
 import { ProductsRepository } from "../repositories/index.js";
+import { faker } from '@faker-js/faker';
 
 export const getProduct = async (req = request, res = response) => {
     try {
@@ -98,6 +99,28 @@ export const deleteProduct = async (req = request, res = response) => {
         return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` })
     } catch (error) {
         console.log('deleteProduct ->', error)
+        return res.status(500).json({ msg: "Hablar con admin" })
+    }
+}
+
+export const mockingProducts = async (req = request, res = response) => {
+    try {
+        faker.location = 'es';
+        const products = Array.from({length:100},(_, index) => ({
+            _id:faker.string.uuid(),
+            title:faker.commerce.productName(),
+            description: faker.lorem.sentence(),
+            code: (index + 1).toString(),
+            price: faker.number.int({min:1, max:100}),
+            status: faker.datatype.boolean(),
+            stock: faker.number.int({min:1, max:100}),
+            category: faker.commerce.department(),
+            thumbnail: faker.image.url(),
+        }));
+
+        return res.json({products});
+    } catch (error) {
+        console.log('mockingProducts ->', error)
         return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
