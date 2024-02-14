@@ -7,9 +7,7 @@ import { existeCode, existeProduct } from '../helpers/db-validaciones.js'
 
 const router = Router();
 
-router.get('/', [
-    validarJWT
-], getProduct);
+router.get('/', getProduct);
 
 router.get('/:pid',[
     validarJWT,
