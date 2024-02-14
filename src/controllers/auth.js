@@ -44,3 +44,14 @@ export const crearUsuario = async(req=request, res=response) => {
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
     }
 }
+
+export const revalidarToken = async(req=request, res=response) => {
+    
+    const {_id, name, lastName, email, rol} = req;
+
+    const usuario = await UsersRepository.getUserByEmail(email);
+
+    const token = generateToken({_id, name, lastName, email, rol});
+
+    return res.json({ok:true, usuario, token});
+}

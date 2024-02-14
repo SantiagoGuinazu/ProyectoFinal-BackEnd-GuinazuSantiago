@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { crearUsuario, loginUsuario } from '../controllers/auth.js';
-import { validarCampos } from '../middleware/auth.js';
+import { crearUsuario, loginUsuario, revalidarToken } from '../controllers/auth.js';
+import { validarCampos, validarJWT } from '../middleware/auth.js';
 import { existeEmail } from '../helpers/db-validaciones.js';
 
 const router = Router();
@@ -23,6 +23,6 @@ router.post('/register',[
     validarCampos,
 ], crearUsuario);
 
-
+router.get('/renew', validarJWT, revalidarToken)
 
 export { router as authRouter}
