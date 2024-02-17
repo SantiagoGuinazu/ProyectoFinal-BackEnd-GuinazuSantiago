@@ -2,6 +2,7 @@ import { response, request } from 'express';
 import { CartsRepository, UsersRepository } from '../repositories/index.js';
 import { createHash, isValidPassword } from '../utils/bcryptPassword.js';
 import { generateToken } from '../utils/jsonWebToken.js';
+import { logger } from '../utils/logger.js';
 
 export const loginUsuario = async(req=request, res=response) => {
     try {
@@ -19,7 +20,7 @@ export const loginUsuario = async(req=request, res=response) => {
         return res.json({ok:true, usuario, token})
 
     } catch (error) {
-        console.log(error);
+        logger.error(error);
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
     }
 }
@@ -40,7 +41,7 @@ export const crearUsuario = async(req=request, res=response) => {
 
         return res.json({ok:true, usuario, token});
     } catch (error) {
-        console.log(error);
+        logger.error(error);
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
     }
 }

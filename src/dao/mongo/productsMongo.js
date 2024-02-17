@@ -1,3 +1,4 @@
+import { logger } from "../../utils/logger.js";
 import { productModel } from "./models/productosModels.js";
 
 export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
@@ -12,7 +13,7 @@ export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
         if (query)
             query = JSON.parse(decodeURIComponent(query))
     } catch (error) {
-        console.log('Error al parsear', error)
+        logger.error('Error al parsear', error)
         query = {}
     }
 

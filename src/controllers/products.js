@@ -3,6 +3,7 @@ import { cloudinary } from '../config/cloduinary.js';
 import { validFileExtension } from '../utils/validFileExtension.js';
 import { ProductsRepository } from "../repositories/index.js";
 import { faker } from '@faker-js/faker';
+import { logger } from '../utils/logger.js';
 
 export const getProduct = async (req = request, res = response) => {
     try {
@@ -21,7 +22,7 @@ export const getProductById = async (req = request, res = response) => {
             return res.status(404).json({ msg: `El producto con id ${pid} no existe` })
         return res.json({ producto })
     } catch (error) {
-        console.log('getProductById ->', error)
+        logger.error('getProductById ->', error)
         return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
@@ -100,7 +101,7 @@ export const deleteProduct = async (req = request, res = response) => {
             return res.json({ msg: 'Producto Eliminado', producto })
         return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` })
     } catch (error) {
-        console.log('deleteProduct ->', error)
+        logger.error('deleteProduct ->',error)
         return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
@@ -122,7 +123,7 @@ export const mockingProducts = async (req = request, res = response) => {
 
         return res.json({products});
     } catch (error) {
-        console.log('mockingProducts ->', error)
+        logger.error('mockingProducts ->', error)
         return res.status(500).json({ msg: "Hablar con admin" })
     }
 }

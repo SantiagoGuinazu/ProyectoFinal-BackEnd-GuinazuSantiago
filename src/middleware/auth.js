@@ -1,6 +1,7 @@
 import { request, response } from "express";
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
+import { logger } from "../utils/logger.js";
 
 export const isAdmin = (req = request, res = response, next) => {
     if (!(req.rol === 'admin'))
@@ -32,7 +33,7 @@ export const validarJWT = (req = request, res = response, next) => {
         req.name = name;
         req.lastName = lastName;
     } catch (error) {
-        console.log(error);
+        logger.error(error);
         return res.status(401).json({ok:false, msg:'Token no valido'});
     }
     next();
