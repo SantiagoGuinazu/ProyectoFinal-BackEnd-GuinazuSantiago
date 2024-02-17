@@ -3,6 +3,7 @@ import { CartsRepository, UsersRepository } from '../repositories/index.js';
 import { createHash, isValidPassword } from '../utils/bcryptPassword.js';
 import { generateToken } from '../utils/jsonWebToken.js';
 import { logger } from '../utils/logger.js';
+import { sendEmail } from '../helpers/sendEmail.js';
 
 export const loginUsuario = async(req=request, res=response) => {
     try {
@@ -55,4 +56,14 @@ export const revalidarToken = async(req=request, res=response) => {
     const token = generateToken({_id, name, lastName, email, rol});
 
     return res.json({ok:true, usuario, token});
+}
+
+export const cambiarPassword = async(req=request, res=response) => {
+    const { email } = req.body;
+
+    logger.info(email);
+
+    sendEmail(email);
+
+    return res.json({ok:true});
 }

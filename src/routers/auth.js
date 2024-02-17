@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { crearUsuario, loginUsuario, revalidarToken } from '../controllers/auth.js';
+import { cambiarPassword, crearUsuario, loginUsuario, revalidarToken } from '../controllers/auth.js';
 import { validarCampos, validarJWT } from '../middleware/auth.js';
 import { existeEmail } from '../helpers/db-validaciones.js';
 
@@ -24,5 +24,11 @@ router.post('/register',[
 ], crearUsuario);
 
 router.get('/renew', validarJWT, revalidarToken)
+
+router.post('/cambiar-password', [
+    check('email','El email es obligatorio').not().isEmpty(),
+    check('email','El email debe ser valido').isEmail(),
+    validarCampos,
+], cambiarPassword)
 
 export { router as authRouter}
