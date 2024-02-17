@@ -60,10 +60,15 @@ export const revalidarToken = async(req=request, res=response) => {
 
 export const cambiarPassword = async(req=request, res=response) => {
     const { email } = req.body;
+    const usuario = await UsersRepository.getUserByEmail(email);
+    if(!usuario) return res.status(400).json({ok:false, msg:'Usuario invalido'});
 
-    logger.info(email);
+    const token = generateToken({email}, '1h');
+    console.log({token});
 
-    sendEmail(email);
+    const urlReset = `${process.env.URL_RESET_PASS}?token=${token}`;
+
+    sendEmail(email, urlReset);
 
     return res.json({ok:true});
 }

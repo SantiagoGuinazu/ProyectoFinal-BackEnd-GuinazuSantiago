@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
 import { logger } from '../utils/logger.js';
 
-export const sendEmail = async (email) => {
+export const sendEmail = async (email, url) => {
     try {
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
@@ -17,7 +17,7 @@ export const sendEmail = async (email) => {
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
             subject: 'Cambiar contraseña',
-            html: templateHtmlEmail(email)
+            html: templateHtmlEmail(email, url)
         })
 
     } catch (error) {
@@ -25,12 +25,12 @@ export const sendEmail = async (email) => {
     }
 }
 
-const templateHtmlEmail = (email) => {
+const templateHtmlEmail = (email, url) => {
     const titulo = 'Cambiar contraseña en la cuenta de Ecommerce';
-    const link = 'Aun falta configurar';
+    const link = url;
     return (
         `<div>
-            <p>Agregar template de John ${titulo} + ${link}</p>
+            <p>Agregar template de John ${email} + ${titulo} + ${link}</p>
         </div>`
     );
 }
