@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     email:{type: String, required: [true,'El correo es obligatorio'], unique: true},
     age:{type: Number},
     password:{type: String, required: [true,'La contraseña es obligatoria']},
-    rol:{type: String, default: 'user', enum: ['user', 'admin']},
+    rol:{type: String, default: 'user', enum: ['user', 'admin', 'premium']},
     status:{type: Boolean, default: true},
     fechaCreacion:{type: Date, default: Date.now},
     image:{type: String},

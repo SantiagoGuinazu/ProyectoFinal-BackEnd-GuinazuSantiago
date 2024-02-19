@@ -12,6 +12,11 @@ const ProductoSchema = new Schema({
     stock: { type: Number, required: [true, 'El stock del producto es obligatorio'] },
     category: { type: String, required: [true, 'El category del producto es obligatorio'] },
     thumbnails: { type: String },
+    owner:{
+        type:Schema.Types.ObjectId,
+        ref:'User', 
+        required: [true, 'El owner es obligatorio']
+    }
 });
 
 //ProductoSchema.plugin(mongoosePaginate)

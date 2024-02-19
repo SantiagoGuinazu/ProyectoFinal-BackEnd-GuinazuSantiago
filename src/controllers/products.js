@@ -31,6 +31,8 @@ export const addProduct = async (req = request, res = response) => {
     try {
         const { title, description, price, code, stock, category } = req.body;
 
+        const {_id} = req;
+
         if(!title || !description || !price || !code || !stock || !category) return res.status(400).json({ msj: 'Datos incompletos title, description, price, code, stock, category' })
 
         if (req.file) {
@@ -44,10 +46,12 @@ export const addProduct = async (req = request, res = response) => {
             req.body.thumbnails = secure_url;
         }
 
+        req.body.owner = _id;
         const producto = await ProductsRepository.addProduct({ ...req.body });
         return res.json({ producto })
 
     } catch (error) {
+        logger.error(error)
         return res.status(500).json({ msg: "Hablar con admin" })
     }
 }
@@ -93,9 +97,22 @@ export const updateProduct = async (req = request, res = response) => {
 export const deleteProduct = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
+        const {rol, _id} = req;
+
+        if(rol === 'premium'){
+            const producto = await ProductsRepository.getProductById(pid);
+            if(!producto) return res.status(404).json({ msg: `El producto con Id ${pid} no existe!` });
+
+            if(producto.owner.toString() === _id){
+                const producto = await ProductsRepository.deleteProduct(pid);
+                if (producto)
+                    return res.json({ msg: 'Producto Eliminado', producto });
+                return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` });
+            } 
+        }
         
         const producto = await ProductsRepository.deleteProduct(pid)
-        cloudinary.uploader.destroy(pid);
+        //cloudinary.uploader.destroy(pid);
 
         if (producto)
             return res.json({ msg: 'Producto Eliminado', producto })
