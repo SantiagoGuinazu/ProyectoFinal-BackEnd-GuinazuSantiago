@@ -17,3 +17,66 @@ paths:
                   password:
                     type: string
                     description: Password del usuario
+      responses:
+        '200':
+          description: Login correcto
+          content:
+            application/json:
+              schema:
+                ok:
+                  type: boolean
+                usuario:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    lastName:
+                      type: string
+                    email:
+                      type: string
+                    password:
+                      type: string
+                    rol:
+                      type: string
+                    status:
+                      type: boolean
+                    github:
+                      type: boolean
+                    google:
+                      type: boolean
+                    cart_id:
+                      type: string
+                    fechaCreacion:
+                      type: string
+                token:
+                  type: string
+        '400':
+          description: Datos invalidos
+          content: 
+          application/json:
+            schema:
+              type: object
+                properties:
+                  ok:
+                    type: false
+                  msg:
+                    type: Datos Incorrectos
+  /api/auth/register:
+    post:
+      summary: Registrar un usuario
+      tags:
+        - Users
+
+  /api/auth/cambiar-password:
+    post:
+      summary: Registrar un usuario
+      tags:
+        - Users
+
+  /api/auth/reset-password:
+    get:
+      summary: Registrar un usuario
+      tags:
+        - Users
