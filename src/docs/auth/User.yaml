@@ -1,0 +1,19 @@
+paths: 
+  /api/auth/login:
+    post:
+      summary: Realizar el login en la app
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+                properties:
+                  email: 
+                    type: string
+                    description: Correo electronico del usuario
+                  password:
+                    type: string
+                    description: Password del usuario

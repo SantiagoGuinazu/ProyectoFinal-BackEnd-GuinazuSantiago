@@ -1,6 +1,8 @@
 import express from 'express';
 import 'dotenv/config';
 import cors from 'cors';
+import swaggerJsDoc from 'swagger-jsdoc';
+import swaggerUiExpress from 'swagger-ui-express';
 
 import { productsRouter, cartsRouter, authRouter  } from './routers/index.js';
 
@@ -13,6 +15,19 @@ import { requestUrl } from './middleware/logger.js';
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const swaggerOptions = {
+    definition:{
+        openapi:'3.1.0',
+        info:{
+            title:'Documentacion de la Api',
+            description:'Proyecto Ecommerce'
+        }
+    },
+    apis:[`${__dirname}/docs/**/*.yaml`],
+};
+
+const spec = swaggerJsDoc(swaggerOptions);
+
 app.use(cors());
 app.use(requestUrl);
 app.use(express.json());
@@ -22,6 +37,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
+app.use('/documentacion-api', swaggerUiExpress.serve,swaggerUiExpress.setup(spec));
 
 await dbConnection();
 
