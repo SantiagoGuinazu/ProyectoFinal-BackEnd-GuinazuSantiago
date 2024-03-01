@@ -10,13 +10,13 @@ paths:
           application/json:
             schema:
               type: object
-                properties:
-                  email: 
-                    type: string
-                    description: Correo electronico del usuario
-                  password:
-                    type: string
-                    description: Password del usuario
+              properties:
+                email: 
+                  type: string
+                  description: Correo electronico del usuario
+                password:
+                  type: string
+                  description: Password del usuario
       responses:
         '200':
           description: Login correcto
@@ -55,9 +55,9 @@ paths:
         '400':
           description: Datos invalidos
           content: 
-          application/json:
-            schema:
-              type: object
+            application/json:
+              schema:
+                type: object
                 properties:
                   ok:
                     type: false
@@ -68,13 +68,11 @@ paths:
       summary: Registrar un usuario
       tags:
         - Users
-
   /api/auth/cambiar-password:
     post:
       summary: Registrar un usuario
       tags:
         - Users
-
   /api/auth/reset-password:
     get:
       summary: Registrar un usuario
