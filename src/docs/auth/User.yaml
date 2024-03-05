@@ -70,7 +70,7 @@ paths:
         - Users
   /api/auth/cambiar-password:
     post:
-      summary: Registrar un usuario
+      summary: Cambiar la contraseña
       tags:
         - Users
   /api/auth/reset-password:

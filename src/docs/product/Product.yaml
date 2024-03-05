@@ -1,0 +1,28 @@
+paths: 
+  /api/auth/products/:
+    get:
+      summary: Products
+      tags:
+        - Product
+    post:
+      summary: Products
+      tags:
+        - Product
+  /api/auth/products/:pid:
+    get:
+      summary: Products
+      tags:
+        - Product
+    put:
+      summary: Products
+      tags:
+        - Product
+    delete:
+      summary: Products
+      tags:
+        - Product
+  /api/auth/products/mocking/products:
+    get:
+      summary: Products
+      tags:
+        - Product

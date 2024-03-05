@@ -1,0 +1,25 @@
+paths: 
+  /api/auth/carts/:cid:
+    get:
+      summary: Cart
+      tags:
+        - Cart
+  /api/auth/carts/:cid/product/:pid:
+    post:
+      summary: Cart
+      tags:
+        - Cart
+  /api/auth/carts/:cid/products/:pid:
+    delete:
+      summary: Cart
+      tags:
+        - Cart
+    put:
+      summary: Cart
+      tags:
+        - Cart
+  /api/auth/carts/:cid/purchase:
+    post:
+      summary: Cart
+      tags:
+        - Cart
