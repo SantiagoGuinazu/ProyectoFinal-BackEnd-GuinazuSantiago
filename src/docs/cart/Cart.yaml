@@ -1,15 +1,15 @@
 paths: 
-  /api/auth/carts/:cid:
+  /api/auth/carts/{cid}:
     get:
       summary: Carrito
       tags:
         - Cart
-  /api/auth/carts/:cid/product/:pid:
+  /api/auth/carts/{cid}/product/{pid}:
     post:
       summary: Un producto particular del carrito
       tags:
         - Cart
-  /api/auth/carts/:cid/products/:pid:
+  /api/auth/carts/{cid}/products/{pid}:
     delete:
       summary: Borrar un producto particular del carrito
       tags:
@@ -18,7 +18,7 @@ paths:
       summary: Modificar un producto particular del carrito
       tags:
         - Cart
-  /api/auth/carts/:cid/purchase:
+  /api/auth/carts/{cid}/purchase:
     post:
       summary: Comprar productos del carrito
       tags:

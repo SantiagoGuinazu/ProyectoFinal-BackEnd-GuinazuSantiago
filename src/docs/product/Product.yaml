@@ -8,7 +8,7 @@ paths:
       summary: Cargar un Products
       tags:
         - Product
-  /api/auth/products/:pid:
+  /api/auth/products/{pid}:
     get:
       summary: Un producto en particular
       tags:
