@@ -1,28 +1,28 @@
 paths: 
   /api/auth/products/:
     get:
-      summary: Products
+      summary: Todos los Products
       tags:
         - Product
     post:
-      summary: Products
+      summary: Cargar un Products
       tags:
         - Product
   /api/auth/products/:pid:
     get:
-      summary: Products
+      summary: Un producto en particular
       tags:
         - Product
     put:
-      summary: Products
+      summary: Modificar un producto en particular
       tags:
         - Product
     delete:
-      summary: Products
+      summary: Borrar un producto en particular
       tags:
         - Product
   /api/auth/products/mocking/products:
     get:
-      summary: Products
+      summary: Products mocking
       tags:
         - Product

@@ -20,7 +20,7 @@ const swaggerOptions = {
         openapi:'3.1.0',
         info:{
             title:'Documentacion de la Api',
-            description:'Proyecto Ecommerce'
+            description:'Proyecto Ecommerce - Santiago Guiñazu'
         }
     },
     apis:[`${__dirname}/docs/**/*.yaml`],

@@ -1,25 +1,25 @@
 paths: 
   /api/auth/carts/:cid:
     get:
-      summary: Cart
+      summary: Carrito
       tags:
         - Cart
   /api/auth/carts/:cid/product/:pid:
     post:
-      summary: Cart
+      summary: Un producto particular del carrito
       tags:
         - Cart
   /api/auth/carts/:cid/products/:pid:
     delete:
-      summary: Cart
+      summary: Borrar un producto particular del carrito
       tags:
         - Cart
     put:
-      summary: Cart
+      summary: Modificar un producto particular del carrito
       tags:
         - Cart
   /api/auth/carts/:cid/purchase:
     post:
-      summary: Cart
+      summary: Comprar productos del carrito
       tags:
         - Cart
