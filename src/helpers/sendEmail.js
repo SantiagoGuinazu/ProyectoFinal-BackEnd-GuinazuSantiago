@@ -4,7 +4,7 @@ import { logger } from '../utils/logger.js';
 export const sendEmail = async (email, url) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
+            host: 'smtp.gmail.com',
             port: 587,
             secure: false,
             auth:{
@@ -18,12 +18,12 @@ export const sendEmail = async (email, url) => {
             to: `${email}`,
             subject: 'Cambiar contraseña',
             html: templateHtmlEmail(email, url)
-        })
+        });
 
     } catch (error) {
-        logger.error(error)
+        logger.error(error);
     }
-}
+};
 
 const templateHtmlEmail = (email, url) => {
     const titulo = 'Cambiar contraseña en la cuenta de Ecommerce';
@@ -33,4 +33,4 @@ const templateHtmlEmail = (email, url) => {
             <p>Agregar template de John ${email} + ${titulo} + ${link}</p>
         </div>`
     );
-}
+};

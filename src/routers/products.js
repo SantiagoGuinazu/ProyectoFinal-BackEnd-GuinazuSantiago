@@ -3,7 +3,7 @@ import { addProduct, deleteProduct, getProduct, getProductById, mockingProducts,
 import { uploader } from '../config/multer.js';
 import { validarCampos, validarJWT, isAdmin } from '../middleware/auth.js';
 import { check } from 'express-validator';
-import { existeCode, existeProduct } from '../helpers/db-validaciones.js'
+import { existeCode, existeProduct } from '../helpers/db-validaciones.js';
 
 const router = Router();
 
@@ -48,4 +48,4 @@ router.delete('/:pid',[
 
 router.get('/mocking/products', validarJWT, mockingProducts);
 
-export { router as productsRouter }
+export { router as productsRouter };

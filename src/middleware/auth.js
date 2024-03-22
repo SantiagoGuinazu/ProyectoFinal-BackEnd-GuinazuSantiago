@@ -1,13 +1,13 @@
-import { request, response } from "express";
+import { request, response } from 'express';
 import { validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { logger } from "../utils/logger.js";
+import { logger } from '../utils/logger.js';
 
 export const isAdmin = (req = request, res = response, next) => {
     if (!(req.rol === 'admin' || req.rol === 'premium' ))
         return res.status(403).json({ok:false, msg:'Permisos insuficientes'}); 
     next();
-}
+};
 
 export const validarCampos = (req = request, res = response, next) => {
     const errores = validationResult(req);
@@ -15,7 +15,7 @@ export const validarCampos = (req = request, res = response, next) => {
         return res.status(400).json(errores);
     }
     next();
-}
+};
 
 export const validarJWT = (req = request, res = response, next) => {
     
@@ -37,4 +37,4 @@ export const validarJWT = (req = request, res = response, next) => {
         return res.status(401).json({ok:false, msg:'Token no valido'});
     }
     next();
-}
+};

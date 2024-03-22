@@ -25,13 +25,12 @@ const swaggerOptions = {
     },
     apis:[`${__dirname}/docs/**/*.yaml`],
 };
-
 const spec = swaggerJsDoc(swaggerOptions);
 
 app.use(cors());
 app.use(requestUrl);
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 app.use('/api/auth', authRouter);

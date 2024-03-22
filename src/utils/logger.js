@@ -1,4 +1,4 @@
-import winston from "winston";
+import winston from 'winston';
 
 //const levels = {
 //    error: 0,
@@ -21,7 +21,7 @@ const devLogger = winston.createLogger({
             ),
         }),
     ],
-})
+});
 
 const prodLogger = winston.createLogger({
     level: 'info',
@@ -39,6 +39,6 @@ const prodLogger = winston.createLogger({
             format: winston.format.simple()
         }),
     ],
-})
+});
 
 export const logger = process.env.NODE_ENV === 'production' ? prodLogger : devLogger;

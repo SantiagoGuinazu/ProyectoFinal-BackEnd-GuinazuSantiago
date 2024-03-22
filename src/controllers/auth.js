@@ -11,19 +11,19 @@ export const loginUsuario = async(req=request, res=response) => {
         const {email, password} = req.body;
 
         const usuario = await UsersRepository.getUserByEmail(email);
-        if(!usuario) return res.status(400).json({ok:false, msg: 'Datos incorrectos'})
+        if(!usuario) return res.status(400).json({ok:false, msg: 'Datos incorrectos'});
 
         const validPassword = isValidPassword(password, usuario.password);
-        if(!validPassword) return res.status(400).json({ok:false, msg: 'Datos incorrectos'})
+        if(!validPassword) return res.status(400).json({ok:false, msg: 'Datos incorrectos'});
 
         const {_id, name, lastName, rol} = usuario;
         const token = generateToken({_id, name, lastName, email, rol});
 
-        return res.json({ok:true, usuario, token})
+        return res.json({ok:true, usuario, token});
 
     } catch (error) {
         logger.error(error);
-        return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
+        return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'});
     }
 }
 
@@ -32,7 +32,7 @@ export const crearUsuario = async(req=request, res=response) => {
         req.body.password = createHash(req.body.password);
         
         const carrito = await CartsRepository.createCart();
-        if(!carrito) return res.status(500).json({ok: false, msg: 'No se pudo crear el carrito'})
+        if(!carrito) return res.status(500).json({ok: false, msg: 'No se pudo crear el carrito'});
 
         req.body.cart_id = carrito._id;
 
@@ -44,7 +44,7 @@ export const crearUsuario = async(req=request, res=response) => {
         return res.json({ok:true, usuario, token});
     } catch (error) {
         logger.error(error);
-        return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'})
+        return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'});
     }
 }
 
@@ -98,7 +98,7 @@ export const resetPassword = async(req=request, res=response) => {
         usuario.password = createHash(password);
         usuario.save();
 
-        return res.json({ok:true, msg: 'Se cambio correctamente la contraseña'})
+        return res.json({ok:true, msg: 'Se cambio correctamente la contraseña'});
 
     } catch (error) {
         logger.error(error);

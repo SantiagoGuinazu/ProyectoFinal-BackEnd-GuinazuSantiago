@@ -19,6 +19,6 @@ const ProductoSchema = new Schema({
     }
 });
 
-//ProductoSchema.plugin(mongoosePaginate)
+//ProductoSchema.plugin(mongoosePaginate);
 
-export const productModel = model(nameCollection, ProductoSchema)
+export const productModel = model(nameCollection, ProductoSchema);

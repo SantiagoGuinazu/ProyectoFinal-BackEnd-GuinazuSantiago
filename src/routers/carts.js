@@ -44,4 +44,4 @@ router.post('/:cid/purchase', [
     validarCampos,
 ], finalizarCompra);
 
-export { router as cartsRouter }
+export { router as cartsRouter };

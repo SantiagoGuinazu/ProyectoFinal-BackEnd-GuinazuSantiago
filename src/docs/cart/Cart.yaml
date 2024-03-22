@@ -12,11 +12,11 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        '200':
           description: El carrito fue devuelto satisfactoriamente
-        "500":
+        '500':
           description: Error interno del server
-        "404":
+        '404':
           description: No se encontro el carrito
   /api/auth/carts/{cid}/product/{pid}:
     post:
@@ -37,11 +37,11 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        '200':
           description: El producto del carrito fue devuelto satisfactoriamente
-        "500":
+        '500':
           description: Error interno del server
-        "404":
+        '404':
           description: No se encontro el carrito o el producto
   /api/auth/carts/{cid}/products/{pid}:
     delete:
@@ -62,11 +62,11 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        '200':
           description: El producto del carrito fue eliminado satisfactoriamente
-        "500":
+        '500':
           description: Error interno del server
-        "404":
+        '404':
           description: No se encontro el carrito o el producto
     put:
       summary: Modificar un producto particular del carrito
@@ -86,11 +86,11 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        '200':
           description: El producto del carrito fue modificado satisfactoriamente
-        "500":
+        '500':
           description: Error interno del server
-        "404":
+        '404':
           description: No se encontro el carrito o el producto
   /api/auth/carts/{cid}/purchase:
     post:
@@ -105,9 +105,9 @@ paths:
         schema:
           type: string
       responses:
-        "200":
+        '200':
           description: La compra se ejecuto satisfactoriamente
-        "500":
+        '500':
           description: Error interno del server
-        "404":
+        '404':
           description: No se encontro el carrito

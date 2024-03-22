@@ -41,6 +41,6 @@ router.post('/reset-password',[
     check('password','La password es obligatoria y debe contener al menos 6 caracteres').isLength({min: 6}),
     validarCampos,
 ], 
-resetPassword)
+resetPassword);
 
-export { router as authRouter}
+export { router as authRouter};

@@ -1,5 +1,5 @@
-import { logger } from "../../utils/logger.js";
-import { productModel } from "./models/productosModels.js";
+import { logger } from '../../utils/logger.js';
+import { productModel } from './models/productosModels.js';
 
 export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
     page = page == 0 ? 1 : page;
@@ -11,9 +11,9 @@ export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
 
     try {
         if (query)
-            query = JSON.parse(decodeURIComponent(query))
+            query = JSON.parse(decodeURIComponent(query));
     } catch (error) {
-        logger.error('Error al parsear', error)
+        logger.error('Error al parsear', error);
         query = {}
     }
 
@@ -45,7 +45,7 @@ export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
         nextPage,
         payload: productos,
     }
-}
+};
 
 export const getProductById = async (pid) => await productModel.findById(pid);
 

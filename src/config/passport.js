@@ -1,9 +1,9 @@
-import passport from "passport";
-import local from "passport-local";
+import passport from 'passport';
+import local from 'passport-local';
 import GitHubStrategy from 'passport-github2';
-import { UsersRepository } from "../repositories/index.js";
-import { createHash, isValidPassword } from "../utils/bcryptPassword.js";
-import { logger } from "../utils/logger.js";
+import { UsersRepository } from '../repositories/index.js';
+import { createHash, isValidPassword } from '../utils/bcryptPassword.js';
+import { logger } from '../utils/logger.js';
 
 const LocalStrategy = local.Strategy;
 
@@ -16,27 +16,27 @@ export const initializaPassport = () => {
                 const { confirmPassword } = req.body;
 
                 if(password !== confirmPassword){
-                    logger.info('No coinciden las contraseñas')
-                    return done(null, false)
-                }
+                    logger.info('No coinciden las contraseñas');
+                    return done(null, false);
+                };
 
                 const user = await UsersRepository.getUserByEmail(username);
 
                 if (user) {
-                    logger.info('El usuario ya existe')
-                    return done(null,false)
-                }
+                    logger.info('El usuario ya existe');
+                    return done(null,false);
+                };
 
-                req.body.password = createHash(password)
+                req.body.password = createHash(password);
 
-                const newUser = await UsersRepository.registerUser({...req.body})
+                const newUser = await UsersRepository.registerUser({...req.body});
                 
                 if (newUser) 
-                    return done(null, newUser)
-                return done(null, false)
+                    return done(null, newUser);
+                return done(null, false);
 
             } catch (error) {
-                done(error)
+                done(error);
             }
         }));
     
@@ -47,20 +47,20 @@ export const initializaPassport = () => {
                 const user = await UsersRepository.getUserByEmail(username);
 
                 if(!user){
-                    logger.info('El usuario no existe')
-                    done(null, false)
+                    logger.info('El usuario no existe');
+                    done(null, false);
                 }
 
                 if(!isValidPassword(password,user.password)){
-                    logger.info("la password no coinciden")
-                    return (null,false)
+                    logger.info('la password no coinciden');
+                    return (null,false);
                 }
 
                 return done(null, user);
 
 
             } catch (error) {
-                done(error)
+                done(error);
             }
         }));
 
@@ -70,7 +70,7 @@ export const initializaPassport = () => {
 
         passport.deserializeUser(async (id, done) => {
             const user = await UsersRepository.getUserById(id);
-            done(null, user)
+            done(null, user);
         });
 
         passport.use('github', new GitHubStrategy(
@@ -94,12 +94,11 @@ export const initializaPassport = () => {
                         github: true,
                     };
 
-                    const result = await UsersRepository.registerUser({...newUser})
-                    return done(null, result)
+                    const result = await UsersRepository.registerUser({...newUser});
+                    return done(null, result);
                     
                 } catch (error) {
-                    done(error)
+                    done(error);
                 }
             }))
-
 };

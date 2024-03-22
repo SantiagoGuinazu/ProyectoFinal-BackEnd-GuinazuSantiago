@@ -7,9 +7,9 @@ describe('Testing Products',()=>{
 
     describe('ProductTest',async()=>{
         const {statusCode, ok, body} = await request.get('/api/products/');
-        logger.info(statusCode)
-        logger.info(ok)
-        logger.info(JSON.stringify(body))
+        logger.info(statusCode);
+        logger.info(ok);
+        logger.info(JSON.stringify(body));
     })
-})
+});
 

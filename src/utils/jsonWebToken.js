@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import { logger } from "./logger.js";
+import jwt from 'jsonwebtoken';
+import { logger } from './logger.js';
 
 export const generateToken = (user, timeExpire ='8h') => {
     try {
@@ -8,4 +8,4 @@ export const generateToken = (user, timeExpire ='8h') => {
         logger.error();
         throw error;
     }
-}
+};

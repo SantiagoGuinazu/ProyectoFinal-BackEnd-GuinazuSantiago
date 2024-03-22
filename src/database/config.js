@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
-import { logger } from "../utils/logger.js";
+import mongoose from 'mongoose';
+import { logger } from '../utils/logger.js';
 
 export const dbConnection = async () => {
     try {
-        await mongoose.connect(process.env.URI_Mongo_DB,{dbName:process.env.NAME_DB})
-        logger.info('Base de datos online')
+        await mongoose.connect(process.env.URI_Mongo_DB,{dbName:process.env.NAME_DB});
+        logger.info('Base de datos online');
     } catch (error) {
-        logger.error(error)
-        process.exit(1)
+        logger.error(error);
+        process.exit(1);
     }
-}
+};

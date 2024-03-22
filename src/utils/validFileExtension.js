@@ -1,4 +1,3 @@
-
 export const validFileExtension = (name = '') => {
 
     const valid = ['png', 'jpg', 'jpeg'];

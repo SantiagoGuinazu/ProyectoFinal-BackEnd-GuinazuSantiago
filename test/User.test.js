@@ -11,9 +11,9 @@ describe('Testing Users',()=>{
             password:'123456',
         }
         const {statusCode, ok, body} = await request.post('/api/auth/login').send(user);
-        logger.info(statusCode)
-        logger.info(ok)
-        logger.info(JSON.stringify(body))
+        logger.info(statusCode);
+        logger.info(ok);
+        logger.info(JSON.stringify(body));
     });
 
     describe('RegisterTest', async()=>{
@@ -25,11 +25,11 @@ describe('Testing Users',()=>{
         };
         
         const {statusCode, ok, body} = await request.post('/api/auth/register').send(user);
-        logger.info(statusCode)
-        logger.info(ok)
-        logger.info(JSON.stringify(body))
+        logger.info(statusCode);
+        logger.info(ok);
+        logger.info(JSON.stringify(body));
     });
-})
+});
 
 
 

@@ -1,7 +1,7 @@
 import { request, response } from 'express';
 import { cloudinary } from '../config/cloduinary.js';
 import { validFileExtension } from '../utils/validFileExtension.js';
-import { ProductsRepository } from "../repositories/index.js";
+import { ProductsRepository } from '../repositories/index.js';
 import { faker } from '@faker-js/faker';
 import { logger } from '../utils/logger.js';
 
@@ -10,20 +10,20 @@ export const getProduct = async (req = request, res = response) => {
         const result = await ProductsRepository.getProducts({ ...req.query });
         return res.json({ result });
     } catch (error) {
-        return res.status(500).json({ msg: "Hablar con admin" })
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
 }
 
 export const getProductById = async (req = request, res = response) => {
     try {
         const { pid } = req.params;
-        const producto = await ProductsRepository.getProductById(pid)
+        const producto = await ProductsRepository.getProductById(pid);
         if (!producto)
-            return res.status(404).json({ msg: `El producto con id ${pid} no existe` })
-        return res.json({ producto })
+            return res.status(404).json({ msg: `El producto con id ${pid} no existe` });
+        return res.json({ producto });
     } catch (error) {
-        logger.error('getProductById ->', error)
-        return res.status(500).json({ msg: "Hablar con admin" })
+        logger.error('getProductById ->', error);
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
 }
 
@@ -33,7 +33,7 @@ export const addProduct = async (req = request, res = response) => {
 
         const {_id} = req;
 
-        if(!title || !description || !price || !code || !stock || !category) return res.status(400).json({ msj: 'Datos incompletos title, description, price, code, stock, category' })
+        if(!title || !description || !price || !code || !stock || !category) return res.status(400).json({ msj: 'Datos incompletos title, description, price, code, stock, category' });
 
         if (req.file) {
 
@@ -48,11 +48,11 @@ export const addProduct = async (req = request, res = response) => {
 
         req.body.owner = _id;
         const producto = await ProductsRepository.addProduct({ ...req.body });
-        return res.json({ producto })
+        return res.json({ producto });
 
     } catch (error) {
-        logger.error(error)
-        return res.status(500).json({ msg: "Hablar con admin" })
+        logger.error(error);
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
 }
 
@@ -64,7 +64,7 @@ export const updateProduct = async (req = request, res = response) => {
         const product = await ProductsRepository.getProductById(pid);
 
         if (!product)
-            return res.status(404).json({ msg: `El producto con Id ${pid} no existe!` })
+            return res.status(404).json({ msg: `El producto con Id ${pid} no existe!` });
 
         if (req.file) {
 
@@ -87,10 +87,10 @@ export const updateProduct = async (req = request, res = response) => {
         const producto = await ProductsRepository.updateProduct(pid, rest);
 
         if (producto)
-            return res.json({ msg: 'Producto actualizado', producto })
-        return res.status(404).json({ msg: `No se pudo actualizar el producto con ${pid}` })
+            return res.json({ msg: 'Producto actualizado', producto });
+        return res.status(404).json({ msg: `No se pudo actualizar el producto con ${pid}` });
     } catch (error) {
-        return res.status(500).json({ msg: "Hablar con admin" })
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
 }
 
@@ -111,15 +111,15 @@ export const deleteProduct = async (req = request, res = response) => {
             } 
         }
         
-        const producto = await ProductsRepository.deleteProduct(pid)
+        const producto = await ProductsRepository.deleteProduct(pid);
         //cloudinary.uploader.destroy(pid);
 
         if (producto)
-            return res.json({ msg: 'Producto Eliminado', producto })
-        return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` })
+            return res.json({ msg: 'Producto Eliminado', producto });
+        return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` });
     } catch (error) {
-        logger.error('deleteProduct ->',error)
-        return res.status(500).json({ msg: "Hablar con admin" })
+        logger.error('deleteProduct ->',error);
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
 }
 
@@ -140,7 +140,7 @@ export const mockingProducts = async (req = request, res = response) => {
 
         return res.json({products});
     } catch (error) {
-        logger.error('mockingProducts ->', error)
-        return res.status(500).json({ msg: "Hablar con admin" })
+        logger.error('mockingProducts ->', error);
+        return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
