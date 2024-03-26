@@ -71,5 +71,5 @@ Este Proyecto fue construido utilizando:
 * Realmente desde el dia 1 que comence el curso de Backend (sabiendo que era el mas dificil) fue excelente la impresion que me lleve. Con Arturo Verbel comandando la comision se hizo notar la voluntad y compromiso de que todo el grupo avance de igual manera con un entendimiento de todo. Es una lastima que esta sea su ultima comision en Coder ya que se pierde un profesor con todas las letras. Siempre con respeto, buena energia y dispuesto a enseñar. 
 Asi que de esta forma le hago llegar mi gratitud por el tiempo compartido y las charlas (mas que clases) que tuvimos. Exitos en los nuevos desafios!
 
-* Tambien quiero agradecer enormemente a Jhon Carreño, que como ayudante siempre estuvo y cumplo con el acompañamiento en todas las entregas y correcciones. De mi parte no hubiera llegado a terminarlo si no fuera por su apoyo y guias durante el año.
+* Tambien quiero agradecer enormemente a Jhon Carreño, que como ayudante/tutor siempre estuvo y cumplio con el acompañamiento en todas las entregas y correcciones. De mi parte no hubiera llegado a terminarlo si no fuera por su apoyo y guias durante el año.
 Ojala tenga esa oportunidad (y le vaya excelente) como Profesor! Todo el exito en lo que se viene!
