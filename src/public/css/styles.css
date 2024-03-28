@@ -6,10 +6,13 @@ body {
 }
 
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: #4d4d4d;
+  color: whitesmoke;
   padding: 20px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 h1 {
@@ -47,4 +50,10 @@ main {
 
 .endpoint-details {
   margin-left: 20px;
+}
+
+.logo img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
 }
