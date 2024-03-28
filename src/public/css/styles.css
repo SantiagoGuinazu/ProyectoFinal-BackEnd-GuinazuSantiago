@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -13,6 +13,7 @@ header {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 h1 {
@@ -21,6 +22,9 @@ h1 {
 
 main {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .endpoint {
