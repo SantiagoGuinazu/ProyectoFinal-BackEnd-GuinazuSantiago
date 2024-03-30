@@ -2,6 +2,7 @@ import { request, response } from 'express';
 import { CartsRepository, ProductsRepository, TicketsRepository, UsersRepository } from '../repositories/index.js';
 import { v4 as uuidv4 } from 'uuid';
 import {logger} from '../utils/logger.js'
+import { sendEmailTicket } from '../helpers/sendEmail.js';
 //uuidv4();
 
 export const getCartById = async (req= request, res= response) => {
@@ -144,12 +145,12 @@ export const finalizarCompra = async (req= request, res= response) => {
         }));
 
         let amount = 0;
-        items.forEach(element => {amount+=element.total});
-        
+        items.forEach(element => { amount = amount + element.total });
         const purchase = usuario.email;
-
         const code = uuidv4();
-        await TicketsRepository.createTicket({items,amount,purchase,code});
+        const ticketCompra = await TicketsRepository.createTicket({ items, amount, purchase, code });
+
+        sendEmailTicket(usuario.email,code,usuario.name,items,amount);
 
         await CartsRepository.deleteAllProductsInCart(usuario.idCart);
 

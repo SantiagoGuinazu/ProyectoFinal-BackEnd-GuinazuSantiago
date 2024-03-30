@@ -17,9 +17,9 @@ export const addProductCart = async (cid, pid) => {
     else
         carrito.products.push({ id: pid, quantity: 1 });
 
-    carrito.save();
+    await carrito.save();
 
-    return carrito;
+    return await getCartById(cid);
 }
 
 export const deleteProductsInCart = async (cid, pid) => 
