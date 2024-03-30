@@ -35,8 +35,10 @@ export const addProduct = async (req = request, res = response) => {
 
         if(!title || !description || !price || !code || !stock || !category) return res.status(400).json({ msj: 'Datos incompletos title, description, price, code, stock, category' });
 
+        const existeCode = await ProductsRepository.getProductByCode(code);
+        if (existeCode) return res.status(400).json({ msg: `Ya existe un producto con el mismo codigo ${code}` });
+        
         if (req.file) {
-
             const isValidExtension = validFileExtension(req.file.originalname);
 
             if (!isValidExtension)
@@ -112,8 +114,6 @@ export const deleteProduct = async (req = request, res = response) => {
         }
         
         const producto = await ProductsRepository.deleteProduct(pid);
-        //cloudinary.uploader.destroy(pid);
-
         if (producto)
             return res.json({ msg: 'Producto Eliminado', producto });
         return res.status(404).json({ msg: `No se pudo eliminar el producto con ${pid}` });
@@ -139,6 +139,7 @@ export const mockingProducts = async (req = request, res = response) => {
         }));
 
         return res.json({products});
+        
     } catch (error) {
         logger.error('mockingProducts ->', error);
         return res.status(500).json({ msg: 'Hablar con admin' });

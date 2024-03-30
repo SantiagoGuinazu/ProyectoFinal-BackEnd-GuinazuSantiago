@@ -1,5 +1,4 @@
 import {Schema , model} from 'mongoose';
-//import mongoosePaginate from 'mongoose';
 
 const nameCollection = 'Producto';
 
@@ -19,6 +18,11 @@ const ProductoSchema = new Schema({
     }
 });
 
-//ProductoSchema.plugin(mongoosePaginate);
+ProductoSchema.set('toJSON',{
+    transform: function(doc,ret){
+        delete ret.__v;
+        return ret;
+    }
+});
 
 export const productModel = model(nameCollection, ProductoSchema);

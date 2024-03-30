@@ -12,8 +12,6 @@ router.get('/:cid',[
     validarCampos,
 ], getCartById);
 
-//router.post('/', validarJWT, createCart);
-
 router.post('/:cid/product/:pid', [
     validarJWT,
     check('cid', 'No es valido el ID del carrito').isMongoId(),
@@ -34,8 +32,6 @@ router.put('/:cid/products/:pid', [
     check('pid', 'No es valido el ID del producto').isMongoId(),
     validarCampos,
 ], updateProductsInCart);
-
-//router.delete('/:cid', validarJWT, deleteCart);
 
 router.post('/:cid/purchase', [
     validarJWT,

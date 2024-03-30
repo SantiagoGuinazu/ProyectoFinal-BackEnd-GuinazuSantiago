@@ -1,7 +1,8 @@
 import { request, response } from 'express';
 import { CartsRepository, ProductsRepository, TicketsRepository, UsersRepository } from '../repositories/index.js';
 import { v4 as uuidv4 } from 'uuid';
-uuidv4();
+import {logger} from '../utils/logger.js'
+//uuidv4();
 
 export const getCartById = async (req= request, res= response) => {
     try {
@@ -13,8 +14,8 @@ export const getCartById = async (req= request, res= response) => {
         if(!(usuario.cart_id.toString() === cid)) return res.status(400).json({ok:false, msg: 'Carrito no valido'});
 
         const carrito = await CartsRepository.getCartById(cid);
-        if(carrito)
-            return res.json({carrito});
+        
+        return res.json({carrito});
         
     } catch (error) {
         return res.status(500).json({msg:'Hablar con admin'});
@@ -124,11 +125,9 @@ export const finalizarCompra = async (req= request, res= response) => {
         const {cid} = req.params;
 
         const usuario = await UsersRepository.getUserById(_id);
-
         if(!(usuario.cart_id.toString() === cid)) return res.status(400).json({ok:false, msg: 'Carrito no es valido'});
 
         const carrito = await CartsRepository.getCartById(cid);
-
         if(!(carrito.products.length > 0)) return res.status(400).json({ok:false, msg: 'No se puede finalizar la compra, carrito vacio', carrito});
 
         const productosStockValid = carrito.products.filter(p=>p.id.stock >= p.quantity);
@@ -156,6 +155,7 @@ export const finalizarCompra = async (req= request, res= response) => {
 
         return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
+        logger.error(error);
         return res.status(500).json({msg:'Hablar con admin'});
     }
 }
