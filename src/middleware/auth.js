@@ -32,9 +32,9 @@ export const validarJWT = (req = request, res = response, next) => {
         req.rol = rol;
         req.name = name;
         req.lastName = lastName;
+        next();
     } catch (error) {
         logger.error(error);
         return res.status(401).json({ok:false, msg:'Token no valido'});
     }
-    next();
 };

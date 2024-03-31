@@ -1,6 +1,6 @@
 import { cartModel } from './models/cartsModels.js';
 
-export const getCartById = async (cid) => await cartModel.findById(cid).populate('products.id',['title','price','stock']);
+export const getCartById = async (cid) => await cartModel.findById(cid).populate('products.id',['title','price','stock','thumbnails']);
 
 export const createCart = async () => await cartModel.create({});
 
@@ -23,14 +23,14 @@ export const addProductCart = async (cid, pid) => {
 }
 
 export const deleteProductsInCart = async (cid, pid) => 
-    await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true });
+    await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true }).populate('products.id', ['title', 'price', 'stock','thumbnails']);
 
 export const updateProductsInCart = async (cid, pid, quantity) => {
     return await cartModel.findOneAndUpdate(
         { _cid: cid, 'products.id': pid },
         { $set: { 'products.$.quantity': quantity } },
         { new: true }
-    )
+    ).populate('products.id', ['title', 'price', 'stock','thumbnails']);
 };
 
 export const deleteCart = async (cid) => await cartModel.findByIdAndDelete(cid);
