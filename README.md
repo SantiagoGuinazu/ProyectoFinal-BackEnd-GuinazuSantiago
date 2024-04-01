@@ -36,24 +36,6 @@ npm run nodemon "./src/app.js"
 ## Backend ecommerce 
 * Url del proyecto 👉 [URL](https://ecommerce-santiagoguinazu.onrender.com).
 
-# .ENV (Obviamente estos datos no van aca, solo los coloco para realizar la entrega y tener todo en el mismo archivo)
-NODE_ENV = development
-NODE_ENV = production
-URI_Mongo_DB=mongodb+srv://santigui2003:arquitectura10@santiagocluster.vw1wy4u.mongodb.net
-NAME_DB=ecommerce
-SECRET_SESSION=secret 
-CLIENT_ID= Iv1.9586f21f61c8346f
-CLIENT_SECRET= a7920659f7fdcf770bf6efce522661aa58d7b535
-CALLBACK_URL= https://ecommerce-santiagoguinazu.onrender.com/githubcallback
-CLOUD_NAME=dms5mghxh
-API_KEY=213582548297392
-API_SECRET=om_mtZXnZwKgMg9qObFmZE5qSfo
-JWT_SECRET_KEY=jwtprivate
-PORT=8080
-PASS_EMAIL = amhpglcthvpliayp
-USER_EMAIL = santigui2003@gmail.com
-URL_RESET_PASS = http://localhost:8080/api/auth/reset-password
-
 ## Construido con 🛠️
 Este Proyecto fue construido utilizando:
 * GitHub
