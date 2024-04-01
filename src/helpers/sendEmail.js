@@ -1,13 +1,13 @@
 import nodemailer from 'nodemailer';
 import { logger } from '../utils/logger.js';
 
-export const sendEmail = async (email, url) => {
+export const sendEmail = async (email, url, cliente) => {
     try {
         const transporter = nodemailer.createTransport({
             host: 'smtp.gmail.com',
             port: 587,
             secure: false,
-            auth:{
+            auth: {
                 user: process.env.USER_EMAIL,
                 pass: process.env.PASS_EMAIL,
             },
@@ -17,7 +17,7 @@ export const sendEmail = async (email, url) => {
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
             subject: 'Cambiar contraseña',
-            html: templateHtmlEmail(email, url)
+            html: templateHtmlEmail(email, url, cliente)
         });
 
     } catch (error) {
@@ -73,12 +73,16 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
     `;
 }
 
-const templateHtmlEmail = (email, url) => {
-    const titulo = 'Cambiar contraseña en la cuenta de Ecommerce';
+const templateHtmlEmail = (email, url, cliente) => {
     const link = url;
-    return (
-        `<div>
-            <p>Agregar template de John ${email} + ${titulo} + ${link}</p>
-        </div>`
-    );
+    return `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Cambiar contraseña</h2>
+        <h3>Email: ${email}</h3>
+        <p>Estimado(a) ${cliente},</p>
+        <p>Haga click en este link para el cambio de contraseña ${link},</p>
+        <h3>Detalles de la compra:</h3>
+        <p>Saludos,</p>
+    </div>
+`;
 };
