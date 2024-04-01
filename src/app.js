@@ -4,7 +4,7 @@ import cors from 'cors';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
 
-import { productsRouter, cartsRouter, authRouter, ticketsRouter, paymentRouter  } from './routers/index.js';
+import { productsRouter, cartsRouter, authRouter, ticketsRouter, paymentRouter } from './routers/index.js';
 
 import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
@@ -15,14 +15,14 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 const swaggerOptions = {
-    definition:{
-        openapi:'3.1.0',
-        info:{
-            title:'Documentacion de la Api',
-            description:'Proyecto Ecommerce - Santiago Guiñazu'
+    definition: {
+        openapi: '3.1.0',
+        info: {
+            title: 'Documentacion de la Api',
+            description: 'Proyecto Ecommerce - Santiago Guiñazu'
         }
     },
-    apis:[`${__dirname}/docs/**/*.yaml`],
+    apis: [`${__dirname}/docs/**/*.yaml`],
 };
 const spec = swaggerJsDoc(swaggerOptions);
 
@@ -37,8 +37,8 @@ app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/tickets', ticketsRouter);
 app.use('/api/payments', paymentRouter);
-app.use('/documentacion-api', swaggerUiExpress.serve,swaggerUiExpress.setup(spec));
+app.use('/documentacion-api', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 await dbConnection();
 
-app.listen(PORT, () => {logger.info(`Corriendo en el puerto ${PORT}`)});
+app.listen(PORT, () => { logger.info(`Corriendo en el puerto ${PORT}`) });
