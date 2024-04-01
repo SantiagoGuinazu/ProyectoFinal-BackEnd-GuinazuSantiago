@@ -10,6 +10,7 @@ import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
 import { logger } from './utils/logger.js';
 import { requestUrl } from './middleware/logger.js';
+import { paymetRouter } from './routers/payments.js';
 
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/tickets', ticketsRouter)
+app.use('/api/payments', paymetRouter)
 app.use('/documentacion-api', swaggerUiExpress.serve,swaggerUiExpress.setup(spec));
 
 await dbConnection();
