@@ -50,7 +50,7 @@ export const sendEmailTicket = async (email, codigo, cliente, items, totalCompra
 }
 
 const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
-    console.log({ items });
+    logger.info({ items });
     return `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2>Ticket de Compra</h2>
