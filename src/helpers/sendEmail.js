@@ -65,7 +65,7 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
                     </li>
                 `).join('')}
             </ul>
-            <p>Total de la compra: $${totalCompra}</p>
+            <p>Total de la compra: <strong>$${totalCompra}</strong></p>
             <p>¡Esperamos verte pronto de nuevo!</p>
             <p>Saludos,</p>
             <p>Ecommerce - Santiago Guiñazu</p>
