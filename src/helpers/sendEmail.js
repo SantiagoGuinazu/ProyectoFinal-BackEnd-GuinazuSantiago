@@ -68,7 +68,7 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
             <p>Total de la compra: $${totalCompra}</p>
             <p>¡Esperamos verte pronto de nuevo!</p>
             <p>Saludos,</p>
-            <p>Tu Tienda Online</p>
+            <p>Ecommerce - Santiago Guiñazu</p>
         </div>
     `;
 }
