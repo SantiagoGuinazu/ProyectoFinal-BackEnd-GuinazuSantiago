@@ -152,7 +152,7 @@ export const finalizarCompra = async (req= request, res= response) => {
 
         sendEmailTicket(usuario.email,code,usuario.name,items,amount);
 
-        await CartsRepository.deleteAllProductsInCart(usuario.idCart);
+        await CartsRepository.deleteAllProductsInCart(usuario.cart_id);
 
         return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
