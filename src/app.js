@@ -4,7 +4,7 @@ import cors from 'cors';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
 
-import { productsRouter, cartsRouter, authRouter, ticketsRouter, paymentRouter } from './routers/index.js';
+import { productsRouter, cartsRouter, authRouter, ticketsRouter } from './routers/index.js';
 
 import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
@@ -36,7 +36,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/tickets', ticketsRouter);
-app.use('/api/payments', paymentRouter);
 app.use('/documentacion-api', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 await dbConnection();
