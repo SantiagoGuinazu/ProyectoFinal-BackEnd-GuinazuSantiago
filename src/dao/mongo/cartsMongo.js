@@ -23,14 +23,14 @@ export const addProductCart = async (cid, pid) => {
 }
 
 export const deleteProductsInCart = async (cid, pid) => 
-    await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true }).populate('products.id', ['title', 'price', 'stock','thumbnails']);
+    await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true }).populate('products.id', ['title', 'price', 'stock','thumbnail']);
 
 export const updateProductsInCart = async (cid, pid, quantity) => {
     return await cartModel.findOneAndUpdate(
         { _cid: cid, 'products.id': pid },
         { $set: { 'products.$.quantity': quantity } },
         { new: true }
-    ).populate('products.id', ['title', 'price', 'stock','thumbnails']);
+    ).populate('products.id', ['title', 'price', 'stock','thumbnail']);
 };
 
 export const deleteCart = async (cid) => await cartModel.findByIdAndDelete(cid);
