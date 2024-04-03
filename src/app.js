@@ -4,7 +4,7 @@ import cors from 'cors';
 import swaggerJsDoc from 'swagger-jsdoc';
 import swaggerUiExpress from 'swagger-ui-express';
 
-import { productsRouter, cartsRouter, authRouter, ticketsRouter, createPreference } from './routers/index.js'; //createPreference
+import { productsRouter, cartsRouter, authRouter, ticketsRouter } from './routers/index.js'; //createPreference
 
 import __dirname from './utils.js';
 import { dbConnection } from './database/config.js';
@@ -36,7 +36,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/tickets', ticketsRouter);
-app.use('/create_preference', createPreference); //MP
+//app.use('/api/create_preference', createPreference); //MP
 app.use('/documentacion-api', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 await dbConnection();
