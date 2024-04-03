@@ -9,4 +9,4 @@ export const getTickets = async (req = request, res = response) => {
     } catch (error) {
         return res.status(500).json({ msg: 'Hablar con un administrador' });
     }
-}
+};

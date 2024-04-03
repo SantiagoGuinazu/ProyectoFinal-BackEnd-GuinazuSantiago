@@ -12,18 +12,16 @@ export const sendEmail = async (email, url) => {
                 pass: process.env.PASS_EMAIL,
             },
         });
-
         await transporter.sendMail({
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
             subject: 'Cambiar contraseña',
             html: templateHtmlEmail(email, url)
         });
-
     } catch (error) {
         logger.error(error)
     }
-}
+};
 
 export const sendEmailTicket = async (email, codigo, cliente, items, totalCompra) => {
     try {
@@ -36,18 +34,16 @@ export const sendEmailTicket = async (email, codigo, cliente, items, totalCompra
                 pass: process.env.PASS_EMAIL,
             },
         });
-
         await transporter.sendMail({
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
             subject: 'Ticket de compra',
             html: templateHtmlEmailCompra(codigo, cliente, items, totalCompra)
         });
-
     } catch (error) {
         logger.error(error)
     }
-}
+};
 
 const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
     logger.info({ items });
@@ -71,7 +67,7 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
             <p>Ecommerce - Santiago Guiñazu</p>
         </div>
     `;
-}
+};
 
 const templateHtmlEmail = (email, url) => {
     const titulo = 'Cambiar la contraseña en la cuenta de Ecommerce';

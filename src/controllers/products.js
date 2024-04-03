@@ -12,7 +12,7 @@ export const getProduct = async (req = request, res = response) => {
     } catch (error) {
         return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
 
 export const getProductById = async (req = request, res = response) => {
     try {
@@ -25,7 +25,7 @@ export const getProductById = async (req = request, res = response) => {
         logger.error('getProductById ->', error);
         return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
 
 export const addProduct = async (req = request, res = response) => {
     try {
@@ -56,7 +56,7 @@ export const addProduct = async (req = request, res = response) => {
         logger.error(error);
         return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
 
 export const updateProduct = async (req = request, res = response) => {
     try {
@@ -94,7 +94,7 @@ export const updateProduct = async (req = request, res = response) => {
     } catch (error) {
         return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
 
 export const deleteProduct = async (req = request, res = response) => {
     try {
@@ -121,7 +121,7 @@ export const deleteProduct = async (req = request, res = response) => {
         logger.error('deleteProduct ->',error);
         return res.status(500).json({ msg: 'Hablar con admin' });
     }
-}
+};
 
 export const mockingProducts = async (req = request, res = response) => {
     try {

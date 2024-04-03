@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { MercadoPagoConfig, Preference } from "mercadopago";
 import { logger } from '../utils/logger.js';
 
-
 const router = Router();
 
 router.post('/create_preference', async (req, res) => {

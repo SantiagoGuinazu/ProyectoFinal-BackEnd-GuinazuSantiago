@@ -1,4 +1,4 @@
-import messageModel from "./models/messages.model.js"
+import messageModel from "./models/messages.model.js";
 
 export default class Messages {
     constructor() { }
@@ -7,4 +7,4 @@ export default class Messages {
 
     createMessage = async (user, message) => messageModel.create({ user, message })
 
-}
+};

@@ -20,7 +20,7 @@ export const addProductCart = async (cid, pid) => {
     await carrito.save();
 
     return await getCartById(cid);
-}
+};
 
 export const deleteProductsInCart = async (cid, pid) => 
     await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true }).populate('products.id', ['title', 'price', 'stock','thumbnails']);

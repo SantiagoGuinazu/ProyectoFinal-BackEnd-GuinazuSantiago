@@ -25,7 +25,7 @@ export const loginUsuario = async(req=request, res=response) => {
         logger.error(error);
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'});
     }
-}
+};
 
 export const crearUsuario = async(req=request, res=response) => {
     try {
@@ -46,7 +46,7 @@ export const crearUsuario = async(req=request, res=response) => {
         logger.error(error);
         return res.status(500).json({ok:false, msg: 'Por favor, contactarse con un admin'});
     }
-}
+};
 
 export const revalidarToken = async(req=request, res=response) => {
     
@@ -57,7 +57,7 @@ export const revalidarToken = async(req=request, res=response) => {
     const token = generateToken({_id, name, lastName, email, rol});
 
     return res.json({ok:true, usuario, token});
-}
+};
 
 export const cambiarPassword = async(req=request, res=response) => {
     const { email } = req.body;
@@ -71,7 +71,7 @@ export const cambiarPassword = async(req=request, res=response) => {
     sendEmail(email, urlReset);
 
     return res.json({ok:true, msg:'Email enviado'});
-}
+};
 
 export const validarTokenPassword = async(req=request, res=response) => {
     try {
@@ -82,7 +82,7 @@ export const validarTokenPassword = async(req=request, res=response) => {
         logger.error(error);
         return res.status(401).json({ok:false, msg:'Token invalido'});
     }
-}
+};
 
 export const resetPassword = async(req=request, res=response) => {
     try {
@@ -104,4 +104,4 @@ export const resetPassword = async(req=request, res=response) => {
         logger.error(error);
         return res.status(500).json({ok:false, msg:'Hablar con un adm'});
     }
-}
+};

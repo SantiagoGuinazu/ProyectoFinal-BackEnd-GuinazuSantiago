@@ -20,7 +20,7 @@ export const getCartById = async (req= request, res= response) => {
     } catch (error) {
         return res.status(500).json({msg:'Hablar con admin'});
     }
-}
+};
 
 export const addProductCart = async (req= request, res= response) => {
     try {
@@ -43,7 +43,7 @@ export const addProductCart = async (req= request, res= response) => {
     } catch (error) {
         return res.status(500).json({msg:'Hablar con admin'});
     }
-}
+};
 
 export const deleteProductsInCart = async (req= request, res= response) => {
     try {
@@ -64,15 +64,13 @@ export const deleteProductsInCart = async (req= request, res= response) => {
     } catch (error) {
         return res.status(500).json({msg:'Hablar con admin'});
     }
-}
+};
 
 export const updateProductsInCart = async (req= request, res= response) => {
     try {
         const {_id} = req;
         const {cid,pid} = req.params;
         const {quantity} = req.body;
-
-        console.log({cid,pid,quantity})
 
         const usuario = await UsersRepository.getUserById(_id);
         if(!usuario) return res.status(400).json({ok: false, msg:'Usuario no existe'});
@@ -86,30 +84,14 @@ export const updateProductsInCart = async (req= request, res= response) => {
             return res.status(404).json({msg:'La propuedad quantity es obligatoria y debe ser un numero entero'});
 
         const carrito = await CartsRepository.updateProductsInCart(cid, pid, quantity);
-        console.log({carrito})
         if(!carrito)
             return res.status(404).json({msg: 'No se pudo realizar esa operacion'});
         
         return res.json({msg: ' Producto actualizado en el carrito', carrito});
-
     } catch (error) {
         return res.status(500).json({msg:'Hablar con admin'});
     }
-}
-
-//export const deleteCart = async (req= request, res= response) => {
-//    try {
-//        const {cid} = req.params;
-//
-//        const carrito = await CartsRepository.deleteCart(cid);
-//
-//        if(!carrito)
-//            return res.status(404).json({msg: 'No se pudo realizar esa operacion'});
-//        return res.json({msg: ' Producto actualizado en el carrito', carrito});
-//    } catch (error) {
-//        return res.status(500).json({msg:'Hablar con admin'});
-//    }
-//}
+};
 
 export const finalizarCompra = async (req= request, res= response) => {
     try {
@@ -151,4 +133,4 @@ export const finalizarCompra = async (req= request, res= response) => {
         logger.error(error);
         return res.status(500).json({msg:'Hablar con admin'});
     }
-}
+};
