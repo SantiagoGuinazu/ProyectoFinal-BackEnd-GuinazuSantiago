@@ -36,9 +36,8 @@ app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
 app.use('/api/tickets', ticketsRouter);
+app.use('/create_preference', createPreference); //MP
 app.use('/documentacion-api', swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
-app.use('/api/create_preference', createPreference); //MP
-//app.use('/api/chat', chatView);
 
 await dbConnection();
 
