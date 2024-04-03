@@ -72,6 +72,8 @@ export const updateProductsInCart = async (req= request, res= response) => {
         const {cid,pid} = req.params;
         const {quantity} = req.body;
 
+        console.log({cid,pid,quantity})
+
         const usuario = await UsersRepository.getUserById(_id);
         if(!usuario) return res.status(400).json({ok: false, msg:'Usuario no existe'});
 
@@ -84,7 +86,7 @@ export const updateProductsInCart = async (req= request, res= response) => {
             return res.status(404).json({msg:'La propuedad quantity es obligatoria y debe ser un numero entero'});
 
         const carrito = await CartsRepository.updateProductsInCart(cid, pid, quantity);
-
+        console.log({carrito})
         if(!carrito)
             return res.status(404).json({msg: 'No se pudo realizar esa operacion'});
         

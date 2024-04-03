@@ -27,7 +27,7 @@ export const deleteProductsInCart = async (cid, pid) =>
 
 export const updateProductsInCart = async (cid, pid, quantity) => 
     await cartModel.findOneAndUpdate(
-        { _cid: cid, 'products.id': pid },
+        { _id: cid, 'products.id': pid },
         { $set: { 'products.$.quantity': quantity } },
         { new: true }
     ).populate('products.id', ['title', 'price', 'stock','thumbnails']);
