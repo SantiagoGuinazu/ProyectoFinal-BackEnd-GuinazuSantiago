@@ -31,8 +31,7 @@ export const updateProductsInCart = async (cid, pid, quantity) =>
         { $set: { 'products.$.quantity': quantity } },
         { new: true }
     ).populate('products.id', ['title', 'price', 'stock','thumbnails']);
-
-
+    
 export const deleteCart = async (cid) => await cartModel.findByIdAndDelete(cid);
 
 export const deleteAllProductsInCart = async (cid) => await cartModel.findByIdAndUpdate(cid,{$set:{'products':[]}},{new:true});
