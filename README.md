@@ -12,7 +12,6 @@ Dividido en 3 ramas troncales:
     3.- Carrito
 
 ## Comenzando 🚀
-
 1. Clone the repo
 ``` bash
 git clone https://github.com/SantiagoGuinazu/ProyectoFinal-BackEnd-GuinazuSantiago
