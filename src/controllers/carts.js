@@ -142,7 +142,7 @@ export const createIdPreference = async (req = request, res = response) => {
     try {
         const { _id } = req;
         const { cid } = req.params;
-        const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
+        const client = new MercadoPagoConfig({ accessToken: process.env.YOUR_ACCESS_TOKEN_MP });
 
         const carrito = await CartsRepository.getCartById(cid);
 
