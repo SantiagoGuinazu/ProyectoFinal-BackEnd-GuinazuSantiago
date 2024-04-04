@@ -140,7 +140,7 @@ export const finalizarCompra = async (req= request, res= response) => {
 export const createIdPreference = async (req= request, res= response) => { //HACER
     try {
 
-        const client = new MercadoPagoConfig({ accessToken: "TEST-1025489985513589-040214-5d5344453a771916918c656e3cd894be-73658950" });
+        const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
         return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
         logger.error(error);
