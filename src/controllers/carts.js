@@ -3,6 +3,7 @@ import { CartsRepository, ProductsRepository, TicketsRepository, UsersRepository
 import { v4 as uuidv4 } from 'uuid';
 import {logger} from '../utils/logger.js'
 import { sendEmailTicket } from '../helpers/sendEmail.js';
+import { Preference } from 'mercadopago';
 import { MercadoPagoConfig } from 'mercadopago'; 
 
 
@@ -137,13 +138,41 @@ export const finalizarCompra = async (req= request, res= response) => {
     }
 };
 
-export const createIdPreference = async (req= request, res= response) => { //HACER
+export const createIdPreference = async (req = request, res = response) => {
     try {
-
+        const { _id } = req;
+        const { cid } = req.params;
         const client = new MercadoPagoConfig({ accessToken: process.env.MP_ACCESS_TOKEN });
-        return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
+
+        const carrito = await CartsRepository.getCartById(cid);
+
+        const items = carrito.products.map(item => {
+            return {
+                title: item.id.title,
+                unit_price: Number(item.id.price),
+                quantity: Number(item.quantity),
+                currency_id: 'ARS'
+            }
+        });
+
+        const back_urls = {
+            success: 'https://guinazusantiago-ecommerce-front.netlify.app/',
+            failure: 'https://guinazusantiago-ecommerce-front.netlify.app/',
+            pending: 'https://guinazusantiago-ecommerce-front.netlify.app/'
+        };
+
+        const body = {
+            items:items,
+            back_urls:back_urls,
+            auto_return: 'approved'
+        };
+
+        const preference = new Preference(client);
+        const result = await preference.create({ body });
+
+        return res.json({ ok: true, idPreference: result.id });
     } catch (error) {
         logger.error(error);
-        return res.status(500).json({msg:'Hablar con admin'});
+        return res.status(500).json({ msg: 'Hablar con un administrador' });
     }
 };
