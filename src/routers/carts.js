@@ -44,6 +44,7 @@ router.post('/create-preference/:cid',[
     validarJWT,
     check('cid', 'No es valido el ID del carrito').isMongoId(),
     check('cid').custom(existeCart),
+    validarCampos,
 ], createIdPreference);
 
 export { router as cartsRouter };
