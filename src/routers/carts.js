@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
-import { addProductCart, deleteProductsInCart, finalizarCompra, getCartById, updateProductsInCart } from '../controllers/carts.js';
+import { addProductCart, createIdPreference, deleteProductsInCart, finalizarCompra, getCartById, updateProductsInCart } from '../controllers/carts.js';
 import { validarCampos, validarJWT } from '../middleware/auth.js';
 import { existeCart } from '../helpers/db-validaciones.js';
 
@@ -39,5 +39,11 @@ router.post('/:cid/purchase', [
     check('cid').custom(existeCart),
     validarCampos,
 ], finalizarCompra);
+
+router.post('/create-preference/:cid',[
+    validarJWT,
+    check('cid', 'No es valido el ID del carrito').isMongoId(),
+    check('cid').custom(existeCart),
+], createIdPreference); //chequear!
 
 export { router as cartsRouter };

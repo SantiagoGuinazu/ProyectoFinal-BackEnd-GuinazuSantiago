@@ -3,6 +3,8 @@ import { CartsRepository, ProductsRepository, TicketsRepository, UsersRepository
 import { v4 as uuidv4 } from 'uuid';
 import {logger} from '../utils/logger.js'
 import { sendEmailTicket } from '../helpers/sendEmail.js';
+import { MercadoPagoConfig } from 'mercadopago'; 
+
 
 export const getCartById = async (req= request, res= response) => {
     try {
@@ -128,6 +130,17 @@ export const finalizarCompra = async (req= request, res= response) => {
 
         await CartsRepository.deleteAllProductsInCart(usuario.cart_id);
 
+        return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
+    } catch (error) {
+        logger.error(error);
+        return res.status(500).json({msg:'Hablar con admin'});
+    }
+};
+
+export const createIdPreference = async (req= request, res= response) => { //HACER
+    try {
+
+        const client = new MercadoPagoConfig({ accessToken: "TEST-1025489985513589-040214-5d5344453a771916918c656e3cd894be-73658950" });
         return res.json({ok:true, msg: 'Compra generada', ticket: {code, cliente:purchase, items, amount}});
     } catch (error) {
         logger.error(error);
