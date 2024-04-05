@@ -40,10 +40,13 @@ Este Proyecto fue construido utilizando:
 * GitHub
 * Node.JS
 * MongoDB
+* Express
 * React+Vite
-* Bootstrap / Bootstrap-React
+* Bootstrap / Bootstrap-React /
 * Render
 * Netlify
+* Socket.io
+* MercadoPago
 
 ## Autor ✒️
 * **Santiago Guiñazu** 
