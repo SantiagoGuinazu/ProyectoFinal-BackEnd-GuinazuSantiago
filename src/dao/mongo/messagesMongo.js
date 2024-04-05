@@ -1,10 +1,10 @@
-import messageModel from "./models/messages.model.js";
+import { Schema, model } from 'mongoose';
 
-export default class Messages {
-    constructor() { }
+const nameCollection = 'Message';
 
-    getMessages = async () => messageModel.find().lean().exec()
+const MessageSchema = new Schema({
+    user:{type:String, required:[true,'El nombre del usuario es obligatorio']},
+    message:{type:String, required:[true,'El mensaje es obligatorio']}
+});
 
-    createMessage = async (user, message) => messageModel.create({ user, message })
-
-};
+export const messageModel = model(nameCollection, MessageSchema);
