@@ -1,4 +1,4 @@
-import { CartsRepository, ProductsRepository, UsersRepository } from '../repositories/index.js';
+import { CartsRepository, ProductsRepository, UsersRepository } from "../repositories/index.js";
 
 export const existeEmail = async (email) => {
     const emailExiste = await UsersRepository.getUserByEmail(email);

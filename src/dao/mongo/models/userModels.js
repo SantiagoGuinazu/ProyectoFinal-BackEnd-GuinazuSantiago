@@ -1,14 +1,14 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
-const nameCollection = 'User';
+const nameCollection = "User";
 
 const UserSchema = new Schema({
-    name:{type: String, required: [true,'El nombre es obligatorio']},
-    lastName:{type: String, required: [true,'El lastName es obligatorio']},
-    email:{type: String, required: [true,'El correo es obligatorio'], unique: true},
+    name:{type: String, required: [true,"El nombre es obligatorio"]},
+    lastName:{type: String, required: [true,"El lastName es obligatorio"]},
+    email:{type: String, required: [true,"El correo es obligatorio"], unique: true},
     age:{type: Number},
-    password:{type: String, required: [true,'La contraseña es obligatoria']},
-    rol:{type: String, default: 'user', enum: ['user', 'admin', 'premium']},
+    password:{type: String, required: [true,"La contraseña es obligatoria"]},
+    rol:{type: String, default: "user", enum: ["user", "admin", "premium"]},
     status:{type: Boolean, default: true},
     fechaCreacion:{type: Date, default: Date.now},
     image:{type: String},
@@ -16,11 +16,11 @@ const UserSchema = new Schema({
     google: {type: Boolean, default: false},
     cart_id:{
         type:Schema.Types.ObjectId,
-        ref:'Cart'
+        ref:"Cart"
     }
 });
 
-UserSchema.set('toJSON', {
+UserSchema.set("toJSON", {
     transform: function (doc, ret) {
         delete ret.__v; 
         return ret;

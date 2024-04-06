@@ -1,4 +1,4 @@
-import bcryptjs from 'bcrypt';
+import bcryptjs from "bcrypt";
 
 export const createHash = (password) => {
     const salt = bcryptjs.genSaltSync(10);

@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer';
-import { logger } from '../utils/logger.js';
+import nodemailer from "nodemailer";
+import { logger } from "../utils/logger.js";
 
 export const sendEmail = async (email, url) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
+            host: "smtp.gmail.com",
             port: 587,
             secure: false,
             auth: {
@@ -15,7 +15,7 @@ export const sendEmail = async (email, url) => {
         await transporter.sendMail({
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
-            subject: 'Cambiar contraseña',
+            subject: "Cambiar contraseña",
             html: templateHtmlEmail(email, url)
         });
     } catch (error) {
@@ -26,7 +26,7 @@ export const sendEmail = async (email, url) => {
 export const sendEmailTicket = async (email, codigo, cliente, items, totalCompra) => {
     try {
         const transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
+            host: "smtp.gmail.com",
             port: 587,
             secure: false,
             auth: {
@@ -37,7 +37,7 @@ export const sendEmailTicket = async (email, codigo, cliente, items, totalCompra
         await transporter.sendMail({
             from: `Ecommerce <santigui2003@gmail.com>`,
             to: `${email}`,
-            subject: 'Ticket de compra',
+            subject: "Ticket de compra",
             html: templateHtmlEmailCompra(codigo, cliente, items, totalCompra)
         });
     } catch (error) {
@@ -59,7 +59,7 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
                     <li>
                         <strong>${item.title}</strong> - ${item.quantity} x $${item.price}
                     </li>
-                `).join('')}
+                `).join("")}
             </ul>
             <p>Total de la compra: <strong>$${totalCompra}</strong></p>
             <p>¡Esperamos verte pronto de nuevo!</p>
@@ -70,7 +70,7 @@ const templateHtmlEmailCompra = (codigo, cliente, items, totalCompra) => {
 };
 
 const templateHtmlEmail = (email, url) => {
-    const titulo = 'Cambiar la contraseña en la cuenta de Ecommerce';
+    const titulo = "Cambiar la contraseña en la cuenta de Ecommerce";
     const link = url;
     return (
         `

@@ -30,11 +30,11 @@ npm run dev "./src/app.js"
 npm run nodemon "./src/app.js"
 ```
 
-## Frontend ecommerce 
-* Url del proyecto 👉 [URL](https://guinazusantiago-ecommerce-front.netlify.app).
-
 ## Backend ecommerce 
 * Url del proyecto 👉 [URL](https://ecommerce-santiagoguinazu.onrender.com).
+
+## Frontend ecommerce 
+* Url del proyecto 👉 [URL](https://guinazusantiago-ecommerce-front.netlify.app).
 
 ## Construido con 🛠️
 Este Proyecto fue construido utilizando:

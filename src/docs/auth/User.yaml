@@ -18,7 +18,7 @@ paths:
                   type: string
                   description: Password del usuario
       responses:
-        '200':
+        "200":
           description: Login correcto
           content:
             application/json:
@@ -52,7 +52,7 @@ paths:
                       type: string
                 token:
                   type: string
-        '400':
+        "400":
           description: Datos invalidos
           content: 
             application/json:

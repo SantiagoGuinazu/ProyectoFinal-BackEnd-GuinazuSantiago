@@ -1,8 +1,8 @@
-export const validFileExtension = (name = '') => {
+export const validFileExtension = (name = "") => {
 
-    const valid = ['png', 'jpg', 'jpeg'];
+    const valid = ["png", "jpg", "jpeg"];
 
-    const validExtension = name.split('.');
+    const validExtension = name.split(".");
     const extension = validExtension[validExtension.length - 1];
 
     if (valid.includes(extension.toLocaleLowerCase()))

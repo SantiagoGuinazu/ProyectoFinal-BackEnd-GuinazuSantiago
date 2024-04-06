@@ -1,11 +1,11 @@
-import { request, response } from 'express';
-import { validationResult } from 'express-validator';
-import jwt from 'jsonwebtoken';
-import { logger } from '../utils/logger.js';
+import { request, response } from "express";
+import { validationResult } from "express-validator";
+import jwt from "jsonwebtoken";
+import { logger } from "../utils/logger.js";
 
 export const isAdmin = (req = request, res = response, next) => {
-    if (!(req.rol === 'admin' || req.rol === 'premium' ))
-        return res.status(403).json({ok:false, msg:'Permisos insuficientes'}); 
+    if (!(req.rol === "admin" || req.rol === "premium" ))
+        return res.status(403).json({ok:false, msg:"Permisos insuficientes"}); 
     next();
 };
 
@@ -18,10 +18,10 @@ export const validarCampos = (req = request, res = response, next) => {
 };
 
 export const validarJWT = (req = request, res = response, next) => {
-    const token = req.header('x-token');
+    const token = req.header("x-token");
     
     if(!token)
-        return res.status(401).json({ok:false, msg:'No hay token en la peticion'});
+        return res.status(401).json({ok:false, msg:"No hay token en la peticion"});
 
     try {
         const {_id, email, rol, name, lastName} = jwt.verify(token, process.env.JWT_SECRET_KEY);
@@ -33,6 +33,6 @@ export const validarJWT = (req = request, res = response, next) => {
         next();
     } catch (error) {
         logger.error(error);
-        return res.status(401).json({ok:false, msg:'Token no valido'});
+        return res.status(401).json({ok:false, msg:"Token no valido"});
     }
 };

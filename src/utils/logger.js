@@ -1,10 +1,10 @@
-import winston from 'winston';
+import winston from "winston";
 
 const devLogger = winston.createLogger({
-    level: 'debug',
+    level: "debug",
     transports: [
         new winston.transports.Console({
-            level: 'debug',
+            level: "debug",
             format: winston.format.combine(
                 winston.format.colorize(),
                 winston.format.simple(),
@@ -14,21 +14,21 @@ const devLogger = winston.createLogger({
 });
 
 const prodLogger = winston.createLogger({
-    level: 'info',
+    level: "info",
     transports: [
         new winston.transports.Console({
-            level: 'info',
+            level: "info",
             format: winston.format.combine(
                 winston.format.colorize(),
                 winston.format.simple(),
             ),
         }),
         new winston.transports.File({
-            filename:'errors.log',
-            level: 'error',
+            filename:"errors.log",
+            level: "error",
             format: winston.format.simple()
         }),
     ],
 });
 
-export const logger = process.env.NODE_ENV === 'production' ? prodLogger : devLogger;
+export const logger = process.env.NODE_ENV === "production" ? prodLogger : devLogger;

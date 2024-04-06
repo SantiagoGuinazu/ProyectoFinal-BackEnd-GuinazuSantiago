@@ -1,6 +1,6 @@
-import {Schema , model} from 'mongoose';
+import {Schema , model} from "mongoose";
 
-const nameCollection = 'Cart';
+const nameCollection = "Cart";
 
 const CartSchema = new Schema({
     products:[
@@ -8,17 +8,17 @@ const CartSchema = new Schema({
             _id: false,
             id:{
                 type:Schema.Types.ObjectId,
-                ref:'Producto'
+                ref:"Producto"
             },
             quantity: {
                 type: Number,
-                required:[true, 'La cantidad del producto es requerida']
+                required:[true, "La cantidad del producto es requerida"]
             }
         }
     ]
 });
 
-CartSchema.set('toJSON', {
+CartSchema.set("toJSON", {
     transform: function (doc, ret) {
         delete ret.__v;
         return ret;

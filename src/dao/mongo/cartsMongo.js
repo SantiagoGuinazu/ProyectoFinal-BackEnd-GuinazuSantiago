@@ -1,6 +1,6 @@
-import { cartModel } from './models/cartsModels.js';
+import { cartModel } from "./models/cartsModels.js";
 
-export const getCartById = async (cid) => await cartModel.findById(cid).populate('products.id',['title','price','stock','thumbnails']);
+export const getCartById = async (cid) => await cartModel.findById(cid).populate("products.id",["title","price","stock","thumbnails"]);
 
 export const createCart = async () => await cartModel.create({});
 
@@ -23,15 +23,15 @@ export const addProductCart = async (cid, pid) => {
 };
 
 export const deleteProductsInCart = async (cid, pid) => 
-    await cartModel.findByIdAndUpdate(cid, { $pull: { 'products': { id: pid } } }, { new: true }).populate('products.id', ['title', 'price', 'stock','thumbnails']);
+    await cartModel.findByIdAndUpdate(cid, { $pull: { "products": { id: pid } } }, { new: true }).populate("products.id", ["title", "price", "stock","thumbnails"]);
 
 export const updateProductsInCart = async (cid, pid, quantity) => 
     await cartModel.findOneAndUpdate(
-        { _id: cid, 'products.id': pid },
-        { $set: { 'products.$.quantity': quantity } },
+        { _id: cid, "products.id": pid },
+        { $set: { "products.$.quantity": quantity } },
         { new: true }
-    ).populate('products.id', ['title', 'price', 'stock','thumbnails']);
+    ).populate("products.id", ["title", "price", "stock","thumbnails"]);
     
 export const deleteCart = async (cid) => await cartModel.findByIdAndDelete(cid);
 
-export const deleteAllProductsInCart = async (cid) => await cartModel.findByIdAndUpdate(cid,{$set:{'products':[]}},{new:true});
+export const deleteAllProductsInCart = async (cid) => await cartModel.findByIdAndUpdate(cid,{$set:{"products":[]}},{new:true});

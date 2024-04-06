@@ -1,19 +1,19 @@
-import { logger } from '../../utils/logger.js';
-import { productModel } from './models/productosModels.js';
+import { logger } from "../../utils/logger.js";
+import { productModel } from "./models/productosModels.js";
 
 export const getProducts = async ({ limit = 10, page = 1, sort, query }) => {
     page = page == 0 ? 1 : page;
     page = Number(page);
     limit = Number(limit)
     const skip = (page - 1) * limit;
-    const sortOrderOptions = { 'asc': -1, 'desc': 1 };
+    const sortOrderOptions = { "asc": -1, "desc": 1 };
     sort = sortOrderOptions[sort] || null;
 
     try {
         if (query)
             query = JSON.parse(decodeURIComponent(query));
     } catch (error) {
-        logger.error('Error al parsear', error);
+        logger.error("Error al parsear", error);
         query = {}
     }
 
