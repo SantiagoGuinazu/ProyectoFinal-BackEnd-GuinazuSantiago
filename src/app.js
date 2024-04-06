@@ -45,7 +45,7 @@ app.use("/documentacion-api", swaggerUiExpress.serve, swaggerUiExpress.setup(spe
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173"
+        origin: "https://guinazusantiago-ecommerce-front.netlify.app"
     }
 });
 
