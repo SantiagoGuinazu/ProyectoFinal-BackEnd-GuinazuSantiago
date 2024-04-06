@@ -1,10 +1,3 @@
-import { Schema, model } from 'mongoose';
+import { messageModel } from './models/messagesModel.js';
 
-const nameCollection = 'Message';
-
-const MessageSchema = new Schema({
-    user:{type:String, required:[true,'El nombre del usuario es obligatorio']},
-    message:{type:String, required:[true,'El mensaje es obligatorio']}
-});
-
-export const messageModel = model(nameCollection, MessageSchema);
+export const getMessa = async (user, message) => await messageModel.find(user,message);

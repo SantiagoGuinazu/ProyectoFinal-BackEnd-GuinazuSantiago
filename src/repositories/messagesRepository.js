@@ -1,7 +1,3 @@
-export default class MessagesRepository {
-    constructor(dao) {
-        this.dao = dao
-    };
-    getMessages = async () => await this.dao.getMessages();
-    createMessage = async (user, message) => await this.dao.createMessage(user, message);
-};
+import {MessageDao} from '../dao/index.js';
+
+export const getMessages = async (user, message) => await MessageDao.getMessages(user, message);

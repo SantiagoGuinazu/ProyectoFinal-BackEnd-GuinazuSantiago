@@ -9,7 +9,8 @@ Intentando dejar lo mas limpio App.js teniendo en cuenta los Routers para optimi
 Dividido en 3 ramas troncales:
     1.- Autenticacion
     2.- Productos
-    3.- Carrito
+    3.- Carrito + Pasarela de Pagos
+    4.- Chat
 
 ## Comenzando 🚀
 1. Clone the repo
