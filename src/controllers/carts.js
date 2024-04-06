@@ -156,9 +156,9 @@ export const createIdPreference = async (req = request, res = response) => {
         });
 
         const back_urls = {
-            //success: "https://guinazusantiago-ecommerce-front.netlify.app/",
-            //failure: "https://guinazusantiago-ecommerce-front.netlify.app/",
-            //pending: "https://guinazusantiago-ecommerce-front.netlify.app/"
+            //success: "https://guinazusantiago-ecommerce-front.netlify.app/mi-carrito",
+            //failure: "https://guinazusantiago-ecommerce-front.netlify.app/mi-carrito",
+            //pending: "https://guinazusantiago-ecommerce-front.netlify.app/mi-carrito"
             success: "http://localhost:5173/mi-carrito",
             failure: "http://localhost:5173/mi-carrito",
             pending: "http://localhost:5173/mi-carrito"
