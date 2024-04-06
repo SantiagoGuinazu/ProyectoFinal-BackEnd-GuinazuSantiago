@@ -51,12 +51,14 @@ const io = new Server(server, {
 await dbConnection();
 
 io.on('connection', socket => {
-    console.log('Cliente conectado');
+    console.log(socket.id);
 
-    socket.on('mensaje', data => {
-        console.log({ data });
-
-        socket.broadcast.emit('mensaje', data);
+    socket.on('mensaje', (body) => {
+        console.log(body);
+        socket.broadcast.emit('mensaje', {
+            body,
+            from: socket.id.slice(6)
+        });
     })
 });
 
