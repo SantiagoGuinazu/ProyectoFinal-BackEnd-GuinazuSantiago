@@ -1,3 +1,3 @@
 import { messageModel } from "./models/messagesModel.js";
 
-export const getMessa = async (user, message) => await messageModel.find(user,message);
+export const getMessa = async (user) => await messageModel.create(user);
