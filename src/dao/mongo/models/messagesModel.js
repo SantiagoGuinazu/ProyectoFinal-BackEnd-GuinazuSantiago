@@ -2,9 +2,9 @@ import { Schema, model } from "mongoose";
 
 const nameCollection = "messages";
 
-const messageSchema = new Schema({
-    user: String,
-    message: String
+const MessageSchema = new Schema({
+    user: {type: String},
+    message: {type: String},
 });
 
-export const messageModel = model(nameCollection, messageSchema);
+export const messageModel = model(nameCollection, MessageSchema);
