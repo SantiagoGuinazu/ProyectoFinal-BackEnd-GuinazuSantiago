@@ -4,7 +4,7 @@ import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUiExpress from "swagger-ui-express";
 
-import { productsRouter, cartsRouter, authRouter, ticketsRouter, messageRouter } from "./routers/index.js";
+import { productsRouter, cartsRouter, authRouter, ticketsRouter } from "./routers/index.js";
 
 import __dirname from "./utils.js";
 import { dbConnection } from "./database/config.js";
@@ -39,14 +39,13 @@ app.use("/api/auth", authRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 app.use("/api/tickets", ticketsRouter);
-app.use("/api/chat", messageRouter);
 app.use("/documentacion-api", swaggerUiExpress.serve, swaggerUiExpress.setup(spec));
 
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        //origin: "https://guinazusantiago-ecommerce-front.netlify.app"
-        origin: "http://localhost:5173/"
+        origin: "https://guinazusantiago-ecommerce-front.netlify.app"
+        //origin: "http://localhost:5173/"
     }
 });
 
